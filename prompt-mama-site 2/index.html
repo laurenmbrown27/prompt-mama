@@ -100,8 +100,33 @@
 
   <!-- TOP BAR -->
   <div class="topbar" role="banner">
-    Helping parents use AI with confidence <span aria-hidden="true">✦</span> No gatekeeping. No perfection pressure.
+    <span class="topbar-message">Helping parents use AI with confidence <span aria-hidden="true">✦</span> No gatekeeping. No perfection pressure.</span>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+
+  <!-- SLIDE-OUT NAV -->
+  <nav class="site-nav" id="site-nav" aria-hidden="true" aria-label="Site sections">
+    <button class="site-nav-close" id="navClose" aria-label="Close menu">×</button>
+    <div class="site-nav-inner">
+      <span class="site-nav-tag">explore the site ✦</span>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/vibe-coded.html">I Vibe Coded So Hard <span class="nav-sub">— the CAEVO story</span></a></li>
+        <li><a href="/feed.html">From the Feed <span class="nav-sub">— recent posts &amp; reels</span></a></li>
+        <li><a href="/parent-guide.html">2026 Parent Guide to AI <span class="nav-sub">— the new download</span></a></li>
+        <li><a href="/tools.html">More Tools &amp; Guides <span class="nav-sub">— the full toolkit</span></a></li>
+        <li><a href="/press-kit.html">Press &amp; Media Kit</a></li>
+      </ul>
+      <div class="site-nav-socials">
+        <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@prompt_mama" target="_blank" rel="noopener">TikTok</a>
+        <a href="mailto:hello@promptmama.com">Email</a>
+      </div>
+    </div>
+  </nav>
+  <div class="site-nav-backdrop" id="navBackdrop" hidden></div>
 
   <!-- HERO -->
   <header class="hero">
@@ -122,8 +147,8 @@
       <nav class="cta-row" aria-label="Primary navigation">
         <a href="#about" class="btn btn-secondary">About Me</a>
         <a href="https://instagram.com/prompt_mama" class="btn btn-primary" target="_blank" rel="noopener">Follow on Instagram</a>
-        <a href="#tools" class="btn btn-secondary">Explore the Tools</a>
-        <a href="#freebie" class="btn btn-secondary">Parent Guide to AI</a>
+        <a href="/tools.html" class="btn btn-secondary">Explore the Tools</a>
+        <a href="/parent-guide.html" class="btn btn-secondary">2026 Parent Guide</a>
       </nav>
       <div class="cta-row-secondary">
         <a href="/press-kit.html" class="btn-ghost">Press &amp; Media Kit →</a>
@@ -173,7 +198,7 @@
         </div>
 
         <div class="about-content reveal">
-          <h2 id="about-heading">Hi, I'm Lauren <span class="scribble">— your AI shortcut.</span></h2>
+          <h2 id="about-heading">Hi, I'm Lauren<br /><span class="scribble">— your AI wing-woman.</span></h2>
           <p>A mom, a tech leader, and your go-to guide for making AI work for your busy life.</p>
           <p>
             Between my husband, kids, our Wheaten Terrier, and my role in tech enablement, life is full. I know many of you can relate. During my time in big tech, I discovered the true power of AI — and what stood out most was how many moms <span class="highlight">weren't taking advantage of the free tools</span> available to us.
@@ -186,119 +211,87 @@
     </div>
   </section>
 
-  <!-- CAEVO FOUNDER SPOTLIGHT -->
-  <section class="caevo" aria-labelledby="caevo-heading">
-    <div class="caevo-inner reveal">
-      <span class="scribble-tag">plot twist ✦</span>
-      <h2 id="caevo-heading">I <em>vibe coded</em> so hard,<br />I co-founded a startup<br />taking on a <span class="yellow-hl">nation's crisis.</span></h2>
-      <p>
-        Meet <strong>CAEVO</strong> — the AI-powered platform I founded with my husband Jon for the people aging well, the families caring for them, and everyone in between.
-      </p>
-      <div class="caevo-tag">Care, evolved. ✦</div>
-      <a href="https://caevo.ai" class="btn btn-primary" target="_blank" rel="noopener">Visit CAEVO →</a>
-
-      <div class="caevo-stats">
-        <div class="caevo-stat"><div class="num">63M</div><div class="label">Family Caregivers</div></div>
-        <div class="caevo-stat"><div class="num">94%</div><div class="label">Want To Age At Home</div></div>
-        <div class="caevo-stat"><div class="num">$1T</div><div class="label">Unpaid Care Yearly</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TOOLS -->
-  <section class="tools" id="tools" aria-labelledby="tools-heading">
+  <!-- THREE-COLUMN HIGHLIGHT -->
+  <section class="trio" id="trio" aria-labelledby="trio-heading">
     <div class="container">
-      <div class="section-head reveal">
-        <h2 id="tools-heading">Tools, guides &amp; <em>my favorite shortcuts</em></h2>
-        <div class="lede">— ready when you are.</div>
+      <div class="trio-head reveal">
+        <span class="scribble-tag">the highlights ✦</span>
+        <h2 id="trio-heading">Where to dive in <em>next.</em></h2>
+      </div>
+
+      <div class="trio-grid">
+        <!-- COLUMN 1: VIBE CODED / CAEVO -->
+        <a href="/vibe-coded.html" class="trio-card trio-navy reveal">
+          <span class="trio-tag">plot twist ✦</span>
+          <h3>I <em>vibe coded</em> so hard, I co-founded a startup taking on a <span class="yellow-hl">nation's crisis.</span></h3>
+          <p>Meet <strong>CAEVO</strong> — the AI-powered platform I built with my husband Jon for the people aging well and the families caring for them.</p>
+          <div class="trio-stats">
+            <div><span class="num">63M</span><span class="label">Caregivers</span></div>
+            <div><span class="num">94%</span><span class="label">Age At Home</span></div>
+            <div><span class="num">$1T</span><span class="label">Unpaid Care</span></div>
+          </div>
+          <div class="trio-arrow">Read the story →</div>
+        </a>
+
+        <!-- COLUMN 2: FROM THE FEED -->
+        <a href="/feed.html" class="trio-card trio-pink reveal">
+          <span class="trio-tag">from the feed ✦</span>
+          <h3>What's <em>trending</em> with the Prompt Mama crew this week.</h3>
+          <ul class="trio-feed-list">
+            <li><span class="dot"></span>Weird things I've asked AI as a mom</li>
+            <li><span class="dot"></span>5 prompts that plan, so you don't have to</li>
+            <li><span class="dot"></span>Clean-ingredients this-or-that</li>
+            <li><span class="dot"></span>Meet the new Reset GPT</li>
+          </ul>
+          <div class="trio-arrow">See the latest posts →</div>
+        </a>
+
+        <!-- COLUMN 3: 2026 PARENT GUIDE -->
+        <a href="/parent-guide.html" class="trio-card trio-yellow reveal">
+          <span class="trio-tag new-pill">✦ NEW ✦</span>
+          <h3>The <em>2026 Parents Guide</em> to navigating AI.</h3>
+          <p>The exact prompts, frameworks, and shortcuts I use every week — bundled into one printable PDF you can read in 10 minutes.</p>
+          <div class="trio-pdf-row">
+            <span class="pdf-icon" aria-hidden="true">📥</span>
+            <span class="pdf-meta">PDF · 24 pages · Free</span>
+          </div>
+          <div class="trio-arrow">Get the new guide →</div>
+        </a>
+      </div>
+
+      <!-- MORE TOOLS & GUIDES -->
+      <div class="more-tools-head reveal">
+        <h3>More <em>tools &amp; guides</em></h3>
+        <a href="/tools.html" class="more-tools-link">See the full toolkit →</a>
       </div>
 
       <div class="tools-grid">
-        <a href="#" class="tool-card reveal">
+        <a href="/tools.html" class="tool-card reveal">
           <div class="tool-tag">✦ FREE TOOL</div>
           <h3>The <em>Reset Journal</em></h3>
           <p>A 5-minute weekly check-in GPT — your shortcut to calm, clarity, and a fresh restart every Sunday night.</p>
           <div class="arrow">Open the journal →</div>
         </a>
 
-        <a href="#" class="tool-card pink reveal">
+        <a href="/tools.html" class="tool-card pink reveal">
           <div class="tool-tag">✦ GUIDE</div>
           <h3>AI Automation Guide</h3>
           <p>Stop doing it manually. The exact workflows I use to automate planning, scheduling, and the weekly mental load.</p>
           <div class="arrow">Get the guide →</div>
         </a>
 
-        <a href="#" class="tool-card yellow reveal">
+        <a href="/tools.html" class="tool-card yellow reveal">
           <div class="tool-tag">✦ CAREER</div>
           <h3>Using AI to <em>Land Your Next Job</em></h3>
           <p>Resume rewrites, interview prep, and the prompt stack I'd use today. Built from 15+ years inside tech.</p>
           <div class="arrow">Start applying →</div>
         </a>
 
-        <a href="#" class="tool-card navy reveal">
+        <a href="/tools.html" class="tool-card navy reveal">
           <div class="tool-tag">✦ NEW</div>
           <h3>Prompt Mama <em>Prompt Generator</em></h3>
           <p>Tell it what you need — get a perfectly-structured prompt back. Built for the way real parents actually ask things.</p>
           <div class="arrow">Try it now →</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- PARENT GUIDE -->
-  <section class="freebie" id="freebie" aria-labelledby="freebie-heading">
-    <div class="freebie-card reveal">
-      <div class="lil-tag">free download ✦</div>
-      <h2 id="freebie-heading">The <em>Parent Guide</em><br />to navigating AI.</h2>
-      <p>The exact prompts, frameworks, and shortcuts I use every week — bundled into one printable PDF you can read in 10 minutes.</p>
-      <a href="#" class="btn btn-yellow">📥 Send Me the Guide</a>
-    </div>
-  </section>
-
-  <!-- CONTENT FEED -->
-  <section class="content-feed" aria-labelledby="feed-heading">
-    <div class="container">
-      <div class="feed-header reveal">
-        <h2 id="feed-heading">From <em>the feed</em></h2>
-        <a href="https://instagram.com/prompt_mama" class="ig-link" target="_blank" rel="noopener">See all on Instagram →</a>
-      </div>
-
-      <div class="feed-grid">
-        <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item pink-bg reveal">
-          <div class="feed-item-content">
-            <div class="feed-tag">✦ Trending</div>
-            <h4>Weird things I've asked AI as a mom</h4>
-          </div>
-        </a>
-        <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item yellow-bg reveal">
-          <div class="feed-item-content">
-            <div class="feed-tag">✦ Free Tool</div>
-            <h4>The Family Planner: 5 prompts that plan, so you don't have to</h4>
-          </div>
-        </a>
-        <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item blue-bg reveal">
-          <div class="feed-item-content">
-            <div class="feed-tag">✦ Quickie</div>
-            <h4>Use AI for a clean ingredients this-or-that</h4>
-          </div>
-        </a>
-        <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item navy-bg reveal">
-          <div class="feed-item-content">
-            <div class="feed-tag">✦ Parents</div>
-            <h4>Hey parents — AI isn't just for the office.</h4>
-          </div>
-        </a>
-        <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item reveal">
-          <div class="feed-item-content">
-            <div class="feed-tag">✦ Recap</div>
-            <h4>How I used ChatGPT this week</h4>
-          </div>
-        </a>
-        <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item pink-bg reveal">
-          <div class="feed-item-content">
-            <div class="feed-tag">✦ Reset</div>
-            <h4>Meet the new Reset GPT — your shortcut to calm</h4>
-          </div>
         </a>
       </div>
     </div>
