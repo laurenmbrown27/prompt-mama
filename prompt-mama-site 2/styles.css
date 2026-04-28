@@ -310,6 +310,7 @@ h1.hero-title .accent {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
 }
 .about-photo-wrap {
   position: relative;
