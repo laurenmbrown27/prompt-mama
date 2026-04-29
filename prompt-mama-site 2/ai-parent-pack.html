@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The AI Parent Pack · Prompt Mama</title>
+  <meta name="description" content="Three free guides, five mom-tested prompts, and a 2-month plan to actually use AI in your life. From Prompt Mama." />
+  <link rel="canonical" href="https://promptmama.com/ai-parent-pack.html" />
+  <meta name="theme-color" content="#FFE45E" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://promptmama.com/ai-parent-pack.html" />
+  <meta property="og:title" content="The AI Parent Pack · Prompt Mama" />
+  <meta property="og:description" content="Three free guides, five mom-tested prompts, and a 2-month plan to actually use AI in your life." />
+  <meta property="og:image" content="https://promptmama.com/assets/og-image.png" />
+
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=3" />
+
+  <!-- Page-specific styles for the gate + content unique to this page -->
+  <style>
+    /* ---------- VIEW TOGGLE ---------- */
+    /* Default: locked. Both views start hidden, JS reveals the right one. */
+    .gate-view, .unlocked-view { display: none; }
+    body.pm-locked .gate-view { display: block; }
+    body.pm-unlocked .unlocked-view { display: block; }
+
+    /* ---------- EMAIL GATE FORM ---------- */
+    .pm-gate-form {
+      max-width: 460px;
+      margin: 32px auto 0;
+      background: var(--white);
+      border: 2px solid var(--navy);
+      border-radius: 22px;
+      padding: 28px 26px;
+      box-shadow: 0 6px 0 var(--navy);
+      text-align: left;
+    }
+    .pm-gate-form label {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .pm-gate-form input[type="email"] {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      color: var(--navy);
+      background: var(--cream);
+      border: 2px solid var(--navy);
+      border-radius: 12px;
+      margin-bottom: 14px;
+      transition: border-color 0.2s ease;
+    }
+    .pm-gate-form input[type="email"]:focus {
+      outline: none;
+      border-color: var(--pink);
+    }
+    .pm-gate-form button {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: var(--pink);
+      color: var(--white);
+      border: 2px solid var(--navy);
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 0 var(--navy);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .pm-gate-form button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 var(--navy);
+    }
+    .pm-gate-form button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+    .pm-error {
+      color: var(--pink);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      min-height: 18px;
+    }
+    .pm-fineprint {
+      text-align: center;
+      font-size: 12px;
+      margin-top: 14px;
+      opacity: 0.65;
+      margin-bottom: 0;
+    }
+
+    /* ---------- WHAT'S INSIDE TEASER (gate view) ---------- */
+    .pm-teaser-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      max-width: 460px;
+      margin: 28px auto 0;
+    }
+    .pm-teaser-pill {
+      background: var(--white);
+      border: 2px solid var(--navy);
+      border-radius: 14px;
+      padding: 12px 6px;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--navy);
+    }
+    @media (max-width: 480px) {
+      .pm-teaser-pill { font-size: 11px; padding: 10px 4px; }
+    }
+
+    /* ---------- 5 PROMPTS LIST ---------- */
+    .pm-prompts-list {
+      list-style: none;
+      padding: 0;
+      max-width: 640px;
+      margin: 24px auto 0;
+    }
+    .pm-prompts-list li {
+      background: var(--white);
+      border: 2px solid var(--navy);
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 4px 0 var(--navy);
+    }
+    .pm-prompts-list .num {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: var(--pink);
+      min-width: 36px;
+    }
+    .pm-prompts-list .name {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--navy);
+    }
+
+    /* ---------- 2-MONTH PLAN WEEK CARDS ---------- */
+    .pm-weeks-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 32px;
+    }
+    .pm-week-card {
+      background: var(--white);
+      border: 2px solid var(--navy);
+      border-radius: 22px;
+      padding: 30px 28px;
+      box-shadow: var(--shadow-card);
+    }
+    .pm-week-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .pm-week-meta { display: flex; flex-direction: column; gap: 2px; }
+    .pm-week-month {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+    .pm-week-num {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: var(--pink);
+      letter-spacing: -0.02em;
+    }
+    .pm-week-tag {
+      background: var(--blue);
+      border: 1.5px solid var(--navy);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+    .pm-week-tag.tag-pink { background: var(--pink-soft); }
+    .pm-week-tag.tag-yellow { background: var(--yellow-soft); }
+    .pm-week-card h3 {
+      font-weight: 900;
+      font-size: 28px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .pm-week-card h3 em {
+      font-family: 'Caveat', cursive;
+      color: var(--pink);
+      font-style: italic;
+      font-weight: 700;
+    }
+    .pm-week-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .pm-week-card ul li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 12px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .pm-week-card ul li::before {
+      content: '✦';
+      color: var(--pink);
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .pm-week-card ul li strong { font-weight: 800; }
+    .pm-week-card ul li em {
+      font-family: 'Caveat', cursive;
+      color: var(--pink);
+      font-style: italic;
+      font-weight: 600;
+    }
+    .pm-week-callout {
+      margin-top: 18px;
+      background: var(--yellow);
+      border: 2px solid var(--navy);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+    .pm-week-callout-tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .pm-week-callout-body {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--navy);
+    }
+    @media (max-width: 720px) {
+      .pm-weeks-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ---------- DOWNLOAD GUIDE CARDS ---------- */
+    /* Reuses .trio-grid + .trio-card from styles.css for layout; tweaks here. */
+    .pm-guide-card .pm-guide-num {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--navy);
+      opacity: 0.18;
+      margin-bottom: 4px;
+    }
+    .pm-guide-card .pm-guide-sub {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--pink);
+    }
+    .pm-guide-card h3 {
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+    }
+    .pm-guide-card p {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--navy);
+      opacity: 0.82;
+      flex: 1;
+    }
+    .pm-guide-card .pm-download-link {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body class="pm-locked">
+
+  <div class="topbar" role="banner">
+    <span class="topbar-message">Helping parents use AI with confidence <span aria-hidden="true">✦</span> No gatekeeping. No perfection pressure.</span>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="site-nav" id="site-nav" aria-hidden="true" aria-label="Site sections">
+    <button class="site-nav-close" id="navClose" aria-label="Close menu">×</button>
+    <div class="site-nav-inner">
+      <span class="site-nav-tag">explore the site ✦</span>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/vibe-coded.html">I Vibe Coded So Hard <span class="nav-sub">— the CAEVO story</span></a></li>
+        <li><a href="/feed.html">From the Feed <span class="nav-sub">— recent posts &amp; reels</span></a></li>
+        <li><a href="/parent-guide.html">2026 Parent Guide to AI <span class="nav-sub">— the new download</span></a></li>
+        <li><a href="/ai-parent-pack.html">The AI Parent Pack <span class="nav-sub">— guides + 2-month plan</span></a></li>
+        <li><a href="/tools.html">More Tools &amp; Guides <span class="nav-sub">— the full toolkit</span></a></li>
+        <li><a href="/press-kit.html">Press &amp; Media Kit</a></li>
+      </ul>
+      <div class="site-nav-socials">
+        <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@prompt_mama" target="_blank" rel="noopener">TikTok</a>
+        <a href="mailto:hello@promptmama.com">Email</a>
+      </div>
+    </div>
+  </nav>
+  <div class="site-nav-backdrop" id="navBackdrop" hidden></div>
+
+  <!-- ======================================================== -->
+  <!-- GATE VIEW — shown to first-time visitors                  -->
+  <!-- ======================================================== -->
+  <main class="gate-view">
+
+    <header class="subpage-hero bg-blue">
+      <div class="subpage-hero-inner">
+        <a href="/" class="back-home">← Back to Prompt Mama</a>
+        <span class="scribble-tag">free parent resource ✦</span>
+        <h1>The AI Parent <em>Pack.</em></h1>
+        <p class="lede">Three guides, five mom-tested prompts, and a 2-month plan to actually use AI in your life. Drop your email and it's yours.</p>
+
+        <form class="pm-gate-form" id="pm-gate-form" novalidate>
+          <label for="pm-email">your email</label>
+          <input type="email" id="pm-email" name="email" placeholder="you@yourlife.com" autocomplete="email" required />
+          <div class="pm-error" id="pm-error" role="alert" aria-live="polite"></div>
+          <button type="submit" id="pm-submit">📥 Unlock the Pack</button>
+          <p class="pm-fineprint">No spam. Unsubscribe anytime. You'll only see this once.</p>
+        </form>
+
+        <div class="pm-teaser-row" aria-label="What's inside">
+          <div class="pm-teaser-pill">AI basics</div>
+          <div class="pm-teaser-pill">with your kids</div>
+          <div class="pm-teaser-pill">5 mom prompts</div>
+        </div>
+      </div>
+    </header>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- UNLOCKED VIEW — full landing page                         -->
+  <!-- ======================================================== -->
+  <main class="unlocked-view">
+
+    <header class="subpage-hero bg-yellow">
+      <div class="subpage-hero-inner">
+        <a href="/" class="back-home">← Back to Prompt Mama</a>
+        <span class="scribble-tag" style="color:var(--pink);">you're in ✦</span>
+        <h1>Welcome to your <em>shortcut.</em></h1>
+        <p class="lede">Three guides. Five prompts. One simple plan. Save this page — your pack lives here forever.</p>
+      </div>
+    </header>
+
+    <!-- 3 PILLARS -->
+    <section class="trio" style="background:var(--cream);">
+      <div class="container">
+        <div class="trio-head">
+          <span class="scribble-tag">what's inside</span>
+          <h2>Three things, <em>in this order.</em></h2>
+        </div>
+        <div class="trio-grid">
+
+          <article class="trio-card trio-navy reveal">
+            <span class="trio-tag">start here</span>
+            <h3>AI, <em>simplified.</em></h3>
+            <p>Learn the basics. Pick the platform that fits your life. Understand the risks. Decide if a paid plan is worth it for you.</p>
+          </article>
+
+          <article class="trio-card trio-pink reveal">
+            <span class="trio-tag">with your kids</span>
+            <h3>Bring <em>them in.</em></h3>
+            <p>How to talk about AI with your kids, learn alongside them, and help them see what's helpful — and what to watch for.</p>
+          </article>
+
+          <article class="trio-card trio-yellow reveal">
+            <span class="trio-tag">mom-tested</span>
+            <h3>My top <em>5 prompts.</em></h3>
+            <p>The five prompts I genuinely use as a mom. Copy, paste, save hours. You'll feel the difference in week one.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD GUIDES -->
+    <section class="subpage-section alt">
+      <div class="container">
+        <span class="scribble-tag" style="font-family:'Caveat',cursive;color:var(--pink);font-size:28px;font-weight:600;display:block;">download all three</span>
+        <h2>The <em>guides.</em></h2>
+
+        <div class="trio-grid" style="margin-top:32px;">
+
+          <a class="trio-card pm-guide-card reveal" href="https://storage.googleapis.com/mailerlite-uploads-prod/1602209/Zp5OWRkyImQkyNzfGv5eDH51A6qNfbEkBEbTvmPF.pdf" target="_blank" rel="noopener">
+            <div class="pm-guide-num">01</div>
+            <div class="pm-guide-sub">2026 Edition</div>
+            <h3>The Parent's Guide to Navigating AI</h3>
+            <p>The basics, the platforms, the risks, and what actually matters for your family.</p>
+            <div class="pm-download-link">Download PDF ↓</div>
+          </a>
+
+          <a class="trio-card pm-guide-card reveal" href="https://storage.googleapis.com/mailerlite-uploads-prod/1602209/W8sPsQEP5qYpUSQaKvT7jRYYo1xtEJ00xlEtPXLX.pdf" target="_blank" rel="noopener">
+            <div class="pm-guide-num">02</div>
+            <div class="pm-guide-sub">Conversation Guide</div>
+            <h3>Teaching Your Kids About AI</h3>
+            <p>How to talk about AI with your kids, learn together, and build smart awareness around the risks.</p>
+            <div class="pm-download-link">Download PDF ↓</div>
+          </a>
+
+          <a class="trio-card pm-guide-card reveal" href="https://storage.googleapis.com/mailerlite-uploads-prod/1602209/YUzu3NrvcYbGE9EtoGo5sgMzCWO5HLTg2WfnAASI.pdf" target="_blank" rel="noopener">
+            <div class="pm-guide-num">03</div>
+            <div class="pm-guide-sub">My Top 5 Prompts</div>
+            <h3>The Family Planner</h3>
+            <p>The exact prompts I use as a mom — the ones that save me the most time, every week.</p>
+            <div class="pm-download-link">Download PDF ↓</div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 PROMPTS LIST -->
+    <section class="subpage-section">
+      <div class="container" style="text-align:center;">
+        <span class="scribble-tag" style="font-family:'Caveat',cursive;color:var(--pink);font-size:28px;font-weight:600;display:block;">my favorite five</span>
+        <h2>Mom-tested <em>prompts.</em></h2>
+        <p style="margin-left:auto;margin-right:auto;">These five live in The Family Planner PDF. Copy, paste, customize. You'll feel the time come back to you.</p>
+
+        <ul class="pm-prompts-list">
+          <li><span class="num">01</span><span class="name">The Sunday Reset</span></li>
+          <li><span class="num">02</span><span class="name">The Grocery Sweep</span></li>
+          <li><span class="num">03</span><span class="name">The Picky Eater Plan</span></li>
+          <li><span class="num">04</span><span class="name">The Birthday Logistics</span></li>
+          <li><span class="num">05</span><span class="name">The Mental Load Dump</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 2-MONTH PLAN -->
+    <section class="subpage-section alt">
+      <div class="container">
+        <span class="scribble-tag" style="font-family:'Caveat',cursive;color:var(--pink);font-size:28px;font-weight:600;display:block;">your 2-month plan</span>
+        <h2>From <em>"I should try AI"</em> to <em>"I use it every week."</em></h2>
+        <p>No overwhelm. Just one small thing per week. By week 8, AI is part of your rhythm.</p>
+
+        <div class="pm-weeks-grid">
+
+          <article class="pm-week-card reveal">
+            <div class="pm-week-head">
+              <div class="pm-week-meta">
+                <span class="pm-week-month">month one</span>
+                <span class="pm-week-num">week 01</span>
+              </div>
+              <span class="pm-week-tag">foundation</span>
+            </div>
+            <h3>Get <em>oriented.</em></h3>
+            <ul>
+              <li>Read <strong>The Parent's Guide to Navigating AI</strong> — front to back.</li>
+              <li>Pick your platform: ChatGPT, Claude, Gemini, or Copilot.</li>
+              <li>Decide: free or paid? (Most moms can start free.)</li>
+              <li>Practice your <em>tone</em>: be specific. Tell it who you are, what you need, and how you want it back.</li>
+            </ul>
+            <div class="pm-week-callout">
+              <div class="pm-week-callout-tag">★ try this</div>
+              <div class="pm-week-callout-body">On the free plan? Try creating a Project (Claude or ChatGPT) to keep your chats organized — like folders for your brain.</div>
+            </div>
+          </article>
+
+          <article class="pm-week-card reveal">
+            <div class="pm-week-head">
+              <div class="pm-week-meta">
+                <span class="pm-week-month">month one</span>
+                <span class="pm-week-num">week 02</span>
+              </div>
+              <span class="pm-week-tag tag-pink">first wins</span>
+            </div>
+            <h3>Solve <em>real life.</em></h3>
+            <ul>
+              <li>Run <strong>the grocery prompt</strong> (in The Family Planner).</li>
+              <li>Run <strong>the picky eater prompt</strong> — give it your kid's actual food list.</li>
+              <li>If you're on Gemini or Copilot: ask AI to save meals to specific days. Tell it when you cook, what you have on hand, and how much time you've got.</li>
+              <li>Bonus: follow one AI account I recommend (linked in the guide) and read one new piece this week.</li>
+            </ul>
+          </article>
+
+          <article class="pm-week-card reveal">
+            <div class="pm-week-head">
+              <div class="pm-week-meta">
+                <span class="pm-week-month">month two</span>
+                <span class="pm-week-num">week 03</span>
+              </div>
+              <span class="pm-week-tag tag-yellow">build the rhythm</span>
+            </div>
+            <h3>Reset <em>+ create.</em></h3>
+            <ul>
+              <li><strong>Sunday:</strong> run the Sunday Reset prompt. Plan the week in 5 minutes.</li>
+              <li><strong>Mid-week:</strong> build your first Artifact. Pick one real need — a birthday invite, a packing list, a chore tracker — and have AI build it for you.</li>
+              <li>Not on Claude? Try the same idea in Canvas (ChatGPT) or Gems (Gemini).</li>
+              <li>Save the link. Share it with your partner. <em>That's the magic.</em></li>
+            </ul>
+            <div class="pm-week-callout">
+              <div class="pm-week-callout-tag">★ try this</div>
+              <div class="pm-week-callout-body">My favorite first Artifact: a chore chart for the kids. Builds in 60 seconds. Saves arguments forever.</div>
+            </div>
+          </article>
+
+          <article class="pm-week-card reveal">
+            <div class="pm-week-head">
+              <div class="pm-week-meta">
+                <span class="pm-week-month">month two</span>
+                <span class="pm-week-num">week 04</span>
+              </div>
+              <span class="pm-week-tag tag-pink">level up</span>
+            </div>
+            <h3>Go <em>deeper.</em></h3>
+            <ul>
+              <li>On Claude? Try <strong>Cowork</strong> — let it work on something for you in the background.</li>
+              <li>On ChatGPT? Build a custom GPT for the role you play most (planner, host, family CFO).</li>
+              <li>On Gemini or Copilot? Connect it to your calendar or email and let it help you triage.</li>
+              <li>Pick <strong>one</strong> workflow you'll keep forever. <em>That's the win.</em></li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FOLLOW CTA -->
+    <section class="freebie">
+      <div class="freebie-card reveal">
+        <div class="lil-tag">keep going ✦</div>
+        <h2>New prompts <em>every week.</em></h2>
+        <p>I share new prompts, tools, and behind-the-scenes builds every week on Instagram. No gatekeeping. No perfection pressure.</p>
+        <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="btn btn-yellow">Follow @prompt_mama →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- FOOTER (always visible)                                   -->
+  <!-- ======================================================== -->
+  <footer>
+    <div class="container">
+      <img src="/assets/logo-sm.png" alt="Prompt Mama logo" class="logo-img" width="130" height="103" />
+      <h2>Less stress. <em>More time.</em></h2>
+      <p class="tagline">Smarter parenting, one prompt at a time.</p>
+      <p class="copyright">© <span id="year">2026</span> PROMPT MAMA · MADE WITH ♥ FOR PARENTS</p>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
+
+  <!-- ======================================================== -->
+  <!-- GATE LOGIC: localStorage check + MailerLite submit        -->
+  <!-- ======================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      var STORAGE_KEY = 'pm_aip_unlocked';
+      var ML_ENDPOINT = 'https://assets.mailerlite.com/jsonp/1602209/forms/186028435679741221/subscribe';
+      var body = document.body;
+      var form = document.getElementById('pm-gate-form');
+      var emailInput = document.getElementById('pm-email');
+      var submitBtn = document.getElementById('pm-submit');
+      var errorEl = document.getElementById('pm-error');
+
+      // 1) On load: check localStorage. If unlocked, swap views.
+      function checkUnlocked() {
+        try {
+          if (localStorage.getItem(STORAGE_KEY)) {
+            body.classList.remove('pm-locked');
+            body.classList.add('pm-unlocked');
+          }
+        } catch (e) {
+          // localStorage disabled (private browsing, etc.) — gate stays up. That's OK.
+        }
+      }
+      checkUnlocked();
+
+      // 2) Form submit
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          errorEl.textContent = '';
+
+          var email = (emailInput.value || '').trim();
+          if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+            errorEl.textContent = 'Please enter a valid email.';
+            return;
+          }
+
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Unlocking…';
+
+          // Save locally so they skip the gate next visit
+          try { localStorage.setItem(STORAGE_KEY, email); } catch (e2) {}
+
+          // POST to MailerLite. mode: 'no-cors' — response is opaque, that's expected.
+          var fd = new URLSearchParams();
+          fd.append('fields[email]', email);
+          fd.append('ml-submit', '1');
+          fd.append('anticsrf', 'true');
+
+          fetch(ML_ENDPOINT, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: fd
+          }).catch(function () {
+            // Even if the network call fails, we already saved locally —
+            // unlock the content. They got value either way.
+          }).finally(function () {
+            body.classList.remove('pm-locked');
+            body.classList.add('pm-unlocked');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Safety net: nudge any reveal observers in case the view-toggle
+            // confused them. Above-the-fold reveals get .in immediately;
+            // the rest still animate normally on scroll.
+            requestAnimationFrame(function () {
+              var reveals = document.querySelectorAll('.unlocked-view .reveal');
+              reveals.forEach(function (el) {
+                var rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight) el.classList.add('in');
+              });
+            });
+          });
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
