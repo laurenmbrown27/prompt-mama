@@ -554,14 +554,14 @@ h1.hero-title .accent {
   background: var(--white);
   border: 2px solid var(--navy);
   border-radius: 22px;
-  padding: 30px 28px;
+  padding: 34px 30px;
   box-shadow: var(--shadow-card);
   transition: transform 0.25s ease;
   text-decoration: none;
   color: var(--navy);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
   position: relative;
   overflow: hidden;
 }
@@ -596,9 +596,9 @@ h1.hero-title .accent {
 
 .trio-card h3 {
   font-weight: 900;
-  font-size: 26px;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-size: 23px;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
 }
 .trio-card h3 em {
   font-family: 'Caveat', cursive;
@@ -618,8 +618,8 @@ h1.hero-title .accent {
 }
 
 .trio-card p {
-  font-size: 15px;
-  line-height: 1.55;
+  font-size: 14.5px;
+  line-height: 1.6;
   opacity: 0.92;
 }
 .trio-card p strong {
