@@ -595,6 +595,20 @@ h1.hero-title .accent {
   padding: 16px 28px;
 }
 
+.quiz-continue {
+  align-self: flex-start;
+  font-size: 16px;
+  padding: 16px 28px;
+  margin-top: 4px;
+}
+.quiz-continue[disabled],
+.quiz-continue[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: 0 5px 0 rgba(26, 43, 74, 0.35);
+}
+
 .quiz-callout {
   border-radius: 20px;
   padding: 20px 22px;
