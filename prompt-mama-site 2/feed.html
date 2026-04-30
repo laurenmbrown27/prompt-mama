@@ -64,7 +64,7 @@
         <a href="https://instagram.com/prompt_mama" class="ig-link" target="_blank" rel="noopener">See all on Instagram →</a>
       </div>
 
-      <div class="feed-grid">
+      <div class="feed-grid" id="feedGrid" data-behold-feed="https://feeds.behold.so/K1ZJbNiKi2b55GDvG2Cw">
         <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item pink-bg reveal">
           <div class="feed-item-content">
             <div class="feed-tag">✦ Trending</div>
@@ -144,5 +144,53 @@
   </footer>
 
   <script src="/script.js?v=2" defer></script>
+  <script>
+    (function () {
+      const grid = document.getElementById('feedGrid');
+      if (!grid) return;
+      const feedUrl = grid.dataset.beholdFeed;
+      if (!feedUrl) return;
+
+      const colors = ['pink-bg', 'yellow-bg', 'blue-bg', 'navy-bg', ''];
+      const tagFor = (post) => {
+        if (post.mediaType === 'VIDEO') return '✦ Reel';
+        if (post.mediaType === 'CAROUSEL_ALBUM') return '✦ Series';
+        return '✦ Post';
+      };
+      const titleFrom = (caption) => {
+        if (!caption) return 'New from @prompt_mama';
+        const cleaned = caption.replace(/\s+/g, ' ').trim();
+        const firstSentence = cleaned.split(/(?<=[.!?])\s/)[0].trim();
+        const text = firstSentence && firstSentence.length <= 90 ? firstSentence : cleaned;
+        return text.length > 90 ? text.slice(0, 87).trim() + '…' : text;
+      };
+      const escapeHtml = (s) =>
+        String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+      fetch(feedUrl)
+        .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+        .then((data) => {
+          const posts = (data.posts || []).slice(0, 9);
+          if (!posts.length) return;
+          grid.innerHTML = posts
+            .map((post, i) => {
+              const cls = ['feed-item', colors[i % colors.length]].filter(Boolean).join(' ');
+              const href = post.permalink || 'https://instagram.com/prompt_mama';
+              return (
+                '<a href="' + escapeHtml(href) + '" target="_blank" rel="noopener" class="' + cls + ' in">' +
+                  '<div class="feed-item-content">' +
+                    '<div class="feed-tag">' + tagFor(post) + '</div>' +
+                    '<h4>' + escapeHtml(titleFrom(post.caption)) + '</h4>' +
+                  '</div>' +
+                '</a>'
+              );
+            })
+            .join('');
+        })
+        .catch(() => {
+          /* fall back to the static cards already in the grid */
+        });
+    })();
+  </script>
 </body>
 </html>
