@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=8" />
+  <link rel="stylesheet" href="/styles.css?v=9" />
 </head>
 <body>
 
@@ -140,7 +140,8 @@
         },
         {
           q: 'What do you want AI to help you with most?',
-          sub: "Pick the one you'd reach for first.",
+          sub: 'Pick all that apply — your top use cases.',
+          multi: true,
           options: [
             { label: 'Writing — documents, decks, PDFs, long-form', scores: { Claude: 3 } },
             { label: 'Creating images and visuals', scores: { ChatGPT: 3 } },
@@ -170,7 +171,8 @@
         },
         {
           q: 'How do you want answers delivered?',
-          sub: 'The vibe of the reply.',
+          sub: 'Pick all the vibes you like.',
+          multi: true,
           options: [
             { label: 'Thoughtful, nuanced, like a colleague', scores: { Claude: 2 } },
             { label: 'Quick, direct, and helpful', scores: { ChatGPT: 2, Gemini: 1 } },
@@ -199,7 +201,8 @@
       ];
 
       const TOTAL = QUESTIONS.length;
-      const state = { step: -1, answers: Array(TOTAL).fill(null), shareCopied: false };
+      const emptyAnswers = () => QUESTIONS.map((q) => (q.multi ? [] : null));
+      const state = { step: -1, answers: emptyAnswers(), shareCopied: false };
 
       const root = document.getElementById('quiz-root');
       const statusEl = document.getElementById('quizStatus');
@@ -215,11 +218,15 @@
           return s;
         }
         const scores = Object.fromEntries(Object.keys(TOOLS).map((k) => [k, 0]));
-        answers.forEach((idx, qi) => {
-          if (idx == null) return;
-          const opt = QUESTIONS[qi].options[idx];
-          Object.entries(opt.scores).forEach(([tool, pts]) => {
-            scores[tool] += pts;
+        answers.forEach((a, qi) => {
+          if (a == null) return;
+          const indices = Array.isArray(a) ? a : [a];
+          indices.forEach((idx) => {
+            const opt = QUESTIONS[qi].options[idx];
+            if (!opt) return;
+            Object.entries(opt.scores).forEach(([tool, pts]) => {
+              scores[tool] += pts;
+            });
           });
         });
         return scores;
@@ -258,12 +265,16 @@
 
       function renderQuestion() {
         const q = QUESTIONS[state.step];
+        const isMulti = q.multi === true;
+        const answer = state.answers[state.step];
+        const isSelected = (i) => (isMulti ? Array.isArray(answer) && answer.includes(i) : answer === i);
+        const hasAny = isMulti ? Array.isArray(answer) && answer.length > 0 : answer != null;
         const progress = ((state.step + 1) / TOTAL) * 100;
         const options = q.options.map((opt, i) => {
-          const selected = state.answers[state.step] === i;
+          const selected = isSelected(i);
           const letter = String.fromCharCode(65 + i);
           return (
-            '<button type="button" class="quiz-option' + (selected ? ' is-selected' : '') + '" data-action="select" data-index="' + i + '">' +
+            '<button type="button" class="quiz-option' + (selected ? ' is-selected' : '') + (isMulti ? ' is-multi' : '') + '" data-action="select" data-index="' + i + '">' +
               '<span class="quiz-option-letter">' + letter + '</span>' +
               '<span class="quiz-option-label">' + escapeHtml(opt.label) + '</span>' +
             '</button>'
@@ -272,10 +283,11 @@
         return (
           '<div class="quiz-state quiz-question">' +
             '<div class="quiz-progress"><div class="quiz-progress-fill" style="width:' + progress + '%"></div></div>' +
-            '<span class="quiz-eyebrow">✦ QUESTION ' + String(state.step + 1).padStart(2, '0') + ' ✦</span>' +
+            '<span class="quiz-eyebrow">✦ QUESTION ' + String(state.step + 1).padStart(2, '0') + (isMulti ? ' · PICK ALL THAT APPLY' : '') + ' ✦</span>' +
             '<h2 class="quiz-q">' + escapeHtml(q.q) + '</h2>' +
             '<p class="quiz-sub">' + escapeHtml(q.sub) + '</p>' +
             '<div class="quiz-options">' + options + '</div>' +
+            (isMulti ? '<button type="button" class="btn btn-primary quiz-continue"' + (hasAny ? '' : ' disabled aria-disabled="true"') + ' data-action="continue">Continue <span aria-hidden="true">→</span></button>' : '') +
             '<div class="quiz-nav">' +
               (state.step > 0 ? '<button type="button" class="quiz-link" data-action="prev">← PREVIOUS</button>' : '<span></span>') +
               '<button type="button" class="quiz-link" data-action="restart">↻ RESTART</button>' +
@@ -358,27 +370,46 @@
 
       function startQuiz() {
         state.step = 0;
-        state.answers = Array(TOTAL).fill(null);
+        state.answers = emptyAnswers();
         if (location.hash) history.replaceState(null, '', location.pathname);
         render();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
+      function advance() {
+        if (state.step < TOTAL - 1) {
+          state.step += 1;
+          render();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          state.step = TOTAL;
+          state.shareCopied = false;
+          render();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+
       function selectOption(idx) {
+        const q = QUESTIONS[state.step];
+        if (q.multi) {
+          const cur = Array.isArray(state.answers[state.step]) ? state.answers[state.step] : [];
+          const pos = cur.indexOf(idx);
+          if (pos >= 0) cur.splice(pos, 1);
+          else cur.push(idx);
+          state.answers[state.step] = cur;
+          render();
+          return;
+        }
         state.answers[state.step] = idx;
         render();
-        setTimeout(() => {
-          if (state.step < TOTAL - 1) {
-            state.step += 1;
-            render();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          } else {
-            state.step = TOTAL;
-            state.shareCopied = false;
-            render();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }
-        }, 220);
+        setTimeout(advance, 220);
+      }
+
+      function continueMulti() {
+        const q = QUESTIONS[state.step];
+        const a = state.answers[state.step];
+        if (!q.multi || !Array.isArray(a) || a.length === 0) return;
+        advance();
       }
 
       function prev() {
@@ -390,7 +421,7 @@
 
       function restart() {
         state.step = -1;
-        state.answers = Array(TOTAL).fill(null);
+        state.answers = emptyAnswers();
         state.shareCopied = false;
         if (location.hash) history.replaceState(null, '', location.pathname);
         render();
@@ -421,7 +452,7 @@
         const order = m[1].split('-');
         const valid = order.length === Object.keys(TOOLS).length && order.every((n) => TOOLS[n]);
         if (!valid) return false;
-        state.answers = Array(TOTAL).fill(null);
+        state.answers = emptyAnswers();
         state.step = TOTAL;
         syntheticScores = Object.fromEntries(order.map((name, i) => [name, order.length - i]));
         return true;
@@ -433,6 +464,7 @@
         const action = target.dataset.action;
         if (action === 'start') startQuiz();
         else if (action === 'select') selectOption(Number(target.dataset.index));
+        else if (action === 'continue') continueMulti();
         else if (action === 'prev') prev();
         else if (action === 'restart') restart();
         else if (action === 'copy-link') copyLink();
