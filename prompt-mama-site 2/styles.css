@@ -340,15 +340,15 @@ h1.hero-title .accent {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 24px;
+  padding: 15px 28px;
   border-radius: 999px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 15px;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   border: none;
   cursor: pointer;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
 }
 .btn-primary {
   background: var(--pink);
@@ -390,12 +390,12 @@ h1.hero-title .accent {
   font-family: 'Poppins', sans-serif;
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 1.2px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
   padding: 4px 10px;
   border-radius: 999px;
   border: 2px solid var(--navy);
-  transform: rotate(6deg);
+  transform: rotate(3deg);
   white-space: nowrap;
   box-shadow: 0 2px 0 var(--navy);
   pointer-events: none;
