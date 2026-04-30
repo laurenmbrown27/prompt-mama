@@ -176,11 +176,12 @@
             .map((post, i) => {
               const cls = ['feed-item', colors[i % colors.length]].filter(Boolean).join(' ');
               const href = post.permalink || 'https://instagram.com/prompt_mama';
+              const caption = post.prunedCaption || post.caption;
               return (
                 '<a href="' + escapeHtml(href) + '" target="_blank" rel="noopener" class="' + cls + ' in">' +
                   '<div class="feed-item-content">' +
                     '<div class="feed-tag">' + tagFor(post) + '</div>' +
-                    '<h4>' + escapeHtml(titleFrom(post.caption)) + '</h4>' +
+                    '<h4>' + escapeHtml(titleFrom(caption)) + '</h4>' +
                   '</div>' +
                 '</a>'
               );
