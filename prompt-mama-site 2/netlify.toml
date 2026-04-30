@@ -4,6 +4,17 @@
 [build]
   publish = "."
 
+# Clean URL: /quiz -> /quiz.html
+[[redirects]]
+  from = "/quiz"
+  to = "/quiz.html"
+  status = 200
+
+[[redirects]]
+  from = "/quiz/"
+  to = "/quiz.html"
+  status = 200
+
 # Long cache for static assets (fonts, images, CSS, JS)
 [[headers]]
   for = "/assets/*"

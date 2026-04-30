@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The AI Match Quiz — Find the right AI for you · Prompt Mama</title>
+  <meta name="description" content="Six tools. Six personalities. One you. Take the 2-minute AI Match Quiz and we'll point you to the AI that fits how you live, work, and create." />
+  <link rel="canonical" href="https://promptmama.com/quiz.html" />
+  <meta name="theme-color" content="#FF3D8A" />
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=7" />
+</head>
+<body>
+
+  <div class="topbar" role="banner">
+    <span class="topbar-message">Helping parents use AI with confidence <span aria-hidden="true">✦</span> No gatekeeping. No perfection pressure.</span>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="site-nav" id="site-nav" aria-hidden="true" aria-label="Site sections">
+    <button class="site-nav-close" id="navClose" aria-label="Close menu">×</button>
+    <div class="site-nav-inner">
+      <span class="site-nav-tag">explore the site ✦</span>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/quiz">The AI Match Quiz <span class="nav-sub">— find your tool</span></a></li>
+        <li><a href="/vibe-coded.html">I Vibe Coded So Hard <span class="nav-sub">— the CAEVO story</span></a></li>
+        <li><a href="/feed.html">From the Feed <span class="nav-sub">— recent posts &amp; reels</span></a></li>
+        <li><a href="/parent-guide.html">2026 Parent Guide to AI <span class="nav-sub">— the new download</span></a></li>
+        <li><a href="/ai-parent-pack.html">The AI Parent Pack <span class="nav-sub">— guides + 2-month plan</span></a></li>
+        <li><a href="/tools.html">More Tools &amp; Guides <span class="nav-sub">— the full toolkit</span></a></li>
+        <li><a href="/press-kit.html">Press &amp; Media Kit</a></li>
+      </ul>
+      <div class="site-nav-socials">
+        <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@prompt_mama" target="_blank" rel="noopener">TikTok</a>
+        <a href="mailto:prompt.mama.community@gmail.com">Email</a>
+      </div>
+    </div>
+  </nav>
+  <div class="site-nav-backdrop" id="navBackdrop" hidden></div>
+
+  <div class="quiz-strip">
+    <span>AI MATCH QUIZ</span>
+    <span id="quizStatus">START</span>
+    <span class="quiz-strip-handle">@PROMPT_MAMA</span>
+  </div>
+
+  <main class="quiz-page">
+    <div class="quiz-container">
+      <a href="/" class="back-home">← Back to Prompt Mama</a>
+      <div id="quiz-root" aria-live="polite"></div>
+    </div>
+  </main>
+
+  <div class="quiz-strip quiz-strip-bottom">
+    <span>AI MATCH QUIZ</span>
+    <span class="quiz-strip-star">✦</span>
+    <span class="quiz-strip-handle">@PROMPT_MAMA</span>
+  </div>
+
+  <footer>
+    <div class="container">
+      <img src="/assets/logo-sm.png" alt="Prompt Mama logo" class="logo-img" width="130" height="103" />
+      <h2>Less stress. <em>More time.</em></h2>
+      <p class="tagline">Smarter parenting, one prompt at a time.</p>
+      <p class="copyright">© <span id="year">2026</span> PROMPT MAMA · MADE WITH ♥ FOR PARENTS</p>
+    </div>
+  </footer>
+
+  <script src="/script.js?v=2" defer></script>
+  <script>
+    (function () {
+      const TOOLS = {
+        Claude: {
+          name: 'Claude',
+          maker: 'Anthropic',
+          url: 'https://claude.ai',
+          tagline: 'the thoughtful one',
+          blurb: "Best for writing, long documents, decks, PDFs, and careful analysis. Built safety-first. Strong at coding too.",
+          strengths: ['Documents & decks', 'Long writing', 'Coding', 'Safety-first']
+        },
+        ChatGPT: {
+          name: 'ChatGPT',
+          maker: 'OpenAI',
+          url: 'https://chatgpt.com',
+          tagline: 'the all-rounder',
+          blurb: 'The most versatile day-to-day assistant. Great for image generation, voice mode, and a little of everything.',
+          strengths: ['Image generation', 'Voice chat', 'Everyday use', 'Big ecosystem']
+        },
+        Gemini: {
+          name: 'Gemini',
+          maker: 'Google',
+          url: 'https://gemini.google.com',
+          tagline: 'the Google native',
+          blurb: 'Lives inside Gmail, Docs, Drive, and Search. Natural pick if you spend your day in Google.',
+          strengths: ['Google Workspace', 'Free w/ account', 'Multimodal', 'Search-aware']
+        },
+        Copilot: {
+          name: 'Copilot',
+          maker: 'Microsoft',
+          url: 'https://copilot.microsoft.com',
+          tagline: 'the work BFF',
+          blurb: 'Built into Word, Excel, Outlook, and Teams. Obvious pick if Microsoft 365 is your work life.',
+          strengths: ['Office integration', 'Excel + Word', 'Enterprise security', 'Bundled w/ M365']
+        },
+        Perplexity: {
+          name: 'Perplexity',
+          maker: 'Perplexity AI',
+          url: 'https://perplexity.ai',
+          tagline: 'the researcher',
+          blurb: 'A search engine with an AI brain. Every answer comes with sources you can click. Best for research.',
+          strengths: ['Cited sources', 'Real-time web', 'Research', 'Fact-checking']
+        },
+        Grok: {
+          name: 'Grok',
+          maker: 'xAI',
+          url: 'https://grok.com',
+          tagline: 'the unfiltered one',
+          blurb: 'Plugged into X for real-time posts and trends. More casual and less filtered than the others.',
+          strengths: ['Real-time X data', 'Casual tone', 'Trend-spotting', 'Free w/ X']
+        }
+      };
+
+      const QUESTIONS = [
+        {
+          q: 'Which world do you live in?',
+          sub: 'The devices and apps you actually use every day.',
+          options: [
+            { label: 'Apple — iPhone, Mac, iPad', scores: { Claude: 1, ChatGPT: 1 } },
+            { label: 'Google — Android, Pixel, Chromebook', scores: { Gemini: 3 } },
+            { label: 'Microsoft — Windows, Surface, Office 365', scores: { Copilot: 3 } },
+            { label: 'A mix of everything', scores: { Claude: 1, ChatGPT: 1, Perplexity: 1 } }
+          ]
+        },
+        {
+          q: 'What do you want AI to help you with most?',
+          sub: "Pick the one you'd reach for first.",
+          options: [
+            { label: 'Writing — documents, decks, PDFs, long-form', scores: { Claude: 3 } },
+            { label: 'Creating images and visuals', scores: { ChatGPT: 3 } },
+            { label: 'Researching with real sources', scores: { Perplexity: 3 } },
+            { label: 'Coding or technical work', scores: { Claude: 2, Copilot: 2 } },
+            { label: 'Quick everyday questions', scores: { ChatGPT: 2, Gemini: 2 } },
+            { label: 'Real-time news, trends, social pulse', scores: { Grok: 3 } }
+          ]
+        },
+        {
+          q: 'How important is safety and privacy?',
+          sub: 'Strong guardrails and how your data is handled.',
+          options: [
+            { label: 'Critical — I want the safest option', scores: { Claude: 3, Copilot: 1 } },
+            { label: "Important, but I'm flexible", scores: { Claude: 1, ChatGPT: 1, Gemini: 1, Copilot: 1 } },
+            { label: 'Not a major factor for me', scores: { Grok: 1, ChatGPT: 1 } }
+          ]
+        },
+        {
+          q: 'Does environmental impact factor in?',
+          sub: 'All AI uses a lot of energy. Some companies are louder about it than others.',
+          options: [
+            { label: 'Yes — I look for transparency on this', scores: { Claude: 1, Gemini: 1, Copilot: 1 } },
+            { label: 'Somewhat — nice to have', scores: {} },
+            { label: 'Not a deciding factor', scores: {} }
+          ]
+        },
+        {
+          q: 'How do you want answers delivered?',
+          sub: 'The vibe of the reply.',
+          options: [
+            { label: 'Thoughtful, nuanced, like a colleague', scores: { Claude: 2 } },
+            { label: 'Quick, direct, and helpful', scores: { ChatGPT: 2, Gemini: 1 } },
+            { label: 'Backed by clickable sources', scores: { Perplexity: 3 } },
+            { label: 'Witty and unfiltered', scores: { Grok: 2 } }
+          ]
+        },
+        {
+          q: "What's the budget?",
+          sub: 'AI pricing keeps shifting — these are the current vibes.',
+          options: [
+            { label: 'Free only, please', scores: { Gemini: 2, ChatGPT: 1, Grok: 1 } },
+            { label: "I'll pay ~$20/mo for the right fit", scores: { Claude: 1, ChatGPT: 1, Perplexity: 1 } },
+            { label: 'Already paying for productivity software', scores: { Copilot: 2, Gemini: 1 } }
+          ]
+        },
+        {
+          q: "Do you need today's information?",
+          sub: 'News from this morning, prices, what people just posted.',
+          options: [
+            { label: 'Yes — I need it current', scores: { Perplexity: 2, Grok: 2, Gemini: 1 } },
+            { label: 'Sometimes useful', scores: { ChatGPT: 1, Gemini: 1 } },
+            { label: 'Rarely — I want depth over recency', scores: { Claude: 2 } }
+          ]
+        }
+      ];
+
+      const TOTAL = QUESTIONS.length;
+      const state = { step: -1, answers: Array(TOTAL).fill(null), shareCopied: false };
+
+      const root = document.getElementById('quiz-root');
+      const statusEl = document.getElementById('quizStatus');
+
+      const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+      let syntheticScores = null;
+
+      function calculateScores(answers) {
+        if (syntheticScores) {
+          const s = syntheticScores;
+          syntheticScores = null;
+          return s;
+        }
+        const scores = Object.fromEntries(Object.keys(TOOLS).map((k) => [k, 0]));
+        answers.forEach((idx, qi) => {
+          if (idx == null) return;
+          const opt = QUESTIONS[qi].options[idx];
+          Object.entries(opt.scores).forEach(([tool, pts]) => {
+            scores[tool] += pts;
+          });
+        });
+        return scores;
+      }
+
+      function rank(scores) {
+        return Object.entries(scores)
+          .sort((a, b) => b[1] - a[1])
+          .map(([name, score]) => ({ name, score }));
+      }
+
+      function updateStatus() {
+        if (state.step === -1) statusEl.textContent = 'START';
+        else if (state.step >= TOTAL) statusEl.textContent = 'RESULTS';
+        else statusEl.textContent = String(state.step + 1).padStart(2, '0') + ' / ' + String(TOTAL).padStart(2, '0');
+      }
+
+      function renderWelcome() {
+        const toolPills = Object.keys(TOOLS).map((t, i) => {
+          const palette = ['blue', 'pink-soft', 'yellow', 'blue', 'pink-soft', 'yellow'];
+          return '<span class="quiz-pill quiz-pill-' + palette[i % palette.length] + '">' + escapeHtml(t) + '</span>';
+        }).join('');
+        return (
+          '<div class="quiz-state quiz-welcome">' +
+            '<span class="quiz-eyebrow">✦ QUIZ · 2 MINUTES ✦</span>' +
+            '<h1 class="quiz-h1">Which AI is <span class="quiz-accent">actually</span> right for you?</h1>' +
+            '<p class="quiz-lede">Six tools. Six personalities. One you. Answer 7 quick questions and we\'ll point you to the AI that fits how you live, work, and create.</p>' +
+            '<div class="quiz-pills">' + toolPills + '</div>' +
+            '<button type="button" class="btn btn-primary quiz-cta" data-action="start">Start the quiz <span aria-hidden="true">→</span></button>' +
+            '<div class="quiz-callout quiz-callout-yellow">' +
+              '<p><strong>A note on honesty:</strong> this quiz was built with Claude (Anthropic). Scoring is weighted by what each AI is genuinely good at — not by who built it. If Claude doesn\'t win for you, <span class="quiz-accent-inline">it really doesn\'t.</span></p>' +
+            '</div>' +
+          '</div>'
+        );
+      }
+
+      function renderQuestion() {
+        const q = QUESTIONS[state.step];
+        const progress = ((state.step + 1) / TOTAL) * 100;
+        const options = q.options.map((opt, i) => {
+          const selected = state.answers[state.step] === i;
+          const letter = String.fromCharCode(65 + i);
+          return (
+            '<button type="button" class="quiz-option' + (selected ? ' is-selected' : '') + '" data-action="select" data-index="' + i + '">' +
+              '<span class="quiz-option-letter">' + letter + '</span>' +
+              '<span class="quiz-option-label">' + escapeHtml(opt.label) + '</span>' +
+            '</button>'
+          );
+        }).join('');
+        return (
+          '<div class="quiz-state quiz-question">' +
+            '<div class="quiz-progress"><div class="quiz-progress-fill" style="width:' + progress + '%"></div></div>' +
+            '<span class="quiz-eyebrow">✦ QUESTION ' + String(state.step + 1).padStart(2, '0') + ' ✦</span>' +
+            '<h2 class="quiz-q">' + escapeHtml(q.q) + '</h2>' +
+            '<p class="quiz-sub">' + escapeHtml(q.sub) + '</p>' +
+            '<div class="quiz-options">' + options + '</div>' +
+            '<div class="quiz-nav">' +
+              (state.step > 0 ? '<button type="button" class="quiz-link" data-action="prev">← PREVIOUS</button>' : '<span></span>') +
+              '<button type="button" class="quiz-link" data-action="restart">↻ RESTART</button>' +
+            '</div>' +
+          '</div>'
+        );
+      }
+
+      function renderResults() {
+        const ranked = rank(calculateScores(state.answers));
+        const top = ranked[0];
+        const runnerUp = ranked[1];
+        const topTool = TOOLS[top.name];
+        const runnerTool = runnerUp ? TOOLS[runnerUp.name] : null;
+
+        if (location.hash !== '#r=' + ranked.map((r) => r.name).join('-')) {
+          history.replaceState(null, '', '#r=' + ranked.map((r) => r.name).join('-'));
+        }
+
+        const strengths = topTool.strengths.map((s) => '<span class="quiz-pill quiz-pill-blue">' + escapeHtml(s) + '</span>').join('');
+
+        const ranking = ranked.map((r, i) => (
+          '<li class="quiz-rank-row' + (i === 0 ? ' is-top' : '') + '">' +
+            '<span class="quiz-rank-name">' +
+              '<span class="quiz-rank-num">' + (i + 1) + '</span>' +
+              escapeHtml(r.name) +
+            '</span>' +
+            '<span class="quiz-rank-score">' + r.score + ' pt' + (r.score === 1 ? '' : 's') + '</span>' +
+          '</li>'
+        )).join('');
+
+        const runnerCard = runnerTool ? (
+          '<div class="quiz-card quiz-card-pink">' +
+            '<div class="quiz-card-eyebrow">★ ALSO WORTH A LOOK ★</div>' +
+            '<div class="quiz-runner-head">' +
+              '<h3>' + escapeHtml(runnerTool.name) + '</h3>' +
+              '<span class="quiz-scribble">' + escapeHtml(runnerTool.tagline) + '</span>' +
+            '</div>' +
+            '<p>' + escapeHtml(runnerTool.blurb) + '</p>' +
+            '<a class="quiz-runner-link" href="' + escapeHtml(runnerTool.url) + '" target="_blank" rel="noopener">VISIT ' + escapeHtml(runnerTool.name.toUpperCase()) + ' ↗</a>' +
+          '</div>'
+        ) : '';
+
+        return (
+          '<div class="quiz-state quiz-results">' +
+            '<span class="quiz-eyebrow quiz-eyebrow-pink">✦ YOUR MATCH ✦</span>' +
+            '<div class="quiz-scribble quiz-scribble-lg">you matched with...</div>' +
+            '<h2 class="quiz-result-name">' + escapeHtml(topTool.name) + '</h2>' +
+            '<div class="quiz-tagline-pill">' + escapeHtml(topTool.tagline) + ' · by ' + escapeHtml(topTool.maker) + '</div>' +
+            '<p class="quiz-result-blurb">' + escapeHtml(topTool.blurb) + '</p>' +
+            '<div class="quiz-pills">' + strengths + '</div>' +
+            '<div class="quiz-actions">' +
+              '<a class="btn btn-primary" href="' + escapeHtml(topTool.url) + '" target="_blank" rel="noopener">Try ' + escapeHtml(topTool.name) + ' <span aria-hidden="true">↗</span></a>' +
+              '<button type="button" class="btn btn-secondary" data-action="copy-link">' + (state.shareCopied ? 'Copied ✓' : 'Copy result link') + '</button>' +
+            '</div>' +
+            runnerCard +
+            '<div class="quiz-card quiz-card-blue">' +
+              '<div class="quiz-card-eyebrow">★ YOUR FULL RANKING ★</div>' +
+              '<ol class="quiz-rank-list">' + ranking + '</ol>' +
+            '</div>' +
+            '<div class="quiz-callout quiz-callout-yellow">' +
+              '<p><strong>How this works.</strong> Each answer adds points to one or more tools based on their publicly documented strengths.</p>' +
+              '<p><strong>Built with Claude.</strong> The scoring is weighted by what each AI is genuinely good at — not by who built the quiz. Claude only wins if your answers point there.</p>' +
+              '<p class="quiz-scribble">AI changes fast — try the top two and see which one feels right.</p>' +
+            '</div>' +
+            '<button type="button" class="quiz-restart-btn" data-action="restart">↻ TAKE IT AGAIN</button>' +
+          '</div>'
+        );
+      }
+
+      function render() {
+        if (state.step === -1) root.innerHTML = renderWelcome();
+        else if (state.step >= TOTAL) root.innerHTML = renderResults();
+        else root.innerHTML = renderQuestion();
+        updateStatus();
+        if (state.step !== -1 && location.hash && !location.hash.startsWith('#r=')) {
+          // leave any anchor links alone
+        }
+      }
+
+      function startQuiz() {
+        state.step = 0;
+        state.answers = Array(TOTAL).fill(null);
+        if (location.hash) history.replaceState(null, '', location.pathname);
+        render();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function selectOption(idx) {
+        state.answers[state.step] = idx;
+        render();
+        setTimeout(() => {
+          if (state.step < TOTAL - 1) {
+            state.step += 1;
+            render();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            state.step = TOTAL;
+            state.shareCopied = false;
+            render();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }, 220);
+      }
+
+      function prev() {
+        if (state.step > 0) {
+          state.step -= 1;
+          render();
+        }
+      }
+
+      function restart() {
+        state.step = -1;
+        state.answers = Array(TOTAL).fill(null);
+        state.shareCopied = false;
+        if (location.hash) history.replaceState(null, '', location.pathname);
+        render();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function copyLink() {
+        const url = location.href;
+        const finish = () => { state.shareCopied = true; render(); setTimeout(() => { state.shareCopied = false; render(); }, 2200); };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(finish).catch(finish);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = url;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch (e) {}
+          document.body.removeChild(ta);
+          finish();
+        }
+      }
+
+      function loadFromHash() {
+        const m = /^#r=([A-Za-z\-]+)$/.exec(location.hash);
+        if (!m) return false;
+        const order = m[1].split('-');
+        const valid = order.length === Object.keys(TOOLS).length && order.every((n) => TOOLS[n]);
+        if (!valid) return false;
+        state.answers = Array(TOTAL).fill(null);
+        state.step = TOTAL;
+        syntheticScores = Object.fromEntries(order.map((name, i) => [name, order.length - i]));
+        return true;
+      }
+
+      root.addEventListener('click', (e) => {
+        const target = e.target.closest('[data-action]');
+        if (!target) return;
+        const action = target.dataset.action;
+        if (action === 'start') startQuiz();
+        else if (action === 'select') selectOption(Number(target.dataset.index));
+        else if (action === 'prev') prev();
+        else if (action === 'restart') restart();
+        else if (action === 'copy-link') copyLink();
+      });
+
+      window.addEventListener('hashchange', () => {
+        if (location.hash.startsWith('#r=')) {
+          if (loadFromHash()) render();
+        }
+      });
+
+      if (location.hash.startsWith('#r=')) loadFromHash();
+      render();
+    })();
+  </script>
+</body>
+</html>
