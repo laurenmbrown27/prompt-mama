@@ -11,7 +11,88 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=6" />
+  <link rel="stylesheet" href="/styles.css?v=8" />
+
+  <style>
+    /* Email gate — same shape as ai-parent-pack.html */
+    .pm-gate-form {
+      max-width: 460px;
+      margin: 28px auto 0;
+      background: var(--white);
+      border: 2px solid var(--navy);
+      border-radius: 22px;
+      padding: 28px 26px;
+      box-shadow: 0 6px 0 var(--navy);
+      text-align: left;
+    }
+    .pm-gate-form label {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .pm-gate-form input[type="email"] {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      color: var(--navy);
+      background: var(--cream);
+      border: 2px solid var(--navy);
+      border-radius: 12px;
+      margin-bottom: 14px;
+      transition: border-color 0.2s ease;
+    }
+    .pm-gate-form input[type="email"]:focus {
+      outline: none;
+      border-color: var(--pink);
+    }
+    .pm-gate-form button {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: var(--pink);
+      color: var(--white);
+      border: 2px solid var(--navy);
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 0 var(--navy);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .pm-gate-form button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 var(--navy);
+    }
+    .pm-gate-form button:disabled { opacity: 0.6; cursor: wait; }
+    .pm-error {
+      color: var(--pink);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      min-height: 18px;
+    }
+    .pm-fineprint {
+      text-align: center;
+      font-size: 12px;
+      margin-top: 14px;
+      opacity: 0.65;
+      margin-bottom: 0;
+    }
+    .pm-success-note {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 16px;
+      color: var(--navy);
+    }
+  </style>
 </head>
 <body>
 
@@ -78,8 +159,20 @@
     <div class="freebie-card reveal">
       <div class="lil-tag">free download ✦</div>
       <h2>Get the <em>2026 Guide.</em></h2>
-      <p>Drop your email and we'll send the printable PDF straight to your inbox. No spam — just one parent helping another navigate this stuff.</p>
-      <a href="mailto:prompt.mama.community@gmail.com?subject=Send%20me%20the%202026%20Parent%20Guide" class="btn btn-yellow">📥 Send Me the Guide</a>
+      <p>Drop your email and the printable PDF opens right away. No spam — just one parent helping another navigate this stuff.</p>
+
+      <form class="pm-gate-form" id="pm-guide-form" novalidate>
+        <label for="pm-guide-email">your email</label>
+        <input type="email" id="pm-guide-email" name="email" placeholder="you@yourlife.com" autocomplete="email" required />
+        <div class="pm-error" id="pm-guide-error" role="alert" aria-live="polite"></div>
+        <button type="submit" id="pm-guide-submit">📥 Send Me the Guide</button>
+        <p class="pm-fineprint">No spam. Unsubscribe anytime.</p>
+      </form>
+
+      <p class="pm-success-note" id="pm-guide-success" hidden>
+        ✓ You're in — opening your guide now.
+        <a id="pm-guide-link" href="https://storage.googleapis.com/mailerlite-uploads-prod/1602209/Zp5OWRkyImQkyNzfGv5eDH51A6qNfbEkBEbTvmPF.pdf" target="_blank" rel="noopener" style="color:var(--pink);text-decoration:underline;">Click here if it didn't open.</a>
+      </p>
     </div>
   </section>
 
@@ -93,5 +186,67 @@
   </footer>
 
   <script src="/script.js?v=2" defer></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var STORAGE_KEY = 'pm_guide_unlocked';
+      var ML_ENDPOINT = 'https://assets.mailerlite.com/jsonp/1602209/forms/186028435679741221/subscribe';
+      var PDF_URL = 'https://storage.googleapis.com/mailerlite-uploads-prod/1602209/Zp5OWRkyImQkyNzfGv5eDH51A6qNfbEkBEbTvmPF.pdf';
+
+      var form = document.getElementById('pm-guide-form');
+      var emailInput = document.getElementById('pm-guide-email');
+      var submitBtn = document.getElementById('pm-guide-submit');
+      var errorEl = document.getElementById('pm-guide-error');
+      var successEl = document.getElementById('pm-guide-success');
+
+      function openPdf() {
+        window.open(PDF_URL, '_blank', 'noopener');
+      }
+
+      // If they've unlocked before, swap the form for a one-click download button.
+      try {
+        if (localStorage.getItem(STORAGE_KEY)) {
+          form.innerHTML = '<button type="button" id="pm-guide-redownload">📥 Open the 2026 Guide</button><p class="pm-fineprint">You\'ve already unlocked this — opens straight to the PDF.</p>';
+          form.addEventListener('submit', function (e) { e.preventDefault(); openPdf(); });
+          document.getElementById('pm-guide-redownload').addEventListener('click', openPdf);
+          return;
+        }
+      } catch (e) { /* localStorage disabled — gate stays up. */ }
+
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        errorEl.textContent = '';
+
+        var email = (emailInput.value || '').trim();
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+          errorEl.textContent = 'Please enter a valid email.';
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Unlocking…';
+
+        try { localStorage.setItem(STORAGE_KEY, email); } catch (e2) {}
+
+        var fd = new URLSearchParams();
+        fd.append('fields[email]', email);
+        fd.append('ml-submit', '1');
+        fd.append('anticsrf', 'true');
+
+        fetch(ML_ENDPOINT, { method: 'POST', mode: 'no-cors', body: fd })
+          .catch(function () { /* network failure — locally unlocked anyway */ })
+          .finally(function () {
+            form.style.display = 'none';
+            successEl.hidden = false;
+            openPdf();
+          });
+      });
+    })();
+  </script>
+
 </body>
 </html>
