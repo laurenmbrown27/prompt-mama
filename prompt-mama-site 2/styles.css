@@ -398,6 +398,11 @@ h1.hero-title .accent {
   box-shadow: 0 2px 0 var(--navy);
   pointer-events: none;
 }
+.btn-flag.btn-flag-yellow {
+  background: var(--yellow);
+  color: var(--navy);
+  transform: rotate(-3deg);
+}
 
 .btn-ghost {
   display: inline-block;
@@ -1361,6 +1366,15 @@ h1.hero-title .accent {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 22px;
+}
+.tools-grid.tools-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 900px) {
+  .tools-grid.tools-grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .tools-grid.tools-grid-3 { grid-template-columns: 1fr; }
 }
 .tool-card {
   background: var(--white);

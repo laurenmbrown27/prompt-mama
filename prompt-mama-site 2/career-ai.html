@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=10" />
+  <link rel="stylesheet" href="/styles.css?v=11" />
 
   <style>
     /* Featured (NEW) card — full-width hero card highlighting the newest guide */
@@ -103,37 +103,25 @@
       text-transform: uppercase;
       color: var(--yellow);
     }
-    .career-featured-pdf {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px dashed rgba(255, 255, 255, 0.4);
-      border-radius: 20px;
-      padding: 28px;
-      text-align: center;
+    .career-featured-cover {
       position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35), 0 2px 0 rgba(255, 255, 255, 0.08) inset;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transform: rotate(1.5deg);
+      transition: transform 0.25s ease;
     }
-    .career-featured-pdf .pdf-emoji {
-      font-size: 64px;
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-    .career-featured-pdf .pdf-title {
-      font-family: 'Caveat', cursive;
-      color: var(--yellow);
-      font-size: 26px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .career-featured-pdf .pdf-cta {
-      font-weight: 800;
-      font-size: 14px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--white);
+    .career-featured:hover .career-featured-cover { transform: rotate(0); }
+    .career-featured-cover img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
     @media (max-width: 720px) {
       .career-featured { grid-template-columns: 1fr; padding: 30px 24px; }
-      .career-featured-pdf { padding: 20px; }
-      .career-featured-pdf .pdf-emoji { font-size: 48px; }
+      .career-featured-cover { max-width: 260px; margin: 0 auto; transform: rotate(0); }
     }
 
     /* Secondary guides — 2-column grid for the existing two */
@@ -275,7 +263,7 @@
   <section class="subpage-section">
     <div class="container career-section">
       <span class="career-section-label">just dropped ✦</span>
-      <h2>The <em>newest</em> one in the pack.</h2>
+      <h2 class="career-section-h2">The newest one in the pack.</h2>
       <p style="max-width:680px;">If you're feeling whiplash about what AI means for your career — what to learn, when to pivot, how to stay relevant — this is the one to read first.</p>
 
       <a class="career-featured" href="https://storage.googleapis.com/mailerlite-uploads-prod/f1602209/EDaR48wFhxI4eV8F16dmuaEQ7DfbIqx2tjLaBb3D.pdf" target="_blank" rel="noopener">
@@ -285,10 +273,8 @@
           <p>The honest, no-jargon playbook for steering your career through the AI shift. Reskilling moves, the questions to ask in interviews, and how to spot opportunities most people are still missing.</p>
           <div class="career-featured-meta">📥 PDF · Free download <span aria-hidden="true">→</span></div>
         </div>
-        <div class="career-featured-pdf">
-          <div class="pdf-emoji" aria-hidden="true">📘</div>
-          <div class="pdf-title">v2 · just dropped</div>
-          <div class="pdf-cta">Download the PDF →</div>
+        <div class="career-featured-cover">
+          <img src="/assets/career-nav-cover.png" alt="Cover of Thriving in the AI Era — Career Navigation v2" width="612" height="792" loading="lazy" />
         </div>
       </a>
     </div>
