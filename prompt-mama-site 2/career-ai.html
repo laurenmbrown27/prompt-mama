@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Career + AI · Prompt Mama</title>
+  <meta name="description" content="Three guides for the new world of work — automation, job hunting, and career navigation, all powered by AI. From Prompt Mama." />
+  <link rel="canonical" href="https://promptmama.com/career-ai.html" />
+  <meta name="theme-color" content="#B8DDF5" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://promptmama.com/career-ai.html" />
+  <meta property="og:title" content="Your Career + AI · Prompt Mama" />
+  <meta property="og:description" content="Three guides for the new world of work — automation, job hunting, and career navigation, all powered by AI." />
+  <meta property="og:image" content="https://promptmama.com/assets/og-image.png" />
+
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=10" />
+
+  <style>
+    /* Featured (NEW) card — full-width hero card highlighting the newest guide */
+    .career-featured {
+      position: relative;
+      background: var(--navy);
+      color: var(--white);
+      border: 2px solid var(--navy);
+      border-radius: 28px;
+      padding: 44px 40px;
+      box-shadow: 0 10px 0 rgba(26, 43, 74, 0.18);
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 36px;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      overflow: hidden;
+    }
+    .career-featured:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 0 rgba(26, 43, 74, 0.22);
+    }
+    .career-featured::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255, 61, 138, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .career-featured-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--pink);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 2px solid var(--white);
+      margin-bottom: 18px;
+      transform: rotate(-1.5deg);
+      box-shadow: 0 3px 0 var(--pink);
+    }
+    .career-featured h2 {
+      font-weight: 900;
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      color: var(--white);
+    }
+    .career-featured h2 em {
+      font-family: 'Caveat', cursive;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--yellow);
+      font-size: 1.15em;
+      line-height: 0.95;
+    }
+    .career-featured p {
+      font-size: 16px;
+      line-height: 1.55;
+      margin-bottom: 22px;
+      opacity: 0.88;
+    }
+    .career-featured-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--yellow);
+    }
+    .career-featured-pdf {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px dashed rgba(255, 255, 255, 0.4);
+      border-radius: 20px;
+      padding: 28px;
+      text-align: center;
+      position: relative;
+    }
+    .career-featured-pdf .pdf-emoji {
+      font-size: 64px;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .career-featured-pdf .pdf-title {
+      font-family: 'Caveat', cursive;
+      color: var(--yellow);
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .career-featured-pdf .pdf-cta {
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    @media (max-width: 720px) {
+      .career-featured { grid-template-columns: 1fr; padding: 30px 24px; }
+      .career-featured-pdf { padding: 20px; }
+      .career-featured-pdf .pdf-emoji { font-size: 48px; }
+    }
+
+    /* Secondary guides — 2-column grid for the existing two */
+    .career-secondary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 32px;
+    }
+    .career-card {
+      background: var(--white);
+      border: 2px solid var(--navy);
+      border-radius: 22px;
+      padding: 32px 30px;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.25s ease;
+      text-decoration: none;
+      color: var(--navy);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .career-card.pink { background: var(--pink); color: var(--white); }
+    .career-card.yellow { background: var(--yellow); }
+    .career-card:hover { transform: translateY(-4px); }
+    .career-card .ctag {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      align-self: flex-start;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--navy);
+    }
+    .career-card.yellow .ctag { background: var(--navy); color: var(--yellow); }
+    .career-card h3 {
+      font-weight: 900;
+      font-size: 24px;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+    }
+    .career-card h3 em {
+      font-family: 'Caveat', cursive;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 1.25em;
+      line-height: 0.95;
+    }
+    .career-card.pink h3 em { color: var(--yellow); }
+    .career-card.yellow h3 em { color: var(--pink); }
+    .career-card p {
+      font-size: 14.5px;
+      line-height: 1.6;
+      opacity: 0.92;
+    }
+    .career-card .career-arrow {
+      margin-top: auto;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .career-card.pink .career-arrow { color: var(--yellow); }
+    @media (max-width: 720px) {
+      .career-secondary-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Section spacing */
+    .career-section-label {
+      font-family: 'Caveat', cursive;
+      color: var(--pink);
+      font-size: 28px;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .career-section h2 {
+      font-weight: 900;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .career-section h2 em {
+      font-family: 'Caveat', cursive;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--pink);
+      font-size: 1.15em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar" role="banner">
+    <span class="topbar-message">Helping parents use AI with confidence <span aria-hidden="true">✦</span> No gatekeeping. No perfection pressure.</span>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="site-nav" id="site-nav" aria-hidden="true" aria-label="Site sections">
+    <button class="site-nav-close" id="navClose" aria-label="Close menu">×</button>
+    <div class="site-nav-inner">
+      <span class="site-nav-tag">explore the site ✦</span>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/vibe-coded.html">I Vibe Coded So Hard <span class="nav-sub">— the CAEVO story</span></a></li>
+        <li><a href="/feed.html">From the Feed <span class="nav-sub">— recent posts &amp; reels</span></a></li>
+        <li><a href="/parent-guide.html">2026 Parent Guide to AI <span class="nav-sub">— the new download</span></a></li>
+        <li><a href="/ai-parent-pack.html">The AI Parent Pack <span class="nav-sub">— guides + 2-month plan</span></a></li>
+        <li><a href="/career-ai.html">Your Career + AI <span class="nav-sub">— automation, job hunting &amp; navigation</span></a></li>
+        <li><a href="/tools.html">More Tools &amp; Guides <span class="nav-sub">— the full toolkit</span></a></li>
+        <li><a href="/press-kit.html">Press &amp; Media Kit</a></li>
+      </ul>
+      <div class="site-nav-socials">
+        <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@prompt_mama" target="_blank" rel="noopener">TikTok</a>
+        <a href="mailto:prompt.mama.community@gmail.com">Email</a>
+      </div>
+    </div>
+  </nav>
+  <div class="site-nav-backdrop" id="navBackdrop" hidden></div>
+
+  <!-- HERO -->
+  <header class="subpage-hero bg-blue">
+    <div class="subpage-hero-inner">
+      <a href="/" class="back-home">← Back to Prompt Mama</a>
+      <span class="scribble-tag">your career + AI ✦</span>
+      <h1>AI is rewriting <em>work.</em><br />Here's how to stay ahead.</h1>
+      <p class="lede">Three free guides for the new world of work — automate the busywork, land the next job, and navigate a career when AI is changing the rules under your feet.</p>
+    </div>
+  </header>
+
+  <!-- FEATURED NEW GUIDE -->
+  <section class="subpage-section">
+    <div class="container career-section">
+      <span class="career-section-label">just dropped ✦</span>
+      <h2>The <em>newest</em> one in the pack.</h2>
+      <p style="max-width:680px;">If you're feeling whiplash about what AI means for your career — what to learn, when to pivot, how to stay relevant — this is the one to read first.</p>
+
+      <a class="career-featured" href="https://storage.googleapis.com/mailerlite-uploads-prod/f1602209/EDaR48wFhxI4eV8F16dmuaEQ7DfbIqx2tjLaBb3D.pdf" target="_blank" rel="noopener">
+        <div>
+          <span class="career-featured-tag">✦ NEW · Version 2</span>
+          <h2>Thriving in the AI Era — <em>Career Navigation.</em></h2>
+          <p>The honest, no-jargon playbook for steering your career through the AI shift. Reskilling moves, the questions to ask in interviews, and how to spot opportunities most people are still missing.</p>
+          <div class="career-featured-meta">📥 PDF · Free download <span aria-hidden="true">→</span></div>
+        </div>
+        <div class="career-featured-pdf">
+          <div class="pdf-emoji" aria-hidden="true">📘</div>
+          <div class="pdf-title">v2 · just dropped</div>
+          <div class="pdf-cta">Download the PDF →</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- OTHER TWO GUIDES -->
+  <section class="subpage-section alt">
+    <div class="container career-section">
+      <span class="career-section-label">round out the stack ✦</span>
+      <h2>The rest of the <em>collection.</em></h2>
+      <p style="max-width:680px;">Two more practical PDFs designed to plug straight into your week — pair them with the new Career Navigation guide for the full picture.</p>
+
+      <div class="career-secondary-grid">
+
+        <a class="career-card pink" href="https://storage.googleapis.com/mailerlite-uploads-prod/1602209/1gjmnCzhFgL0L8A1aXrRB1oNiTlSzejXMpTUZ7Jv.pdf" target="_blank" rel="noopener">
+          <span class="ctag">✦ JOB HUNT</span>
+          <h3>Thriving in the AI Era — <em>Land Your Next Job.</em></h3>
+          <p>Resume rewrites, interview prep, and the prompt stack I'd use today to land my next role. Built from 15+ years inside tech.</p>
+          <div class="career-arrow">Start applying →</div>
+        </a>
+
+        <a class="career-card yellow" href="https://storage.googleapis.com/mailerlite-uploads-prod/1602209/oIAulgDqmQIDAY5bEOGhRsy8DYXfxY2l8Axmjdzx.pdf" target="_blank" rel="noopener">
+          <span class="ctag">✦ AUTOMATE</span>
+          <h3>The <em>AI Automation</em> Guide.</h3>
+          <p>Stop doing it manually. The exact workflows I use to automate planning, scheduling, and the busywork that quietly eats your week.</p>
+          <div class="career-arrow">Get the workflows →</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOLLOW CTA -->
+  <section class="freebie">
+    <div class="freebie-card reveal">
+      <div class="lil-tag">keep going ✦</div>
+      <h2>New career prompts <em>every week.</em></h2>
+      <p>I share new tools, tactics, and behind-the-scenes builds on Instagram. No gatekeeping. No perfection pressure.</p>
+      <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="btn btn-yellow">Follow @prompt_mama →</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <img src="/assets/logo-sm.png" alt="Prompt Mama logo" class="logo-img" width="130" height="103" />
+      <h2>Less stress. <em>More time.</em></h2>
+      <p class="tagline">Smarter parenting, one prompt at a time.</p>
+      <p class="copyright">© <span id="year">2026</span> PROMPT MAMA · MADE WITH ♥ FOR PARENTS</p>
+    </div>
+  </footer>
+
+  <script src="/script.js?v=2" defer></script>
+</body>
+</html>
