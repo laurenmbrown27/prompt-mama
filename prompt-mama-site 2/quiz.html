@@ -10,13 +10,13 @@
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=12" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=13" />
 </head>
 <body>
 
   <div class="topbar" role="banner">
-    <span class="topbar-message">Helping parents use AI with confidence <span aria-hidden="true">✦</span> No gatekeeping. No perfection pressure.</span>
+    <span class="topbar-message">Helping parents use AI with confidence <span aria-hidden="true">·</span> No gatekeeping. No perfection pressure.</span>
     <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
       <span></span><span></span><span></span>
     </button>
@@ -25,7 +25,7 @@
   <nav class="site-nav" id="site-nav" aria-hidden="true" aria-label="Site sections">
     <button class="site-nav-close" id="navClose" aria-label="Close menu">×</button>
     <div class="site-nav-inner">
-      <span class="site-nav-tag">explore the site ✦</span>
+      <span class="site-nav-tag">Explore the site</span>
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/quiz">The AI Match Quiz <span class="nav-sub">— find your tool</span></a></li>
@@ -61,7 +61,7 @@
 
   <div class="quiz-strip quiz-strip-bottom">
     <span>AI MATCH QUIZ</span>
-    <span class="quiz-strip-star">✦</span>
+    
     <span class="quiz-strip-handle">@PROMPT_MAMA</span>
   </div>
 
@@ -252,7 +252,7 @@
         }).join('');
         return (
           '<div class="quiz-state quiz-welcome">' +
-            '<span class="quiz-eyebrow">✦ QUIZ · 2 MINUTES ✦</span>' +
+            '<span class="quiz-eyebrow">QUIZ · 2 MINUTES</span>' +
             '<h1 class="quiz-h1">Which AI is <span class="quiz-accent">actually</span> right for you?</h1>' +
             '<p class="quiz-lede">Six tools. Six personalities. One you. Answer 7 quick questions and we\'ll point you to the AI that fits how you live, work, and create.</p>' +
             '<div class="quiz-pills">' + toolPills + '</div>' +
@@ -284,7 +284,7 @@
         return (
           '<div class="quiz-state quiz-question">' +
             '<div class="quiz-progress"><div class="quiz-progress-fill" style="width:' + progress + '%"></div></div>' +
-            '<span class="quiz-eyebrow">✦ QUESTION ' + String(state.step + 1).padStart(2, '0') + (isMulti ? ' · PICK ALL THAT APPLY' : '') + ' ✦</span>' +
+            '<span class="quiz-eyebrow">QUESTION ' + String(state.step + 1).padStart(2, '0') + (isMulti ? ' · PICK ALL THAT APPLY' : '') + '</span>' +
             '<h2 class="quiz-q">' + escapeHtml(q.q) + '</h2>' +
             '<p class="quiz-sub">' + escapeHtml(q.sub) + '</p>' +
             '<div class="quiz-options">' + options + '</div>' +
@@ -334,7 +334,7 @@
 
         return (
           '<div class="quiz-state quiz-results">' +
-            '<span class="quiz-eyebrow quiz-eyebrow-pink">✦ YOUR MATCH ✦</span>' +
+            '<span class="quiz-eyebrow quiz-eyebrow-pink">YOUR MATCH</span>' +
             '<div class="quiz-scribble quiz-scribble-lg">you matched with...</div>' +
             '<h2 class="quiz-result-name">' + escapeHtml(topTool.name) + '</h2>' +
             '<div class="quiz-tagline-pill">' + escapeHtml(topTool.tagline) + ' · by ' + escapeHtml(topTool.maker) + '</div>' +

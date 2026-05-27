@@ -189,9 +189,9 @@ body.nav-open .site-nav {
 }
 .site-nav .nav-sub {
   display: block;
-  font-family: 'Caveat', cursive;
+  font-style: italic;
   color: var(--pink);
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 500;
   margin-top: 2px;
   letter-spacing: 0;
@@ -725,7 +725,6 @@ h1.hero-title .accent {
 
 .quiz-results .quiz-eyebrow { align-self: flex-start; }
 .quiz-scribble {
-  font-family: 'Caveat', cursive;
   font-style: italic;
   color: var(--pink);
   font-weight: 700;
@@ -1005,11 +1004,12 @@ h1.hero-title .accent {
   margin-bottom: 48px;
 }
 .trio-head .scribble-tag {
-  font-family: 'Caveat', cursive;
   color: var(--pink);
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
   display: block;
 }
 .trio-head h2 {
@@ -1272,11 +1272,12 @@ h1.hero-title .accent {
   margin: 0 auto;
 }
 .caevo .scribble-tag {
-  font-family: 'Caveat', cursive;
   color: var(--yellow);
-  font-size: 30px;
-  font-weight: 600;
-  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
   display: block;
 }
 .caevo h2 {
@@ -1307,12 +1308,12 @@ h1.hero-title .accent {
   line-height: 1.6;
 }
 .caevo .caevo-tag {
-  font-family: 'Caveat', cursive;
   color: var(--yellow);
-  font-size: 26px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 800;
   margin: 24px 0 32px;
-  letter-spacing: 0.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 .caevo-stats {
   display: flex;
@@ -1364,9 +1365,9 @@ h1.hero-title .accent {
   font-weight: 800;
 }
 .section-head .lede {
-  font-family: 'Caveat', cursive;
+  font-style: italic;
   color: var(--pink);
-  font-size: 30px;
+  font-size: 18px;
   font-weight: 600;
 }
 
@@ -1487,11 +1488,13 @@ h1.hero-title .accent {
   box-shadow: 0 20px 60px rgba(26, 43, 74, 0.25);
 }
 .freebie-card .lil-tag {
-  font-family: 'Caveat', cursive;
   color: var(--yellow);
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: inline-block;
 }
 .freebie-card h2 {
   font-weight: 900;
@@ -1616,11 +1619,13 @@ h1.hero-title .accent {
   margin: 0 auto;
 }
 .press-card .scribble-tag {
-  font-family: 'Caveat', cursive;
   color: var(--pink);
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: inline-block;
 }
 .press-card h2 {
   font-weight: 900;
@@ -1807,11 +1812,12 @@ footer .tagline {
   opacity: 0.88;
 }
 .subpage-hero .scribble-tag {
-  font-family: 'Caveat', cursive;
   color: var(--pink);
-  font-size: 30px;
-  font-weight: 600;
-  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
   display: block;
 }
 .subpage-hero.bg-navy .scribble-tag { color: var(--yellow); }

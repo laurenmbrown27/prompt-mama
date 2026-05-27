@@ -10,13 +10,13 @@
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=12" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=13" />
 </head>
 <body>
 
   <div class="topbar" role="banner">
-    <span class="topbar-message">Helping parents use AI with confidence <span aria-hidden="true">✦</span> No gatekeeping. No perfection pressure.</span>
+    <span class="topbar-message">Helping parents use AI with confidence <span aria-hidden="true">·</span> No gatekeeping. No perfection pressure.</span>
     <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
       <span></span><span></span><span></span>
     </button>
@@ -25,7 +25,7 @@
   <nav class="site-nav" id="site-nav" aria-hidden="true" aria-label="Site sections">
     <button class="site-nav-close" id="navClose" aria-label="Close menu">×</button>
     <div class="site-nav-inner">
-      <span class="site-nav-tag">explore the site ✦</span>
+      <span class="site-nav-tag">Explore the site</span>
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/vibe-coded.html">I Vibe Coded So Hard <span class="nav-sub">— the CAEVO story</span></a></li>
@@ -67,55 +67,55 @@
       <div class="feed-grid" id="feedGrid" data-behold-feed="https://feeds.behold.so/K1ZJbNiKi2b55GDvG2Cw">
         <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item pink-bg reveal">
           <div class="feed-item-content">
-            <div class="feed-tag">✦ Trending</div>
+            <div class="feed-tag">Trending</div>
             <h4>Weird things I've asked AI as a mom</h4>
           </div>
         </a>
         <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item yellow-bg reveal">
           <div class="feed-item-content">
-            <div class="feed-tag">✦ Free Tool</div>
+            <div class="feed-tag">Free Tool</div>
             <h4>The Family Planner: 5 prompts that plan, so you don't have to</h4>
           </div>
         </a>
         <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item blue-bg reveal">
           <div class="feed-item-content">
-            <div class="feed-tag">✦ Quickie</div>
+            <div class="feed-tag">Quickie</div>
             <h4>Use AI for a clean ingredients this-or-that</h4>
           </div>
         </a>
         <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item navy-bg reveal">
           <div class="feed-item-content">
-            <div class="feed-tag">✦ Parents</div>
+            <div class="feed-tag">Parents</div>
             <h4>Hey parents — AI isn't just for the office.</h4>
           </div>
         </a>
         <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item reveal">
           <div class="feed-item-content">
-            <div class="feed-tag">✦ Recap</div>
+            <div class="feed-tag">Recap</div>
             <h4>How I used ChatGPT this week</h4>
           </div>
         </a>
         <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item pink-bg reveal">
           <div class="feed-item-content">
-            <div class="feed-tag">✦ Reset</div>
+            <div class="feed-tag">Reset</div>
             <h4>Meet the new Reset GPT — your shortcut to calm</h4>
           </div>
         </a>
         <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item yellow-bg reveal">
           <div class="feed-item-content">
-            <div class="feed-tag">✦ Series</div>
+            <div class="feed-tag">Series</div>
             <h4>Prompt of the day — 30 days, 30 wins</h4>
           </div>
         </a>
         <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item blue-bg reveal">
           <div class="feed-item-content">
-            <div class="feed-tag">✦ Storytime</div>
+            <div class="feed-tag">Storytime</div>
             <h4>The day AI saved my Sunday meal prep</h4>
           </div>
         </a>
         <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener" class="feed-item navy-bg reveal">
           <div class="feed-item-content">
-            <div class="feed-tag">✦ Career</div>
+            <div class="feed-tag">Career</div>
             <h4>The 4-prompt resume rewrite that lands interviews</h4>
           </div>
         </a>
@@ -153,9 +153,9 @@
 
       const colors = ['pink-bg', 'yellow-bg', 'blue-bg', 'navy-bg', ''];
       const tagFor = (post) => {
-        if (post.mediaType === 'VIDEO') return '✦ Reel';
-        if (post.mediaType === 'CAROUSEL_ALBUM') return '✦ Series';
-        return '✦ Post';
+        if (post.mediaType === 'VIDEO') return 'Reel';
+        if (post.mediaType === 'CAROUSEL_ALBUM') return 'Series';
+        return 'Post';
       };
       const titleFrom = (caption) => {
         if (!caption) return 'New from @prompt_mama';
