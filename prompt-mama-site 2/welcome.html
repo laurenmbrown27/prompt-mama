@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>You're in! · The 30-Day AI Glow-Up · Prompt Mama</title>
+<meta name="description" content="Thanks for joining the 30-Day AI Glow-Up. Your access code is on the way to your inbox." />
+<link rel="canonical" href="https://promptmama.com/welcome.html" />
+<meta name="theme-color" content="#EC4899" />
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css?v=16" />
+<style>
+body.welcome-page{
+  --pink:#EC4899;
+  --pink-deep:#DB2777;
+  --pink-soft:#FCE7F3;
+  --plum:#1E2A4A;
+  --plum-soft:#475379;
+  --blue:#BFDFEF;
+  --yellow:#FDE047;
+  --yellow-soft:#FEF9C3;
+  --gold:#CA8A04;
+  font-family:"Poppins",system-ui,sans-serif;
+  color:var(--plum);
+  background:#FFFFFF;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+body.welcome-page *{box-sizing:border-box}
+body.welcome-page .wc-bg{position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(900px 600px at 80% -8%, #F4F9FC, transparent 60%),
+  radial-gradient(800px 500px at 6% 10%, #FCE7F3, transparent 55%),
+  radial-gradient(700px 500px at 50% 110%, #FEF9C3, transparent 62%),
+  #fff;}
+body.welcome-page .wc-wrap{max-width:680px;margin:0 auto;padding:80px 22px 40px;text-align:center}
+body.welcome-page h1{font-family:"Poppins";font-weight:900;line-height:1.04;letter-spacing:-.02em;color:var(--plum);font-size:clamp(38px,7vw,58px);margin:18px auto 12px;max-width:14ch}
+body.welcome-page em{font-style:normal;color:var(--pink)}
+body.welcome-page .wc-eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--plum);background:var(--yellow);padding:7px 16px;border-radius:999px}
+body.welcome-page .wc-eyebrow::before,
+body.welcome-page .wc-eyebrow::after{content:"★";font-size:10px;color:var(--plum)}
+body.welcome-page .wc-celebrate{font-size:64px;line-height:1;margin-bottom:6px}
+body.welcome-page .wc-lede{font-size:18px;color:var(--plum-soft);max-width:48ch;margin:14px auto 0;font-weight:500}
+body.welcome-page .wc-card{background:#fff;border:2px solid var(--blue);border-radius:24px;padding:28px 26px;margin:36px auto 0;text-align:left;max-width:560px;box-shadow:0 12px 36px -18px rgba(30,42,74,.35)}
+body.welcome-page .wc-card h2{font-family:"Poppins";font-weight:900;font-size:20px;color:var(--plum);margin:0 0 10px;letter-spacing:-.01em}
+body.welcome-page .wc-card ol{margin:0;padding:0 0 0 22px;display:grid;gap:10px}
+body.welcome-page .wc-card li{font-size:14.5px;font-weight:500;color:var(--plum);line-height:1.55}
+body.welcome-page .wc-card li b{font-weight:800}
+body.welcome-page .wc-card li code{background:var(--yellow-soft);padding:1px 6px;border-radius:4px;font-family:"Poppins";font-weight:700;font-size:13px;color:var(--plum)}
+body.welcome-page .wc-cta{display:inline-flex;align-items:center;gap:9px;background:var(--pink);color:#fff;font-family:"Poppins";font-weight:800;font-size:16px;text-decoration:none;padding:16px 32px;border-radius:999px;margin-top:32px;box-shadow:0 4px 0 var(--plum);transition:.2s}
+body.welcome-page .wc-cta:hover{transform:translateY(-2px) scale(1.02)}
+body.welcome-page .wc-cta:active{transform:translateY(2px) scale(.99);box-shadow:0 1px 0 var(--plum)}
+body.welcome-page .wc-ghost{display:inline-block;margin-top:14px;color:var(--plum-soft);font-size:13.5px;font-weight:600;text-decoration:none;padding:8px}
+body.welcome-page .wc-ghost:hover{color:var(--pink)}
+body.welcome-page .wc-help{margin-top:36px;font-size:13.5px;color:var(--plum-soft);font-weight:500}
+body.welcome-page .wc-help a{color:var(--pink-deep);text-decoration:none;font-weight:700}
+
+/* confetti */
+body.welcome-page .confetti-wrap{position:fixed;inset:0;z-index:5;pointer-events:none;overflow:hidden}
+body.welcome-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14px;border-radius:2px;animation:wcfall linear forwards}
+@keyframes wcfall{to{transform:translateY(104vh) rotate(720deg);opacity:.9}}
+</style>
+</head>
+<body class="welcome-page">
+<div class="wc-bg"></div>
+
+<div class="topbar" role="banner">
+  <span class="topbar-message">The 30-Day AI Glow-Up <span aria-hidden="true">·</span> A personalized plan from Prompt Mama</span>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<nav class="site-nav" id="site-nav" aria-hidden="true" aria-label="Site sections">
+  <button class="site-nav-close" id="navClose" aria-label="Close menu">×</button>
+  <div class="site-nav-inner">
+    <span class="site-nav-tag">Explore the site</span>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/glow-up">The 30-Day AI Glow-Up <span class="nav-sub">— your personalized plan</span></a></li>
+      <li><a href="/vibe-coded.html">I Vibe Coded So Hard <span class="nav-sub">— the CAEVO story</span></a></li>
+      <li><a href="/feed.html">From the Feed <span class="nav-sub">— recent posts &amp; reels</span></a></li>
+      <li><a href="/parent-guide.html">2026 Parent Guide to AI <span class="nav-sub">— the new download</span></a></li>
+      <li><a href="/ai-parent-pack.html">The AI Parent Pack <span class="nav-sub">— guides + 2-month plan</span></a></li>
+      <li><a href="/career-ai.html">Your Career + AI <span class="nav-sub">— automation, job hunting &amp; navigation</span></a></li>
+      <li><a href="/tools.html">More Tools &amp; Guides <span class="nav-sub">— the full toolkit</span></a></li>
+      <li><a href="/press-kit.html">Press &amp; Media Kit</a></li>
+    </ul>
+    <div class="site-nav-socials">
+      <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@prompt_mama" target="_blank" rel="noopener">TikTok</a>
+      <a href="mailto:prompt.mama.community@gmail.com">Email</a>
+    </div>
+  </div>
+</nav>
+<div class="site-nav-backdrop" id="navBackdrop" hidden></div>
+
+<main class="wc-wrap">
+  <div class="wc-celebrate">🎉</div>
+  <span class="wc-eyebrow">You're in!</span>
+  <h1>Welcome to <em>your</em> 30-day Glow-Up.</h1>
+  <p class="wc-lede">Your payment went through and your personalized access code is on its way to your inbox right now.</p>
+
+  <div class="wc-card">
+    <h2>Here's what happens next:</h2>
+    <ol>
+      <li><b>Check your email</b> for a message from Prompt Mama with your one-of-a-kind <code>access code</code>. (Peek in spam if it doesn't show in 2&nbsp;minutes.)</li>
+      <li><b>Open your plan</b> — take the 2-minute quiz if you haven't yet, or jump straight to Day&nbsp;1.</li>
+      <li><b>Hit "Unlock"</b> at the bottom of Week&nbsp;1 and paste in the email you bought with + your access code.</li>
+      <li>The full 30 days unlock instantly, and a quick <b>setup helper</b> walks you through getting started on your matched AI.</li>
+    </ol>
+  </div>
+
+  <a href="/glow-up?welcome=1" class="wc-cta">Open my plan <span aria-hidden="true">→</span></a>
+  <div><a href="/" class="wc-ghost">← Back to Prompt Mama</a></div>
+
+  <p class="wc-help">Didn't get your email? Wait a couple minutes, then check spam. Still nothing? <a href="mailto:prompt.mama.community@gmail.com?subject=Glow-Up%20access%20code">Email us</a> with the address you bought with and we'll resend.</p>
+</main>
+
+<script src="/script.js?v=2" defer></script>
+<script>
+/* lightweight confetti */
+(function(){
+  const c = document.createElement("div");
+  c.className = "confetti-wrap";
+  document.body.appendChild(c);
+  const colors = ["#EC4899","#FDE047","#BFDFEF","#7AAB92","#7CB6D6"];
+  for (let i = 0; i < 110; i++) {
+    const p = document.createElement("i");
+    p.style.left = Math.random() * 100 + "vw";
+    p.style.background = colors[i % colors.length];
+    p.style.animationDelay = (Math.random() * 0.6) + "s";
+    p.style.animationDuration = (2.6 + Math.random() * 1.8) + "s";
+    p.style.transform = "rotate(" + (Math.random() * 360) + "deg)";
+    c.appendChild(p);
+  }
+  setTimeout(() => c.remove(), 4800);
+})();
+</script>
+</body>
+</html>

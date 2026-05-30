@@ -1,10 +1,36 @@
-# Glow-Up backend setup
+# Glow-Up Backend Setup
 
-One-time setup before the page can sell access. ~30 minutes total.
+End-to-end setup for selling the 30-Day AI Glow-Up at `/glow-up`. ~45 minutes total, mostly clicking in dashboards.
 
-## 1. Supabase
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│  THE WHOLE FLOW                                                       │
+│                                                                       │
+│  1. Buyer clicks "Get instant access" on /glow-up                     │
+│       ↓                                                               │
+│  2. Stripe Checkout (hosted by Stripe) takes their $9.99 + email     │
+│       ↓                                                               │
+│  3. Stripe redirects them to /welcome (thanks + check your inbox)    │
+│       ↓                                                               │
+│  4. Stripe also fires checkout.session.completed → our webhook       │
+│       ↓                                                               │
+│  5. Webhook generates a unique code, stores it in Supabase, and      │
+│     adds the buyer to MailerLite with the code in a custom field     │
+│       ↓                                                               │
+│  6. MailerLite automation emails the code to the buyer               │
+│       ↓                                                               │
+│  7. Buyer returns to /glow-up, takes the quiz, hits the paywall,    │
+│     enters their email + code → /api/verify-code validates them      │
+│       ↓                                                               │
+│  8. Page unlocks Weeks 2–4 + reveals "Download my plan (PDF)" +     │
+│     pops the post-purchase setup helper                              │
+└──────────────────────────────────────────────────────────────────────┘
+```
 
-Create a new project (or use an existing one). In **SQL Editor**, paste and run:
+## Part 1 — Supabase (one-time)
+
+1. Create a new Supabase project at https://supabase.com (free tier is plenty).
+2. Open **SQL Editor → New query**, paste and run:
 
 ```sql
 create table access_codes (
@@ -17,72 +43,126 @@ create table access_codes (
 create index access_codes_email_idx on access_codes (email);
 ```
 
-Leave RLS off — only the service-role key (kept secret in Netlify) touches this table.
+3. Leave Row-Level Security **off** for this table. Only the service-role key (stored in Netlify, never exposed to the browser) touches it.
+4. From **Project Settings → API**, grab:
+   - `SUPABASE_URL` (e.g. `https://abc123.supabase.co`)
+   - `SUPABASE_SERVICE_ROLE_KEY` (the **service_role** JWT — keep secret!)
 
-Grab from **Project Settings → API**:
-- `SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY` (the `service_role` JWT — keep secret, never put in client code)
+## Part 2 — Stripe (one-time)
 
-## 2. Stripe
+### 2a. Create the product + Payment Link
 
-1. **Dashboard → Products → Add Product** — "30-Day AI Glow-Up", $9.99 USD, one-time.
-2. **Payment Links → New** — pick that product. Set success URL to `https://promptmama.ai/glow-up?paid=1`. Cancel URL to `https://promptmama.ai/glow-up`. Enable "Collect customer email."
-3. Copy the Payment Link URL. Paste it into `glow-up.html` → `CONFIG.checkoutUrl` (around line 600).
-4. **Webhooks → Add endpoint**:
-   - URL: `https://promptmama.netlify.app/.netlify/functions/stripe-webhook` (or your production domain)
-   - Events: `checkout.session.completed`
-   - Copy the **Signing secret** (`whsec_…`)
+1. Stripe Dashboard → **Products → Add product**.
+   - **Name:** `30-Day AI Glow-Up`
+   - **Price:** $9.99 USD, one-time
+   - **Description:** "Take the 2-minute quiz, get matched to your AI, and follow a personalized 30-day plan."
+2. **Payment Links → New payment link** → select that product.
+3. Under **After payment**:
+   - **Redirect customers to**: `https://promptmama.com/welcome` (or your Netlify URL during testing)
+4. Under **Options**:
+   - ✅ Enable **Collect customer email** (this is critical — the webhook needs the email)
+5. Save the link, copy the URL (it looks like `https://buy.stripe.com/abc123…`).
+6. In `glow-up.html` find the `CONFIG` block and replace:
+   ```js
+   checkoutUrl: "https://buy.stripe.com/REPLACE_WITH_REAL_STRIPE_PAYMENT_LINK",
+   ```
+   with the real link.
 
-Grab:
-- `STRIPE_SECRET_KEY` (`sk_live_…` or `sk_test_…` while testing)
-- `STRIPE_WEBHOOK_SECRET` (`whsec_…`)
+### 2b. Set up the webhook
 
-## 3. MailerLite (email delivery)
+1. Stripe Dashboard → **Developers → Webhooks → Add endpoint**.
+2. **Endpoint URL:** `https://promptmama.netlify.app/.netlify/functions/stripe-webhook`
+   (replace with your Netlify production domain — `https://promptmama.com/.netlify/functions/stripe-webhook` if the custom domain is your primary).
+3. **Events to listen to:** select **only** `checkout.session.completed`.
+4. Save. Reveal the **Signing secret** (`whsec_…`) and grab it for env vars.
+5. From **Developers → API keys**, copy your **Secret key** (`sk_test_…` while testing, `sk_live_…` in production).
 
-1. **Subscribers → Groups → Create group** — "Glow-Up Buyers".
-2. **Subscribers → Custom fields → Add field** — text field named `access_code`.
-3. **Automation → Create new** — trigger: "When subscriber joins group" → Glow-Up Buyers.
-4. Add one "Send email" step. In the email body, reference the code with `{$access_code}` (or whatever placeholder syntax MailerLite uses for custom fields). Subject line: "🎉 Your 30-Day AI Glow-Up access code".
+## Part 3 — MailerLite (transactional email)
+
+You already use MailerLite for the Parent Guide gate, so we reuse it.
+
+1. **Subscribers → Groups → Create group** — name it `Glow-Up Buyers`. Copy the group ID from the URL (e.g. `/groups/12345678`).
+2. **Subscribers → Custom fields → Add field**:
+   - **Type:** Text
+   - **Name:** `access_code` (use exactly this key — the webhook function references it)
+3. **Automations → Create new automation**:
+   - **Trigger:** When a subscriber joins a group → **Glow-Up Buyers**
+   - **Action:** Send an email
+4. Compose the email. Suggested content:
+
+   **Subject:** `🎉 Your 30-Day AI Glow-Up access code`
+
+   **Body:**
+   > Hey {$fields.name}, you did it!
+   >
+   > Your personalized 30-Day AI Glow-Up is ready.
+   >
+   > **Your access code:** `{$fields.access_code}`
+   >
+   > Go to https://promptmama.com/glow-up, take the 2-minute quiz (or jump back in if you already did), hit "Unlock" at the bottom of Week 1, and paste in this email + your code.
+   >
+   > Weeks 2–4 unlock instantly, plus a quick setup helper walks you through getting started on your matched AI.
+   >
+   > Questions? Just reply to this email.
+   >
+   > xo Lauren
+
 5. Activate the automation.
+6. From **Integrations → MailerLite API**, copy your API key.
 
-Grab:
-- `MAILERLITE_API_KEY` — from **Integrations → MailerLite API**
-- `MAILERLITE_BUYERS_GROUP_ID` — from the URL when viewing that group (or via the API)
+## Part 4 — Netlify environment variables
 
-## 4. Netlify environment variables
-
-**Site settings → Environment variables → Add a variable** (set for all scopes):
+Site settings → **Environment variables → Add a variable** (apply to all scopes):
 
 | Name | Value |
 |---|---|
-| `STRIPE_SECRET_KEY` | sk_live_… (or sk_test_… for testing) |
-| `STRIPE_WEBHOOK_SECRET` | whsec_… |
-| `SUPABASE_URL` | https://….supabase.co |
+| `STRIPE_SECRET_KEY` | `sk_live_…` (or `sk_test_…` while testing) |
+| `STRIPE_WEBHOOK_SECRET` | `whsec_…` |
+| `SUPABASE_URL` | `https://….supabase.co` |
 | `SUPABASE_SERVICE_ROLE_KEY` | service_role JWT |
-| `MAILERLITE_API_KEY` | eyJ0… |
-| `MAILERLITE_BUYERS_GROUP_ID` | numeric id |
+| `MAILERLITE_API_KEY` | `eyJ0…` |
+| `MAILERLITE_BUYERS_GROUP_ID` | numeric id (e.g. `12345678`) |
 
-Redeploy after setting these so the functions pick them up.
+Trigger a fresh deploy after setting them so the functions pick up the values.
 
-## 5. Test the flow
+## Part 5 — End-to-end test (Stripe test mode)
 
-In Stripe **test mode**:
+1. In Stripe Dashboard, toggle **Test mode** (top right).
+2. Use the **test-mode Payment Link** and run a checkout with card `4242 4242 4242 4242`, any future expiry, any CVC, any ZIP.
+3. After payment, Stripe should redirect you to `/welcome` with the confetti page.
+4. In Supabase, run `select * from access_codes order by created_at desc limit 1;` — you should see a new row with your test email + a 10-char code.
+5. Check your inbox — MailerLite should have sent the welcome email with the code (in test mode, real emails still send).
+6. Go to `/glow-up`, take the quiz, hit the paywall, paste in your test email + the code, click **Unlock**.
+7. Confetti, weeks 2–4 unlock, the Download-PDF button appears, and the setup helper modal pops.
+8. Click **Download my 30-day plan (PDF)** — every day expands and the browser print dialog opens.
 
-1. Buy with card `4242 4242 4242 4242`, any future date, any CVC.
-2. Check Supabase `access_codes` — new row with your test email + a 10-char code.
-3. Check the inbox — MailerLite should have sent you the code.
-4. Go to `/glow-up`, take the quiz, hit the paywall, enter your email + code, hit Unlock.
-5. Weeks 2–4 unlock + the "Download PDF" button appears at the top.
-6. Click Download — all 30 days expand and the print dialog opens. Save as PDF.
+## Part 6 — Go live
 
-Flip Stripe to live mode when you're ready.
+Once test mode works end-to-end:
 
-## Re-issuing a code
+1. Flip Stripe to **Live mode**.
+2. Recreate the Live-mode Payment Link with the same settings + the live success URL.
+3. Recreate the Live-mode webhook endpoint (different signing secret from test).
+4. Update the Netlify env vars to the **live** Stripe secret key + live webhook secret.
+5. Update `CONFIG.checkoutUrl` in `glow-up.html` to the live Payment Link.
+6. Deploy.
 
-If a buyer loses their email:
+## Re-issuing a code (manual rescue)
+
+If a buyer loses their email and emails you:
 
 ```sql
-select code from access_codes where email = 'buyer@example.com';
+select code, created_at from access_codes where email = 'buyer@example.com' order by created_at desc;
 ```
 
-Send it to them manually. The page accepts the same code for multiple devices as long as the email matches.
+Paste the code into a reply. Codes work for the same email on as many devices as the buyer uses, so they don't need a new one.
+
+## How to disable the paywall (e.g. launch week, free promo)
+
+In `glow-up.html` set:
+
+```js
+const CONFIG = { ..., paywallEnabled: false, ... };
+```
+
+Everyone gets the full plan instantly. Flip it back to `true` whenever.
