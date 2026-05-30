@@ -5,17 +5,6 @@
   publish = "."
   functions = "netlify/functions"
 
-# Clean URL: /quiz -> /quiz.html
-[[redirects]]
-  from = "/quiz"
-  to = "/quiz.html"
-  status = 200
-
-[[redirects]]
-  from = "/quiz/"
-  to = "/quiz.html"
-  status = 200
-
 # Clean URL: /glow-up -> /glow-up.html
 [[redirects]]
   from = "/glow-up"
