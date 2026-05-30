@@ -464,6 +464,15 @@ h1.hero-title .accent {
   margin: 0 auto 20px;
   max-width: 38ch;
 }
+.glow-feature-card {
+  background: linear-gradient(160deg, #fff, #FFF1F6);
+  border-color: #36122B;
+  box-shadow: 0 6px 0 #36122B;
+}
+.glow-badge {
+  background: linear-gradient(135deg, #FDE047, #C9954B);
+  color: #36122B;
+}
 .cta-row-single {
   justify-content: center;
   margin-bottom: 14px;
