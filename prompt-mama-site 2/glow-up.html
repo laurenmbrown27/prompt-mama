@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/styles.css?v=16" />
+<link rel="stylesheet" href="/styles.css?v=17" />
 <style>
 /* ============================================================
    30-Day AI Glow-Up — self-contained page styles
@@ -577,6 +577,10 @@ body.glow-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14p
     </div>
   </div>
 
+  <div class="dl-row">
+    <button type="button" class="gbtn gbtn-ghost" onclick="emailMyPlan()">📧 Email me my plan</button>
+  </div>
+
   <div id="downloadRow" class="dl-row" style="display:none">
     <button type="button" class="gbtn gbtn-gold" onclick="downloadPdf()">📥 Download my 30-day plan (PDF)</button>
   </div>
@@ -811,8 +815,63 @@ function finish(){
   ranked = scoreTools();
   matchedTool = ranked[0].name;
   runnerTool  = ranked[1].name;
+  // Persist a shareable, portable plan link in the URL hash.
+  // This is the same encoding the welcome email uses, so /glow-up#p=... on
+  // any device reproduces this exact plan without a login.
+  try {
+    const enc = encodeAnswers();
+    if (enc) history.replaceState(null, "", "#p=" + enc);
+  } catch(e){}
   buildResult();
   go('result');
+}
+
+/* ============================================================
+   Plan portability — encode answers to a URL-safe hash so the
+   welcome email link reopens the buyer's exact plan anywhere.
+   ============================================================ */
+function encodeAnswers(){
+  try {
+    const payload = { t: toolAns, a: answers };
+    const json = JSON.stringify(payload);
+    return btoa(unescape(encodeURIComponent(json)))
+      .replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  } catch(e){ return ""; }
+}
+function decodeAnswers(s){
+  try {
+    const padded = s.replace(/-/g,'+').replace(/_/g,'/') + "===".slice(0, (4 - s.length % 4) % 4);
+    const json = decodeURIComponent(escape(atob(padded)));
+    return JSON.parse(json);
+  } catch(e){ return null; }
+}
+function hydrateFromHash(){
+  const m = /^#p=([A-Za-z0-9_-]+)$/.exec(location.hash || "");
+  if(!m) return false;
+  const data = decodeAnswers(m[1]);
+  if(!data || !Array.isArray(data.t) || typeof data.a !== "object") return false;
+  // restore answer arrays
+  for(let i=0;i<QUESTIONS.length;i++){
+    if(typeof data.t[i] !== "undefined") toolAns[i] = data.t[i];
+  }
+  Object.assign(answers, data.a);
+  return true;
+}
+function planUrl(){
+  const base = location.origin + location.pathname.replace(/welcome\.html$/,'glow-up.html');
+  const enc = encodeAnswers();
+  return enc ? (base + "#p=" + enc) : base;
+}
+function emailMyPlan(){
+  const subj = encodeURIComponent("My personalized 30-Day AI Glow-Up plan");
+  const tool = TOOLS[matchedTool] ? TOOLS[matchedTool].name : "your AI";
+  const body = encodeURIComponent(
+    "Here's the link to my personalized 30-Day AI Glow-Up plan — open it on any device to pick up where I left off.\n\n" +
+    "My AI match: " + tool + "\n" +
+    "My plan: " + planUrl() + "\n\n" +
+    "(I can print this to PDF from that page too.)\n\nxo"
+  );
+  window.location.href = "mailto:?subject=" + subj + "&body=" + body;
 }
 
 function timeLabel(){ return answers.time==="10"?"~10 min":answers.time==="30"?"25–35 min":"~15 min"; }
@@ -1519,12 +1578,17 @@ function dayCard(day, open){
 }
 
 function paywallHTML(){
+  // Pass the encoded answers as Stripe client_reference_id so the webhook
+  // can construct a "your plan" link for the welcome email.
+  const ref = encodeAnswers();
+  const sep = CONFIG.checkoutUrl.indexOf("?") >= 0 ? "&" : "?";
+  const buyUrl = CONFIG.checkoutUrl + (ref ? (sep + "client_reference_id=" + ref) : "");
   return '<div class="paywall">'+
     '<span class="eyebrow">Unlock the full month</span>'+
     '<h3>You\'ve seen Week 1. <em style="color:#fff">Now get the system.</em></h3>'+
     '<p>Weeks 2–4 are where chatting turns into systems, and systems turn into AI doing the work for you. 23 more days, 40+ more prompts, all built for your match.</p>'+
     '<div class="price">'+CONFIG.price+' <small>one-time · yours forever</small></div>'+
-    '<a class="buy" href="'+CONFIG.checkoutUrl+'" target="_blank" rel="noopener">Get instant access →</a>'+
+    '<a class="buy" href="'+buyUrl+'" target="_blank" rel="noopener">Get instant access →</a>'+
     '<div class="unlockrow">'+
       '<input id="emailInput" type="email" placeholder="Your email" autocomplete="email" />'+
       '<input id="codeInput" placeholder="Access code" autocomplete="one-time-code" />'+
@@ -1589,6 +1653,21 @@ function go(v){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 renderQ();
+
+/* If the URL has #p=<encoded-answers>, hydrate the buyer's saved plan
+   and jump straight to results. This is what the welcome email link does. */
+(function(){
+  if (hydrateFromHash()) {
+    currentTrack = answers.focus === "work" ? "work" : "parenting";
+    ranked = scoreTools();
+    if (ranked[0] && ranked[0].score > 0) {
+      matchedTool = ranked[0].name;
+      runnerTool  = (ranked[1] && ranked[1].name) || runnerTool;
+    }
+    buildResult();
+    go('result');
+  }
+})();
 
 /* Post-checkout return: /glow-up?welcome=1 triggers confetti + a friendly
    reminder that the code is in their inbox. The welcome page handles the

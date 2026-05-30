@@ -82,9 +82,11 @@ create index access_codes_email_idx on access_codes (email);
 You already use MailerLite for the Parent Guide gate, so we reuse it.
 
 1. **Subscribers → Groups → Create group** — name it `Glow-Up Buyers`. Copy the group ID from the URL (e.g. `/groups/12345678`).
-2. **Subscribers → Custom fields → Add field**:
-   - **Type:** Text
-   - **Name:** `access_code` (use exactly this key — the webhook function references it)
+2. **Subscribers → Custom fields → Add field** — add **two** fields, both Text:
+   - `access_code` — the unique code the buyer pastes to unlock
+   - `plan_url` — the deep link back to their personalized plan (works on any device)
+
+   Use these exact field keys — the webhook function references them.
 3. **Automations → Create new automation**:
    - **Trigger:** When a subscriber joins a group → **Glow-Up Buyers**
    - **Action:** Send an email
@@ -93,19 +95,22 @@ You already use MailerLite for the Parent Guide gate, so we reuse it.
    **Subject:** `🎉 Your 30-Day AI Glow-Up access code`
 
    **Body:**
-   > Hey {$fields.name}, you did it!
+   > Hey, you did it!
    >
    > Your personalized 30-Day AI Glow-Up is ready.
    >
+   > **Your plan:** {$fields.plan_url}
    > **Your access code:** `{$fields.access_code}`
    >
-   > Go to https://promptmama.com/glow-up, take the 2-minute quiz (or jump back in if you already did), hit "Unlock" at the bottom of Week 1, and paste in this email + your code.
+   > Tap your plan link from any device — it remembers your quiz answers and your AI match, so you pick up exactly where you left off. When you get there, paste this email + your code at the bottom of Week 1 to unlock the full 30 days.
    >
-   > Weeks 2–4 unlock instantly, plus a quick setup helper walks you through getting started on your matched AI.
+   > Want a saved copy? On the plan page hit **Download my 30-day plan (PDF)** to save your personalized plan as a PDF you can keep forever.
    >
    > Questions? Just reply to this email.
    >
    > xo Lauren
+
+   **Bookmark this email** — your plan link in it is how you get back to your personalized plan on any device, anytime.
 
 5. Activate the automation.
 6. From **Integrations → MailerLite API**, copy your API key.
@@ -122,6 +127,7 @@ Site settings → **Environment variables → Add a variable** (apply to all sco
 | `SUPABASE_SERVICE_ROLE_KEY` | service_role JWT |
 | `MAILERLITE_API_KEY` | `eyJ0…` |
 | `MAILERLITE_BUYERS_GROUP_ID` | numeric id (e.g. `12345678`) |
+| `SITE_URL` | `https://promptmama.com` (used to build the plan link in welcome emails; defaults to promptmama.com if unset) |
 
 Trigger a fresh deploy after setting them so the functions pick up the values.
 
