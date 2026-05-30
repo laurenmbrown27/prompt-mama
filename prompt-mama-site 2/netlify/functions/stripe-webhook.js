@@ -11,7 +11,11 @@ const supabase = createClient(
 // 10-char codes from an unambiguous alphabet (no 0/O/1/I/L confusion)
 const generateCode = customAlphabet('ABCDEFGHJKMNPQRSTUVWXYZ23456789', 10);
 
-async function sendCodeEmail({ to, code }) {
+// Public URL of the site, used to build the buyer's personalized plan link.
+// Defaults to the production domain; override via SITE_URL env var if needed.
+const SITE_URL = (process.env.SITE_URL || 'https://promptmama.com').replace(/\/+$/, '');
+
+async function sendCodeEmail({ to, code, planUrl }) {
   const apiKey = process.env.MAILERLITE_API_KEY;
   if (!apiKey) {
     console.warn('MAILERLITE_API_KEY not set — skipping email send');
@@ -20,7 +24,8 @@ async function sendCodeEmail({ to, code }) {
 
   // MailerLite v2 API — add/update subscriber + trigger an automation by group
   // Lauren creates an automation in MailerLite that triggers when a subscriber
-  // joins the "Glow-Up Buyers" group, and the email template uses {$fields.access_code}.
+  // joins the "Glow-Up Buyers" group, and the email template uses
+  // {$fields.access_code} and {$fields.plan_url}.
   const groupId = process.env.MAILERLITE_BUYERS_GROUP_ID;
 
   const res = await fetch('https://connect.mailerlite.com/api/subscribers', {
@@ -32,7 +37,7 @@ async function sendCodeEmail({ to, code }) {
     },
     body: JSON.stringify({
       email: to,
-      fields: { access_code: code },
+      fields: { access_code: code, plan_url: planUrl },
       groups: groupId ? [groupId] : undefined
     })
   });
@@ -72,6 +77,16 @@ export default async (req) => {
     return new Response('no email', { status: 400 });
   }
 
+  // The buyer's encoded quiz answers travel through Stripe via client_reference_id.
+  // If present, we can reconstruct a "your plan" link that reopens their exact
+  // personalized plan on any device. If absent (e.g. someone bought via a bare
+  // Payment Link URL), the link just opens /glow-up and they retake the quiz.
+  const ref = (session.client_reference_id || '').trim();
+  const isValidRef = /^[A-Za-z0-9_-]+$/.test(ref) && ref.length <= 250;
+  const planUrl = isValidRef
+    ? `${SITE_URL}/glow-up#p=${ref}`
+    : `${SITE_URL}/glow-up`;
+
   // Idempotency: if we've already issued a code for this checkout session, do nothing.
   const { data: existing } = await supabase
     .from('access_codes')
@@ -94,7 +109,7 @@ export default async (req) => {
   }
 
   try {
-    await sendCodeEmail({ to: email, code });
+    await sendCodeEmail({ to: email, code, planUrl });
   } catch (err) {
     console.error('Email send threw', err);
     // Don't fail the webhook — the code is in Supabase, Lauren can resend manually.
