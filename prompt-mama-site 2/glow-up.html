@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/styles.css?v=15" />
+<link rel="stylesheet" href="/styles.css?v=16" />
 <style>
 /* ============================================================
    30-Day AI Glow-Up — self-contained page styles
@@ -391,6 +391,47 @@ body.glow-page .grad .retake{margin-top:22px}
   body.glow-page .match::after, body.glow-page .step .arc { display:none }
   body.glow-page a { color:inherit; text-decoration:none }
 }
+
+/* ===== post-purchase setup modal + migration helper ===== */
+body.glow-page .onb-modal{display:none;position:fixed;inset:0;z-index:90;background:rgba(30,42,74,.55);backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto}
+body.glow-page .onb-card{position:relative;background:#fff;border-radius:26px;max-width:560px;width:100%;margin:auto;padding:34px 30px;box-shadow:0 30px 80px -20px rgba(30,42,74,.6);animation:onbpop .35s cubic-bezier(.2,.8,.3,1.2) both}
+@keyframes onbpop{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:none}}
+body.glow-page .onb-x{position:absolute;top:16px;right:18px;background:none;border:none;font-size:18px;color:var(--plum-soft);cursor:pointer;line-height:1}
+body.glow-page .onb-x:hover{color:var(--pink)}
+body.glow-page .onb-celebrate{font-size:42px;text-align:center;margin-bottom:6px}
+body.glow-page .onb-card h3{font-size:clamp(22px,4vw,28px);text-align:center;font-weight:900;letter-spacing:-.01em}
+body.glow-page .onb-sub{text-align:center;color:var(--plum-soft);font-weight:500;font-size:14.5px;margin:8px auto 18px;max-width:44ch}
+body.glow-page .onb-opts{display:grid;gap:10px}
+body.glow-page .onb-opt{text-align:left;background:#fff;border:2px solid var(--blue);border-radius:14px;padding:13px 16px;font-family:"Poppins";font-weight:700;font-size:15px;color:var(--plum);cursor:pointer;transition:.15s}
+body.glow-page .onb-opt:hover{border-color:var(--pink);transform:translateX(2px)}
+body.glow-page .onb-opt.on{background:var(--pink);border-color:var(--pink);color:#fff}
+body.glow-page .onb-opt .onb-note{display:block;font-weight:500;font-size:12.5px;color:var(--plum-soft);margin-top:2px}
+body.glow-page .onb-opt.on .onb-note{color:rgba(255,255,255,.85)}
+body.glow-page .onb-opt .onb-tag{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:var(--yellow-glow);color:var(--plum);padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
+body.glow-page .onb-opt.on .onb-tag{background:#fff}
+body.glow-page .onb-next{margin-top:18px;width:100%;background:var(--pink);color:#fff;font-family:"Poppins";font-weight:800;font-size:15px;border:none;border-radius:14px;padding:15px;cursor:pointer;box-shadow:var(--ghard);transition:.18s}
+body.glow-page .onb-next:hover:not([disabled]){transform:translateY(-2px)}
+body.glow-page .onb-next[disabled]{background:#D9D9E3;box-shadow:none;cursor:default}
+body.glow-page .onb-good{background:#F1F7F3;border:1px solid #CFE5D8;color:#2f7a55;border-radius:12px;padding:10px 14px;font-size:13.5px;font-weight:600;margin-bottom:14px}
+body.glow-page .mig-step{background:var(--cream-2);border:2px solid var(--blue);border-radius:16px;padding:16px 18px;margin-top:12px}
+body.glow-page .mig-step .mig-h{font-family:"Poppins";font-weight:900;font-size:15.5px;display:flex;align-items:center;gap:10px;margin-bottom:8px}
+body.glow-page .mig-step .mig-n{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--pink);color:#fff;font-size:13px;display:grid;place-items:center}
+body.glow-page .mig-step ol{margin:0;padding-left:20px;display:grid;gap:7px}
+body.glow-page .mig-step li{font-size:14px;font-weight:500;line-height:1.5}
+body.glow-page .mig-step li b{font-weight:800}
+body.glow-page .mig-step li i{color:var(--plum-soft)}
+body.glow-page .onb-trust{background:var(--yellow-soft);border:1px solid var(--yellow-glow);border-radius:12px;padding:11px 14px;font-size:13px;font-weight:500;color:var(--plum);margin-top:14px;line-height:1.5}
+body.glow-page .setupreopen{background:#EDF4FF;border:2px dashed var(--blue-deep);border-radius:14px;padding:12px 16px;margin:14px 0 4px;font-size:14px;font-weight:600;color:var(--plum)}
+body.glow-page .setupreopen button{background:none;border:none;color:var(--pink);font-family:"Poppins";font-weight:800;font-size:14px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0;margin-left:4px}
+
+/* lightweight confetti */
+body.glow-page .confetti-wrap{position:fixed;inset:0;z-index:95;pointer-events:none;overflow:hidden}
+body.glow-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14px;border-radius:2px;animation:conffall linear forwards}
+@keyframes conffall{to{transform:translateY(104vh) rotate(720deg);opacity:.9}}
+
+@media print {
+  body.glow-page .onb-modal, body.glow-page .confetti-wrap, body.glow-page .setupreopen { display:none !important }
+}
 </style>
 </head>
 <body class="glow-page">
@@ -577,6 +618,9 @@ body.glow-page .grad .retake{margin-top:22px}
 
   <div class="gfooter">© 2026 Prompt Mama · Made with ♥ for parents · <a href="https://promptmama.com" target="_blank">promptmama.com</a> · <a href="https://instagram.com/prompt_mama" target="_blank">@prompt_mama</a></div>
 </div></section>
+
+<!-- ===================== POST-PURCHASE SETUP MODAL ===================== -->
+<div id="onbModal" class="onb-modal"><div class="onb-card"><div id="onbBody"></div></div></div>
 
 <script src="/script.js?v=2" defer></script>
 <script>
@@ -1227,6 +1271,168 @@ function renderWiify(){
 
 function setTrack(t){ currentTrack=t; document.querySelectorAll("#trackswap button").forEach(b=>b.classList.toggle("on",b.dataset.t===t)); renderWiify(); renderPlan(); window.scrollTo({top:document.getElementById('planArea').offsetTop-80,behavior:'smooth'}); }
 
+/* ============================================================
+   POST-PURCHASE: confetti → setup wizard → migration helper
+   ============================================================ */
+const MIGRATE = {
+  exportFrom:{
+    chatgpt:{name:"ChatGPT", steps:[
+      "Open ChatGPT in a <b>web browser</b> (the phone app shows memories one at a time — the browser lets you grab them all).",
+      "Go to <b>Settings → Personalization → Memory → Manage</b>. Select all (Ctrl/Cmd+A) and copy.",
+      "Also copy your <b>Custom Instructions</b> (Settings → Personalization → Custom Instructions) — both boxes.",
+      "Optional full archive: <b>Settings → Data Controls → Export data</b>. OpenAI emails a ZIP; the link expires in ~24 hours."]},
+    claude:{name:"Claude", steps:[
+      "In Claude, go to <b>Settings → Capabilities → Memory</b> and copy what's there.",
+      "Or just ask Claude in a chat: <i>\"Write out your memories of me verbatim, exactly as they appear.\"</i> Copy the output.",
+      "Save it somewhere you can paste from (Notes, a doc)."]},
+    gemini:{name:"Gemini", steps:[
+      "In Gemini, open <b>Settings → Saved info</b> (or \"Personal context\") and copy your entries.",
+      "Or ask Gemini: <i>\"List everything you've saved about me, verbatim.\"</i> and copy the result."]},
+    copilot:{name:"Copilot", steps:[
+      "In Copilot, open <b>Settings</b> and review your saved personalization/memory.",
+      "Ask Copilot: <i>\"List everything you remember about me, verbatim.\"</i> and copy the output."]},
+    grok:{name:"Grok", steps:[
+      "In Grok, open <b>Settings → Customize</b> (custom instructions) and copy what's there.",
+      "Ask Grok: <i>\"List any saved facts and instructions you have about me, verbatim.\"</i> and copy it."]},
+    other:{name:"your current tool", steps:[
+      "Open your current AI's settings and look for <b>Memory</b>, <b>Personalization</b>, or <b>Saved info</b>, and copy it.",
+      "Or just ask it: <i>\"List everything you've saved about me, verbatim.\"</i> and copy the output."]}
+  },
+  importTo:{
+    claude:{name:"Claude", easy:true, steps:[
+      "Claude has a built-in importer. From the home screen tap the <b>\"Import memory to Claude\"</b> card, or go to <b>Settings → Capabilities → Memory → Start Import</b>.",
+      "It gives you a prompt to paste into your old tool; paste that tool's reply back into Claude. (Or just paste the memories you copied.)",
+      "Imported memories <b>merge</b> with anything already there — nothing is overwritten — and can take up to ~24 hours to fully settle."]},
+    chatgpt:{name:"ChatGPT", easy:false, steps:[
+      "ChatGPT has no import button yet, so we do it by hand (takes 2 minutes).",
+      "Open a new chat and paste: <i>\"Here's context about me from another assistant — please remember it: [paste your copied memories].\"</i>",
+      "For lasting context, also add the key facts under <b>Settings → Personalization → Custom Instructions</b>."]},
+    gemini:{name:"Gemini", easy:false, steps:[
+      "Paste your copied context into <b>Settings → Saved info</b> so it sticks across chats.",
+      "Heads-up: Gemini can import a ChatGPT ZIP via Settings → Import chat history, but doing so lets that history be used for training. The paste-the-summary method avoids that."]},
+    copilot:{name:"Copilot", easy:false, steps:[
+      "Turn on memory/personalization in <b>Settings</b>, then paste your copied context into a fresh chat so it carries through.",
+      "Add the most important facts wherever Copilot lets you save personalization."]},
+    grok:{name:"Grok", easy:false, steps:[
+      "Paste your copied context into <b>Settings → Customize</b> (custom instructions) so Grok keeps it.",
+      "Or drop it at the top of a new chat: \"Remember this about me: …\""]},
+    perplexity:{name:"Perplexity", easy:false, steps:[
+      "Paste your copied context into <b>Settings → AI Profile</b> so every answer is tailored to you.",
+      "Or pin a context block at the top of a Space and search inside it."]}
+  }
+};
+
+const onb = { startTool:null, differs:null, useForPlan:null, fromTool:null, step:0 };
+
+function launchOnboarding(){
+  confettiBurst();
+  onb.step = 1; onb.startTool=null; onb.differs=null; onb.useForPlan=null; onb.fromTool=null;
+  document.getElementById("onbModal").style.display = "flex";
+  renderOnb();
+}
+function closeOnb(){ document.getElementById("onbModal").style.display = "none"; }
+function onbName(k){ return ({chatgpt:"ChatGPT",claude:"Claude",gemini:"Gemini",copilot:"Copilot",perplexity:"Perplexity",grok:"Grok",other:"another tool"})[k]||k; }
+
+function renderOnb(){
+  const m = TOOLS[matchedTool].name;
+  let h = '<button class="onb-x" onclick="closeOnb()" aria-label="Close">✕</button>';
+
+  if(onb.step===1){
+    h += '<div class="onb-celebrate">🎉</div>'+
+      '<h3>You\'re in! Welcome to the plan.</h3>'+
+      '<p class="onb-sub">Quick 30-second setup so Day 1 is smooth. First: which AI are you actually starting on?</p>'+
+      '<div class="onb-opts">'+
+        ['claude','chatgpt','gemini','copilot','perplexity','grok'].map(k=>
+          '<button class="onb-opt'+(onb.startTool===k?' on':'')+'" onclick="onbPick(\'startTool\',\''+k+'\')">'+onbName(k)+
+          (k===matchedTool?' <span class="onb-tag">your match</span>':'')+'</button>').join('')+
+      '</div>'+
+      '<button class="onb-next" '+(onb.startTool?'':'disabled')+' onclick="onbStep(2)">Continue →</button>';
+  }
+  else if(onb.step===2){
+    const differs = onb.startTool && onb.startTool!==matchedTool;
+    onb.differs = differs;
+    if(differs){
+      h += '<div class="onb-celebrate">🤔</div>'+
+        '<h3>You\'re on '+onbName(onb.startTool)+', but you matched with '+m+'.</h3>'+
+        '<p class="onb-sub">Totally fine — lots of people stick with what they know. Which should your 30-day plan be tailored to?</p>'+
+        '<div class="onb-opts">'+
+          '<button class="onb-opt'+(onb.useForPlan==='start'?' on':'')+'" onclick="onbPick(\'useForPlan\',\'start\')">Keep me on <b>'+onbName(onb.startTool)+'</b> <span class="onb-note">I\'m comfortable here — tailor the plan to it</span></button>'+
+          '<button class="onb-opt'+(onb.useForPlan==='match'?' on':'')+'" onclick="onbPick(\'useForPlan\',\'match\')">Switch me to <b>'+m+'</b> <span class="onb-note">It\'s the better fit — show me how to move over</span></button>'+
+          '<button class="onb-opt'+(onb.useForPlan==='both'?' on':'')+'" onclick="onbPick(\'useForPlan\',\'both\')">Use <b>both</b> <span class="onb-note">'+onbName(onb.startTool)+' for now, '+m+' for the Week 4 hands-off part</span></button>'+
+        '</div>'+
+        '<button class="onb-next" '+(onb.useForPlan?'':'disabled')+' onclick="onbStep(3)">Continue →</button>';
+    } else {
+      h += '<div class="onb-celebrate">✨</div>'+
+        '<h3>Perfect — '+m+' it is.</h3>'+
+        '<p class="onb-sub">Your starting tool and your match are the same, so your plan\'s already pointed the right way. One last thing.</p>'+
+        '<button class="onb-next" onclick="onbStep(3)">Continue →</button>';
+    }
+  }
+  else if(onb.step===3){
+    const planTool = (onb.useForPlan==='start') ? onb.startTool : matchedTool;
+    h += '<div class="onb-celebrate">📦</div>'+
+      '<h3>Bringing context from another AI?</h3>'+
+      '<p class="onb-sub">If you\'ve been using a different assistant, you can carry your "memory" (the stuff it knows about you) into '+onbName(planTool)+' so you don\'t start cold.</p>'+
+      '<div class="onb-opts">'+
+        '<button class="onb-opt'+(onb.fromTool==='none'?' on':'')+'" onclick="onbPick(\'fromTool\',\'none\')">I\'m brand new / nothing to move <span class="onb-note">skip this</span></button>'+
+        ['chatgpt','claude','gemini','copilot','grok','other'].filter(k=>k!==planTool).map(k=>
+          '<button class="onb-opt'+(onb.fromTool===k?' on':'')+'" onclick="onbPick(\'fromTool\',\''+k+'\')">Move my data from '+onbName(k)+'</button>').join('')+
+      '</div>'+
+      '<button class="onb-next" '+(onb.fromTool?'':'disabled')+' onclick="onbFinish()">'+(onb.fromTool&&onb.fromTool!=='none'?'Show me how →':'Take me to my plan →')+'</button>';
+  }
+  else if(onb.step===4){
+    const planTool = (onb.useForPlan==='start') ? onb.startTool : matchedTool;
+    const from = onb.fromTool;
+    const exp = MIGRATE.exportFrom[from] || MIGRATE.exportFrom.other;
+    const imp = MIGRATE.importTo[planTool] || MIGRATE.importTo.chatgpt;
+    h += '<div class="onb-celebrate">🔁</div>'+
+      '<h3>Move your context: '+exp.name+' → '+onbName(planTool)+'</h3>'+
+      '<p class="onb-sub">About 2 minutes. You\'re copying what the old AI knows about you and handing it to the new one.</p>'+
+      (imp.easy ? '<div class="onb-good">✓ Good news — '+onbName(planTool)+' has a built-in importer, so this is quick.</div>' : '')+
+      '<div class="mig-step"><div class="mig-h"><span class="mig-n">1</span> Get it out of '+exp.name+'</div><ol>'+
+        exp.steps.map(s=>'<li>'+s+'</li>').join('')+'</ol></div>'+
+      '<div class="mig-step"><div class="mig-h"><span class="mig-n">2</span> Bring it into '+onbName(planTool)+'</div><ol>'+
+        imp.steps.map(s=>'<li>'+s+'</li>').join('')+'</ol></div>'+
+      '<div class="onb-trust">🛡️ Before you paste anywhere: strip out anything you don\'t want stored — passwords, full card or account numbers, anything sensitive. Review what carried over and delete stale entries.</div>'+
+      '<button class="onb-next" onclick="onbDone()">Done — take me to my plan →</button>';
+  }
+
+  document.getElementById("onbBody").innerHTML = h;
+}
+function onbPick(field,val){ onb[field]=val; renderOnb(); }
+function onbStep(n){ onb.step=n; renderOnb(); }
+function onbFinish(){
+  // honor the buyer's choice: if they want to stay on their starting tool, retarget the plan
+  if(onb.useForPlan==='start' && onb.startTool && onb.startTool!==matchedTool){
+    matchedTool = onb.startTool;
+    buildResult();
+  }
+  if(onb.fromTool && onb.fromTool!=='none'){ onb.step=4; renderOnb(); }
+  else { onbDone(); }
+}
+function onbDone(){
+  closeOnb();
+  renderPlan();
+  const pa = document.getElementById('planArea');
+  if (pa) window.scrollTo({top: pa.offsetTop - 80, behavior: 'smooth'});
+}
+
+/* lightweight confetti — no libraries */
+function confettiBurst(){
+  const c = document.createElement("div"); c.className = "confetti-wrap"; document.body.appendChild(c);
+  const colors = ["#EC4899","#FDE047","#BFDFEF","#7AAB92","#7CB6D6"];
+  for(let i=0;i<90;i++){
+    const p = document.createElement("i");
+    p.style.left = Math.random()*100 + "vw";
+    p.style.background = colors[i % colors.length];
+    p.style.animationDelay = (Math.random()*0.5) + "s";
+    p.style.animationDuration = (2.4 + Math.random()*1.6) + "s";
+    p.style.transform = "rotate(" + (Math.random()*360) + "deg)";
+    c.appendChild(p);
+  }
+  setTimeout(()=>c.remove(), 4200);
+}
+
 function renderPlan(){
   document.getElementById("mTrack").textContent = currentTrack==="work"?"Work":"Parenting";
   document.getElementById("downloadRow").style.display = (CONFIG.paywallEnabled && !unlocked) ? "none" : "flex";
@@ -1243,6 +1449,9 @@ function renderPlan(){
     '<li><span class="gk">5</span><span><b>Check your data settings.</b> Most tools let you turn off training on your chats and delete history — do it once, today.</span></li>'+
     '</ul></div>';
   html += '<div class="pbanner '+PRIV[tier].bcls+'">'+PRIV[tier].banner+'</div>';
+  if (unlocked) {
+    html += '<div class="setupreopen">🔁 Switching tools or bringing context from another AI? <button type="button" onclick="launchOnboarding()">Open the setup &amp; data-move helper</button></div>';
+  }
   const lv = levelTier();
   html += '<div class="lvbanner '+LEVELS[lv].cls+'">'+LEVELS[lv].banner+'</div>';
   const iks = interestKeys().filter(k=>INTEREST[k]);
@@ -1346,7 +1555,7 @@ async function tryUnlock(){
       store.set("pm_glowup_unlocked", code);
       store.set("pm_glowup_email", email);
       renderPlan();
-      window.scrollTo({top: document.getElementById('planArea').offsetTop - 80, behavior:'smooth'});
+      launchOnboarding();
     } else {
       err.textContent = (data && data.msg) ? data.msg : "Hmm, that didn't work. Double-check the email + code.";
       btn.disabled = false; btn.textContent = "Unlock";
@@ -1380,6 +1589,25 @@ function go(v){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 renderQ();
+
+/* Post-checkout return: /glow-up?welcome=1 triggers confetti + a friendly
+   reminder that the code is in their inbox. The welcome page handles the
+   primary thank-you experience; this is the safety net if Stripe ever sends
+   buyers straight here. */
+(function(){
+  try {
+    const qp = new URLSearchParams(window.location.search);
+    if (qp.get("welcome") === "1") {
+      confettiBurst();
+      // If they're already unlocked, run the onboarding wizard.
+      if (unlocked && document.getElementById("result").classList.contains("active")) {
+        launchOnboarding();
+      }
+      // Clean the URL so refresh doesn't re-fire confetti.
+      history.replaceState({}, "", window.location.pathname);
+    }
+  } catch (e) {}
+})();
 </script>
 </body>
 </html>

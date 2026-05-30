@@ -16,6 +16,17 @@
   to = "/glow-up.html"
   status = 200
 
+# Stripe post-purchase landing: /welcome -> /welcome.html
+[[redirects]]
+  from = "/welcome"
+  to = "/welcome.html"
+  status = 200
+
+[[redirects]]
+  from = "/welcome/"
+  to = "/welcome.html"
+  status = 200
+
 # Long cache for static assets (fonts, images, CSS, JS)
 [[headers]]
   for = "/assets/*"
