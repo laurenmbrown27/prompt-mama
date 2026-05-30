@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The 30-Day AI Glow-Up · Prompt Mama</title>
+<meta name="description" content="Take the 2-minute quiz, get a 30-day plan built around how you actually live, and graduate from AI-curious to hands-off. From Prompt Mama." />
+<link rel="canonical" href="https://promptmama.com/glow-up.html" />
+<meta name="theme-color" content="#FF3D8A" />
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Poppins:wght@400;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css?v=14" />
+<style>
+:root{
+  --pink:#FF3D8A;
+  --pink-deep:#E11D6E;
+  --pink-soft:#FFD7E6;
+  --plum:#36122B;
+  --plum-soft:#6E4760;
+  --cream:#FFF6F1;
+  --cream-2:#FDEEF3;
+  --gold:#C9954B;
+  --gold-soft:#F1DCB4;
+  --sage:#8FB9A4;
+  --line:rgba(54,18,43,.12);
+  --card:#FFFFFF;
+  --shadow:0 18px 50px -20px rgba(177,29,98,.35);
+  --shadow-sm:0 8px 24px -14px rgba(54,18,43,.4);
+  --r:22px;
+  --max:1040px;
+}
+.glow-page *{box-sizing:border-box}
+.glow-page{font-family:"DM Sans",system-ui,sans-serif;color:var(--plum);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+.glow-page .bg{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(1100px 700px at 78% -8%, var(--cream-2), transparent 60%),
+  radial-gradient(900px 600px at 8% 12%, #FFEAF1, transparent 55%),
+  radial-gradient(700px 600px at 50% 110%, #FFF1E3, transparent 60%),
+  var(--cream);}
+.glow-page .grain{position:fixed;inset:0;z-index:-1;opacity:.05;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.glow-page .spark{position:fixed;font-size:20px;opacity:.5;z-index:-1;animation:gufloat 7s ease-in-out infinite;filter:saturate(1.2)}
+@keyframes gufloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(8deg)}}
+
+.glow-page h1,.glow-page h2,.glow-page h3,.glow-page h4,.glow-page .serif{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.08;letter-spacing:-.01em;color:var(--plum)}
+.glow-page em,.glow-page .em{font-style:italic;color:var(--pink-deep)}
+.glow-page .gwrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+
+.glow-page section{padding:0}
+.glow-page .view{display:none;animation:gufade .5s ease both}
+.glow-page .view.active{display:block}
+@keyframes gufade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* LANDING */
+.glow-page .hero{padding:64px 0 30px;text-align:center;position:relative}
+.glow-page .eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--pink-deep);background:#fff;border:1px solid var(--pink-soft);padding:7px 14px;border-radius:999px;box-shadow:var(--shadow-sm)}
+.glow-page .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--pink);box-shadow:0 0 0 4px rgba(255,61,138,.18)}
+.glow-page .hero h1{font-size:clamp(40px,7vw,72px);margin:22px auto 8px;max-width:14ch}
+.glow-page .hero .sub{font-size:clamp(17px,2.3vw,21px);color:var(--plum-soft);max-width:54ch;margin:14px auto 0}
+.glow-page .hero-cta{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center}
+.glow-page .gbtn{font-family:"DM Sans";font-weight:600;cursor:pointer;border:none;border-radius:999px;transition:.22s;display:inline-flex;align-items:center;gap:9px;font-size:16px;text-decoration:none}
+.glow-page .gbtn-primary{background:linear-gradient(135deg,var(--pink),var(--pink-deep));color:#fff;padding:16px 30px;box-shadow:var(--shadow)}
+.glow-page .gbtn-primary:hover{transform:translateY(-2px) scale(1.01);box-shadow:0 24px 60px -20px rgba(225,29,110,.6)}
+.glow-page .gbtn-ghost{background:#fff;color:var(--plum);padding:15px 26px;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+.glow-page .gbtn-ghost:hover{transform:translateY(-2px);border-color:var(--pink-soft)}
+.glow-page .gbtn-gold{background:linear-gradient(135deg,var(--gold),#B07A2E);color:#36122B;padding:15px 28px;font-weight:700;box-shadow:0 12px 28px -12px rgba(201,149,75,.6)}
+.glow-page .gbtn-gold:hover{transform:translateY(-2px)}
+.glow-page .pricepill{display:inline-flex;flex-direction:column;align-items:flex-start;line-height:1.05;background:var(--plum);color:#fff;padding:10px 16px;border-radius:14px;box-shadow:var(--shadow-sm)}
+.glow-page .pricepill b{font-family:"Fraunces";font-size:22px}
+.glow-page .pricepill span{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.glow-page .hero .reassure{margin-top:18px;font-size:13.5px;color:var(--plum-soft)}
+.glow-page .hero .reassure b{color:var(--pink-deep)}
+
+.glow-page .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:54px 0 10px}
+.glow-page .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.glow-page .step .num{font-family:"Fraunces";font-size:15px;font-weight:600;color:#fff;background:var(--pink);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;margin-bottom:14px}
+.glow-page .step h3{font-size:20px;margin-bottom:6px}
+.glow-page .step p{font-size:14.5px;color:var(--plum-soft)}
+.glow-page .step .arc{position:absolute;right:-30px;bottom:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,var(--cream-2),transparent 70%);opacity:.8}
+
+.glow-page .value{margin:60px 0 10px;background:#fff;border:1px solid var(--line);border-radius:30px;padding:42px;box-shadow:var(--shadow-sm)}
+.glow-page .value h2{font-size:clamp(26px,4vw,38px);text-align:center;margin-bottom:6px}
+.glow-page .value .lead{text-align:center;color:var(--plum-soft);max-width:50ch;margin:0 auto 28px}
+.glow-page .vgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px 30px}
+.glow-page .vitem{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--line)}
+.glow-page .vitem .ck{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:var(--pink-soft);color:var(--pink-deep);display:grid;place-items:center;font-size:14px;font-weight:700}
+.glow-page .vitem b{font-weight:600}
+.glow-page .vitem p{font-size:14.5px}
+.glow-page .vitem span{color:var(--plum-soft)}
+
+.glow-page .arc-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:30px 0 0}
+.glow-page .arc-card{border-radius:16px;padding:16px 14px;color:#fff;position:relative;min-height:120px}
+.glow-page .arc-card .wk{font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.glow-page .arc-card h4{color:#fff;font-size:18px;margin:6px 0 4px}
+.glow-page .arc-card small{font-size:12.5px;opacity:.9}
+.glow-page .a1{background:linear-gradient(150deg,#FF7FB0,#FF3D8A)}
+.glow-page .a2{background:linear-gradient(150deg,#FF3D8A,#E11D6E)}
+.glow-page .a3{background:linear-gradient(150deg,#B5407A,#7E2B57)}
+.glow-page .a4{background:linear-gradient(150deg,#36122B,#5A2347)}
+.glow-page .arc-card.a4 .tag{position:absolute;top:12px;right:12px;background:var(--gold);color:#36122B;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:.08em}
+
+.glow-page .faq{margin:56px 0 30px}
+.glow-page .faq h2{text-align:center;font-size:30px;margin-bottom:18px}
+.glow-page .qa{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 22px;margin-bottom:12px;box-shadow:var(--shadow-sm)}
+.glow-page .qa b{font-family:"Fraunces";font-size:17px}
+.glow-page .qa p{font-size:14.5px;color:var(--plum-soft);margin-top:5px}
+
+.glow-page .gfooter{text-align:center;padding:46px 0 60px;color:var(--plum-soft);font-size:13px}
+.glow-page .gfooter a{color:var(--pink-deep);text-decoration:none;font-weight:600}
+
+/* QUIZ */
+.glow-page .quiz-head{text-align:center;padding:50px 0 8px}
+.glow-page .quiz-head .eyebrow{margin-bottom:14px}
+.glow-page .quiz-head h2{font-size:clamp(28px,4.5vw,42px)}
+.glow-page .progress{max-width:560px;margin:20px auto 0}
+.glow-page .progress .bar{height:8px;background:var(--pink-soft);border-radius:999px;overflow:hidden}
+.glow-page .progress .fill{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--pink-deep));border-radius:999px;transition:width .4s cubic-bezier(.4,0,.2,1)}
+.glow-page .progress .lbl{font-size:12px;color:var(--plum-soft);margin-top:8px;letter-spacing:.04em}
+.glow-page .qcard{max-width:600px;margin:26px auto 0;background:#fff;border:1px solid var(--line);border-radius:26px;padding:34px 30px 30px;box-shadow:var(--shadow)}
+.glow-page .qcard .qn{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pink-deep);font-weight:600}
+.glow-page .qcard h3{font-size:clamp(22px,3.4vw,28px);margin:8px 0 22px}
+.glow-page .opts{display:flex;flex-direction:column;gap:11px}
+.glow-page .opt{display:flex;align-items:center;gap:14px;text-align:left;background:var(--cream);border:1.5px solid var(--line);border-radius:15px;padding:15px 18px;cursor:pointer;transition:.16s;font-size:16px;font-weight:500;color:var(--plum);font-family:"DM Sans"}
+.glow-page .opt:hover{border-color:var(--pink);background:#fff;transform:translateX(3px)}
+.glow-page .opt .ic{font-size:22px;flex:0 0 auto;width:30px;text-align:center}
+.glow-page .opt .ko{font-size:13px;color:var(--plum-soft);font-weight:400;display:block}
+.glow-page .qnav{display:flex;justify-content:space-between;margin-top:22px;max-width:600px;margin-left:auto;margin-right:auto}
+.glow-page .qback{background:none;border:none;color:var(--plum-soft);font-family:"DM Sans";font-weight:600;cursor:pointer;font-size:14px;padding:8px 4px}
+.glow-page .qback:hover{color:var(--pink-deep)}
+
+/* RESULT */
+.glow-page .result-hero{padding:46px 0 10px}
+.glow-page .match{background:linear-gradient(160deg,#fff,#FFF1F6);border:1px solid var(--pink-soft);border-radius:28px;padding:34px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.glow-page .match::after{content:"✦";position:absolute;right:24px;top:18px;font-size:60px;color:var(--pink-soft);opacity:.7}
+.glow-page .match .kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-deep);font-weight:600}
+.glow-page .match h2{font-size:clamp(28px,4.6vw,42px);margin:8px 0 4px}
+.glow-page .match h2 .tool{color:var(--pink-deep)}
+.glow-page .match .pers{font-size:16px;color:var(--plum-soft);max-width:60ch}
+.glow-page .metarow{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.glow-page .meta{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 16px;box-shadow:var(--shadow-sm)}
+.glow-page .meta span{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--plum-soft)}
+.glow-page .meta b{font-family:"Fraunces";font-size:17px}
+
+.glow-page .trackswap{display:inline-flex;background:var(--cream);border:1px solid var(--line);border-radius:999px;padding:4px;margin-top:20px}
+.glow-page .trackswap button{border:none;background:none;font-family:"DM Sans";font-weight:600;font-size:13.5px;color:var(--plum-soft);padding:8px 16px;border-radius:999px;cursor:pointer;transition:.16s}
+.glow-page .trackswap button.on{background:var(--pink);color:#fff;box-shadow:var(--shadow-sm)}
+
+.glow-page .plan-intro{text-align:center;margin:46px 0 6px}
+.glow-page .plan-intro h3{font-size:clamp(24px,4vw,34px)}
+.glow-page .plan-intro p{color:var(--plum-soft);max-width:52ch;margin:8px auto 0}
+
+.glow-page .dl-row{display:flex;justify-content:center;margin:20px 0 0}
+
+.glow-page .phase{margin:36px 0 0}
+.glow-page .phase-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:2px solid var(--pink-soft);padding-bottom:12px;margin-bottom:6px}
+.glow-page .phase-head .wkn{font-family:"Fraunces";font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--pink-deep)}
+.glow-page .phase-head h3{font-size:clamp(22px,3.4vw,30px);flex:1 1 auto}
+.glow-page .phase-head .level{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--plum);padding:5px 11px;border-radius:999px}
+.glow-page .phase-head .lvl-1{background:var(--sage)} .glow-page .phase-head .lvl-2{background:var(--pink)} .glow-page .phase-head .lvl-3{background:var(--pink-deep)} .glow-page .phase-head .lvl-4{background:var(--gold);color:#36122B}
+
+.glow-page .day{background:#fff;border:1px solid var(--line);border-radius:18px;margin-top:12px;box-shadow:var(--shadow-sm);overflow:hidden;transition:.2s}
+.glow-page .day:hover{box-shadow:var(--shadow)}
+.glow-page .day summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:16px 20px}
+.glow-page .day summary::-webkit-details-marker{display:none}
+.glow-page .day .medal{flex:0 0 auto;width:46px;height:46px;border-radius:13px;background:linear-gradient(140deg,var(--pink-soft),#fff);border:1px solid var(--pink-soft);display:grid;place-items:center;text-align:center;line-height:1}
+.glow-page .day .medal small{display:block;font-size:9px;letter-spacing:.1em;color:var(--plum-soft);text-transform:uppercase}
+.glow-page .day .medal b{font-family:"Fraunces";font-size:19px;color:var(--pink-deep)}
+.glow-page .day .stitle{flex:1 1 auto}
+.glow-page .day .stitle b{font-family:"Fraunces";font-size:18px;font-weight:600;display:block;letter-spacing:-.01em}
+.glow-page .day .chips{display:flex;gap:6px;margin-top:4px;flex-wrap:wrap}
+.glow-page .chip{font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--cream);color:var(--plum-soft);border:1px solid var(--line)}
+.glow-page .chip.time{background:var(--pink-soft);color:var(--pink-deep);border-color:transparent}
+.glow-page .day .caret{flex:0 0 auto;color:var(--plum-soft);transition:.25s;font-size:18px}
+.glow-page .day[open] .caret{transform:rotate(180deg)}
+.glow-page .day .body{padding:2px 20px 22px 20px;border-top:1px dashed var(--line);margin-top:0}
+.glow-page .day .body .lbl{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--pink-deep);font-weight:700;margin:16px 0 7px;display:block}
+.glow-page .day .steps-txt{font-size:15px;color:var(--plum)}
+.glow-page .day .steps-txt strong{color:var(--plum)}
+.glow-page .toolnote{background:#FFF8EE;border:1px solid var(--gold-soft);border-radius:12px;padding:11px 14px;font-size:13.5px;margin-top:10px;color:#7a5a23}
+.glow-page .toolnote b{color:var(--gold)}
+.glow-page .trustnote{background:#F1F7F3;border:1px solid #CFE5D8;border-radius:12px;padding:11px 14px;font-size:13.5px;margin-top:10px;color:#2f5a45}
+.glow-page .trustnote b{color:#2f7a55}
+.glow-page .funtool{background:linear-gradient(150deg,#FFF0F6,#F6ECFB);border:1px solid var(--pink-soft);border-radius:12px;padding:11px 14px;font-size:13.5px;margin-top:10px;color:var(--plum)}
+.glow-page .funtool b{color:var(--pink-deep)} .glow-page .funtool em{color:var(--plum-soft);font-style:italic}
+.glow-page .funtool a{color:var(--pink-deep);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--pink)}
+.glow-page .funtool .ftlabel{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--pink);padding:2px 9px;border-radius:999px;margin-right:6px}
+.glow-page .tierchip{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;margin-bottom:10px}
+.glow-page .tier-vault{background:#EDE7F4;color:#5b3f8a} .glow-page .tier-balanced{background:var(--pink-soft);color:var(--pink-deep)} .glow-page .tier-connected{background:#FFF1E0;color:#9a6a1e}
+.glow-page .journey{font-size:14.5px;color:var(--plum);margin-top:14px;background:#fff;border:1px dashed var(--pink-soft);border-radius:12px;padding:12px 15px}
+.glow-page .journey b{color:var(--pink-deep)} .glow-page .journey .arrow{color:var(--gold);font-weight:700;padding:0 4px}
+.glow-page .golden{background:linear-gradient(160deg,#fff,#FFF8EE);border:1px solid var(--gold-soft);border-radius:22px;padding:24px 26px;margin:6px 0 4px;box-shadow:var(--shadow-sm)}
+.glow-page .golden h4{font-size:20px;display:flex;align-items:center;gap:9px;margin-bottom:4px}
+.glow-page .golden .gsub{font-size:13.5px;color:var(--plum-soft);margin-bottom:14px}
+.glow-page .golden ul{list-style:none;display:grid;gap:9px;padding:0;margin:0}
+.glow-page .golden li{display:flex;gap:11px;align-items:flex-start;font-size:14px}
+.glow-page .golden li .gk{flex:0 0 auto;width:22px;height:22px;border-radius:7px;background:var(--gold);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}
+.glow-page .pbanner{border-radius:18px;padding:18px 22px;margin:18px 0 4px;font-size:14.5px;border:1px solid var(--line)}
+.glow-page .pbanner b{font-family:"Fraunces";font-weight:600}
+.glow-page .pbanner.b-vault{background:#F4F0FA;border-color:#E0D5F0;color:#4a3470}
+.glow-page .pbanner.b-balanced{background:#FFF1F6;border-color:var(--pink-soft);color:var(--plum)}
+.glow-page .pbanner.b-connected{background:#FFF7EC;border-color:var(--gold-soft);color:#7a5a23}
+.glow-page .promptbox{position:relative;background:var(--plum);color:#FFE9F1;border-radius:14px;padding:18px 18px 16px;margin-top:8px;font-size:14.5px;white-space:pre-wrap;font-family:"DM Sans";line-height:1.65}
+.glow-page .promptbox .pl{position:absolute;top:-9px;left:16px;background:var(--gold);color:#36122B;font-size:10px;font-weight:700;letter-spacing:.1em;padding:2px 9px;border-radius:999px;text-transform:uppercase}
+.glow-page .copybtn{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:"DM Sans";font-weight:600;font-size:12px;padding:6px 12px;border-radius:8px;cursor:pointer;transition:.16s;backdrop-filter:blur(4px)}
+.glow-page .copybtn:hover{background:var(--pink)}
+.glow-page .copybtn.done{background:var(--sage);border-color:transparent}
+.glow-page .why{font-size:13.5px;color:var(--plum-soft);margin-top:14px;padding-left:14px;border-left:3px solid var(--pink-soft);font-style:italic}
+.glow-page .why b{font-style:normal;color:var(--pink-deep)}
+
+/* PAYWALL */
+.glow-page .paywall{position:relative;margin:18px 0 0;background:linear-gradient(160deg,#36122B,#5A2347);color:#fff;border-radius:26px;padding:40px 34px;text-align:center;box-shadow:var(--shadow);overflow:hidden}
+.glow-page .paywall::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 200px at 80% 0,rgba(201,149,75,.35),transparent 60%)}
+.glow-page .paywall>*{position:relative}
+.glow-page .paywall .eyebrow{background:var(--gold);border-color:transparent;color:#36122B}
+.glow-page .paywall h3{color:#fff;font-size:clamp(26px,4.4vw,38px);margin:16px 0 6px}
+.glow-page .paywall p{color:rgba(255,255,255,.82);max-width:46ch;margin:0 auto;font-size:15.5px}
+.glow-page .paywall .price{font-family:"Fraunces";font-size:54px;color:var(--gold);margin:18px 0 2px;line-height:1}
+.glow-page .paywall .price small{font-size:16px;color:rgba(255,255,255,.7);font-family:"DM Sans"}
+.glow-page .paywall .buy{margin-top:14px;background:linear-gradient(135deg,var(--gold),#B07A2E);color:#36122B;font-weight:700;padding:17px 38px;font-size:17px;border-radius:999px;border:none;cursor:pointer;box-shadow:0 16px 40px -16px rgba(201,149,75,.8);transition:.2s;text-decoration:none;display:inline-block}
+.glow-page .paywall .buy:hover{transform:translateY(-2px) scale(1.01)}
+.glow-page .paywall .unlockrow{margin-top:20px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;align-items:center}
+.glow-page .paywall input{font-family:"DM Sans";padding:12px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font-size:14px;width:200px}
+.glow-page .paywall input::placeholder{color:rgba(255,255,255,.5)}
+.glow-page .paywall .unlockbtn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-weight:600;padding:12px 18px;border-radius:10px;cursor:pointer;font-family:"DM Sans"}
+.glow-page .paywall .unlockbtn:disabled{opacity:.5;cursor:wait}
+.glow-page .paywall .err{color:#FFC4D8;font-size:13px;margin-top:8px;min-height:18px}
+.glow-page .paywall .gtee{margin-top:16px;font-size:12.5px;color:rgba(255,255,255,.6)}
+
+.glow-page .lockwrap{position:relative;margin-top:20px}
+.glow-page .lockwrap.locked .phase{filter:blur(6px);pointer-events:none;user-select:none;opacity:.55}
+
+.glow-page .grad{margin:40px 0 10px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:28px;padding:44px 34px;box-shadow:var(--shadow-sm)}
+.glow-page .grad .eyebrow{margin-bottom:14px}
+.glow-page .grad h3{font-size:clamp(26px,4vw,38px)}
+.glow-page .grad p{color:var(--plum-soft);max-width:50ch;margin:10px auto 0}
+.glow-page .grad .retake{margin-top:22px}
+
+@media(max-width:760px){
+  .glow-page .steps,.glow-page .vgrid,.glow-page .arc-strip{grid-template-columns:1fr}
+  .glow-page .arc-strip{grid-template-columns:1fr 1fr}
+  .glow-page .value{padding:28px 20px}
+  .glow-page .match{padding:26px 22px}
+}
+
+/* PRINT — strip chrome, expand details, flatten dark prompt boxes */
+@media print {
+  html,body{background:#fff}
+  .glow-page .bg,.glow-page .grain,.glow-page .spark,
+  .topbar,.site-nav,.site-nav-backdrop,
+  .glow-page .gfooter,.glow-page .hero-cta,.glow-page .paywall,.glow-page .grad,
+  .glow-page .trackswap,.glow-page .gbtn,.glow-page .copybtn,.glow-page .dl-row,
+  .glow-page .qnav,.glow-page .progress{display:none !important}
+  .glow-page #landing,.glow-page #quiz{display:none !important}
+  .glow-page #result{display:block !important}
+  .glow-page .day,.glow-page .golden,.glow-page .pbanner,.glow-page .promptbox,
+  .glow-page .toolnote,.glow-page .trustnote,.glow-page .funtool,.glow-page .match,
+  .glow-page .phase{break-inside:avoid;page-break-inside:avoid}
+  .glow-page .day{box-shadow:none;border-color:#ccc}
+  .glow-page .promptbox{background:#f5f5f5 !important;color:#1a1a1a !important;border:1px solid #ddd}
+  .glow-page .promptbox .pl{background:#555 !important;color:#fff !important}
+  .glow-page .day[open] .caret,.glow-page .day .caret{display:none}
+  .glow-page .match::after,.glow-page .step .arc{display:none}
+  .glow-page a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body class="glow-page">
+
+<div class="bg"></div><div class="grain"></div>
+<span class="spark" style="top:14%;left:6%">✦</span>
+<span class="spark" style="top:24%;right:8%;animation-delay:1.4s">✿</span>
+<span class="spark" style="top:62%;left:4%;animation-delay:2.6s">✦</span>
+<span class="spark" style="top:78%;right:6%;animation-delay:.8s">❀</span>
+
+<div class="topbar" role="banner" style="background:rgba(255,246,241,.92);border-bottom:1px solid var(--line)">
+  <span class="topbar-message" style="color:var(--plum)">The 30-Day AI Glow-Up <span aria-hidden="true">✦</span> A personalized plan from Prompt Mama</span>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<nav class="site-nav" id="site-nav" aria-hidden="true" aria-label="Site sections">
+  <button class="site-nav-close" id="navClose" aria-label="Close menu">×</button>
+  <div class="site-nav-inner">
+    <span class="site-nav-tag">explore the site ✦</span>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/glow-up">The 30-Day AI Glow-Up <span class="nav-sub">— your personalized plan</span></a></li>
+      <li><a href="/quiz">The AI Match Quiz <span class="nav-sub">— find your tool</span></a></li>
+      <li><a href="/vibe-coded.html">I Vibe Coded So Hard <span class="nav-sub">— the CAEVO story</span></a></li>
+      <li><a href="/feed.html">From the Feed <span class="nav-sub">— recent posts &amp; reels</span></a></li>
+      <li><a href="/parent-guide.html">2026 Parent Guide to AI <span class="nav-sub">— the new download</span></a></li>
+      <li><a href="/ai-parent-pack.html">The AI Parent Pack <span class="nav-sub">— guides + 2-month plan</span></a></li>
+      <li><a href="/tools.html">More Tools &amp; Guides <span class="nav-sub">— the full toolkit</span></a></li>
+      <li><a href="/press-kit.html">Press &amp; Media Kit</a></li>
+    </ul>
+    <div class="site-nav-socials">
+      <a href="https://instagram.com/prompt_mama" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@prompt_mama" target="_blank" rel="noopener">TikTok</a>
+      <a href="mailto:prompt.mama.community@gmail.com">Email</a>
+    </div>
+  </div>
+</nav>
+<div class="site-nav-backdrop" id="navBackdrop" hidden></div>
+
+<!-- ===================== LANDING ===================== -->
+<section id="landing" class="view active"><div class="gwrap">
+  <div class="hero">
+    <span class="eyebrow"><span class="dot"></span> New from Prompt Mama</span>
+    <h1>The 30-Day <em>AI Glow-Up</em></h1>
+    <p class="sub">Go from "I sometimes ask ChatGPT a question" to having AI quietly running parts of your life. Take the 2-minute quiz, and I'll build you a plan around how <em>you</em> actually live.</p>
+    <div class="hero-cta">
+      <button class="gbtn gbtn-primary" onclick="go('quiz')">Start the 2-minute quiz →</button>
+      <div class="pricepill"><b id="priceTop">$9.99</b><span>one-time · yours forever</span></div>
+    </div>
+    <p class="reassure">No tech background needed. <b>10–20 minutes a day.</b> No gatekeeping, no perfection pressure. Pinky promise.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step"><div class="arc"></div><div class="num">1</div><h3>Take the quiz</h3><p>Seven quick questions about your life, your time, and what drives you a little bananas.</p></div>
+    <div class="step"><div class="arc"></div><div class="num">2</div><h3>Get your plan</h3><p>I match you to your best AI home base and hand you a day-by-day, 30-day plan with copy-paste prompts.</p></div>
+    <div class="step"><div class="arc"></div><div class="num">3</div><h3>Graduate hands-off</h3><p>By Day 30 you're not just chatting — you're <em>delegating</em> real tasks to AI like Claude Cowork.</p></div>
+  </div>
+
+  <div class="value">
+    <h2>What's <em>inside</em></h2>
+    <p class="lead">This isn't another free PDF. It's a guided, do-it-with-me month that meets you exactly where you are.</p>
+    <div class="vgrid">
+      <div class="vitem"><div class="ck">✓</div><p><b>A plan built for your life</b> <span>— parenting, work, or both. The days, prompts, and examples change based on your quiz.</span></p></div>
+      <div class="vitem"><div class="ck">✓</div><p><b>30 days, ~15 min each</b> <span>— every day has a clear task and a realistic time chip. Short on time? There's a 5-minute "lite" version too.</span></p></div>
+      <div class="vitem"><div class="ck">✓</div><p><b>60+ copy-paste prompts</b> <span>— written in plain language, with one-tap copy. No "prompt engineering" degree required.</span></p></div>
+      <div class="vitem"><div class="ck">✓</div><p><b>Your AI tool match</b> <span>— I tell you exactly which of the six big tools fits how you live, and how to set it up.</span></p></div>
+      <div class="vitem"><div class="ck">✓</div><p><b>Real systems, not party tricks</b> <span>— custom memory, projects, files, voice, and reusable templates you'll keep using.</span></p></div>
+      <div class="vitem"><div class="ck">✓</div><p><b>The hands-off finish</b> <span>— the final week graduates you to Cowork-style delegation: AI that completes multi-step work while you live your life.</span></p></div>
+    </div>
+
+    <div class="arc-strip">
+      <div class="arc-card a1"><div class="wk">Week 1 · Days 1–7</div><h4>Foundations</h4><small>First wins. Learn to actually talk to AI.</small></div>
+      <div class="arc-card a2"><div class="wk">Week 2 · Days 8–15</div><h4>Daily Sidekick</h4><small>Memory + reusable templates for your world.</small></div>
+      <div class="arc-card a3"><div class="wk">Week 3 · Days 16–23</div><h4>Systems &amp; Stacking</h4><small>Projects, files, and multi-step prompts.</small></div>
+      <div class="arc-card a4"><span class="tag">FINALE</span><div class="wk">Week 4 · Days 24–30</div><h4>Hands-Off</h4><small>Delegate to Cowork. Your personal AI OS.</small></div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <h2>Honest <em>answers</em></h2>
+    <div class="qa"><b>I'm really not techy. Is this still for me?</b><p>Especially for you. Every step is written like I'm sitting next to you on the couch. If you can copy and paste, you can do this.</p></div>
+    <div class="qa"><b>Do I need to pay for the AI tools?</b><p>Weeks 1–3 work great on free versions. Week 4's hands-off finale uses Claude Cowork, which needs a paid Claude plan — but I also show you a free way to get the same result, so you're never stuck.</p></div>
+    <div class="qa"><b>Is my information safe?</b><p>You're in control. The quiz asks how much you want to share, and your plan adapts to it — including a "keep everything private, connect nothing" path. Every day follows the same golden rules: no passwords or sensitive numbers, and a human on every send.</p></div>
+    <div class="qa"><b>What's "Cowork"?</b><p>It's the difference between asking AI a question and handing it a job. By Week 4 you'll give an assistant a multi-step task — and come back to it done.</p></div>
+    <div class="qa"><b>How long do I have access?</b><p>Forever. Buy once, keep your plan, repeat it, or run the other track later. After purchase you can also save your plan as a PDF.</p></div>
+  </div>
+
+  <div class="hero" style="padding-top:8px">
+    <button class="gbtn gbtn-primary" onclick="go('quiz')">Find my plan →</button>
+    <p class="reassure" style="margin-top:14px">Takes 2 minutes. Then the magic.</p>
+  </div>
+
+  <div class="gfooter">© 2026 Prompt Mama · Made with ♥ for parents · <a href="https://promptmama.com" target="_blank">promptmama.com</a> · <a href="https://instagram.com/prompt_mama" target="_blank">@prompt_mama</a></div>
+</div></section>
+
+<!-- ===================== QUIZ ===================== -->
+<section id="quiz" class="view"><div class="gwrap">
+  <div class="quiz-head">
+    <span class="eyebrow"><span class="dot"></span> AI Match Quiz</span>
+    <h2>Let's find <em>your</em> plan.</h2>
+    <div class="progress">
+      <div class="bar"><div class="fill" id="qfill"></div></div>
+      <div class="lbl" id="qlbl">Question 1 of 7</div>
+    </div>
+  </div>
+  <div id="qcard"></div>
+  <div class="qnav"><button class="qback" id="qback" onclick="prevQ()">← Back</button><span></span></div>
+</div></section>
+
+<!-- ===================== RESULT / PLAN ===================== -->
+<section id="result" class="view"><div class="gwrap">
+  <div class="result-hero">
+    <div class="match">
+      <div class="kicker">Your match</div>
+      <h2>You + <span class="tool" id="toolName">ChatGPT</span></h2>
+      <p class="pers" id="toolPers"></p>
+      <p class="journey" id="journeyLine"></p>
+      <div class="metarow">
+        <div class="meta"><span>Your focus</span><b id="mTrack">Parenting</b></div>
+        <div class="meta"><span>Daily time</span><b id="mTime">~15 min</b></div>
+        <div class="meta"><span>Your pace</span><b id="mLevel">Confident</b></div>
+        <div class="meta"><span>Privacy mode</span><b id="mPriv">Balanced</b></div>
+        <div class="meta"><span>Graduate to</span><b>Cowork</b></div>
+      </div>
+      <div class="trackswap" id="trackswap">
+        <button data-t="parenting" onclick="setTrack('parenting')">👶 Parenting plan</button>
+        <button data-t="work" onclick="setTrack('work')">💼 Work plan</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="downloadRow" class="dl-row" style="display:none">
+    <button type="button" class="gbtn gbtn-gold" onclick="downloadPdf()">📥 Download my 30-day plan (PDF)</button>
+  </div>
+
+  <div class="plan-intro">
+    <h3>Your <em>30-day</em> plan</h3>
+    <p id="planBlurb">Tap any day to open it. Week 1 is on me — start today.</p>
+  </div>
+
+  <div id="planArea"></div>
+
+  <div class="grad">
+    <span class="eyebrow"><span class="dot"></span> Day 30</span>
+    <h3>You did the thing. 🎉</h3>
+    <p>You went from AI-curious to running real systems and handing off whole jobs. That's not a party trick — that's a different relationship with your time.</p>
+    <div class="retake"><button class="gbtn gbtn-ghost" onclick="go('quiz')">↺ Retake the quiz</button></div>
+  </div>
+
+  <div class="gfooter">© 2026 Prompt Mama · Made with ♥ for parents · <a href="https://promptmama.com" target="_blank">promptmama.com</a> · <a href="https://instagram.com/prompt_mama" target="_blank">@prompt_mama</a></div>
+</div></section>
+
+<script src="/script.js?v=2" defer></script>
+<script>
+/* =====================================================================
+   PROMPT MAMA · 30-DAY AI GLOW-UP
+   ===================================================================== */
+const CONFIG = {
+  price: "$9.99",
+  // Stripe Payment Link — replace with the real one from Stripe dashboard before going live
+  checkoutUrl: "https://buy.stripe.com/REPLACE_WITH_REAL_STRIPE_PAYMENT_LINK",
+  // Free preview: Week 1 (days 1-7) is always unlocked to hook them.
+  freePreviewThroughDay: 7,
+  // Flip to false to make the WHOLE plan free (no paywall) — e.g. for launch week.
+  paywallEnabled: true,
+  // Endpoint for code verification (a Netlify Function)
+  verifyEndpoint: "/api/verify-code"
+};
+
+const store = (()=>{ let mem={}; try{const k="__pm_t";localStorage.setItem(k,"1");localStorage.removeItem(k);
+  return {get:k=>localStorage.getItem(k),set:(k,v)=>localStorage.setItem(k,v),del:k=>localStorage.removeItem(k)};}
+  catch(e){return {get:k=>mem[k]||null,set:(k,v)=>{mem[k]=v;},del:k=>{delete mem[k];}};}})();
+let unlocked = store.get("pm_glowup_unlocked")!==null;
+
+document.getElementById("priceTop").textContent = CONFIG.price;
+
+/* TOOLS */
+const TOOLS = {
+  chatgpt:{name:"ChatGPT", pers:"Your do-everything default. Friendliest on a phone, great voice mode, and \"Custom GPTs\" make it easy to build little helpers. The perfect first home base."},
+  claude:{name:"Claude", pers:"The thoughtful one — best for writing, thinking things through, and longer documents. It's also the doorway to Cowork, where we're headed in Week 4."},
+  gemini:{name:"Google Gemini", pers:"The glue for a Google life. It lives inside Gmail, Docs, and Calendar, so if your world already runs on Google, it meets you there."},
+  copilot:{name:"Microsoft Copilot", pers:"The work companion, built right into Word, Outlook, Teams, and Excel. The obvious pick if your job runs on Microsoft."},
+  perplexity:{name:"Perplexity", pers:"The answer engine. Fast, sourced answers for research, big decisions, and shopping you can actually trust."}
+};
+const SETUP = {
+  chatgpt:{ci:"In ChatGPT: tap your name (bottom-left or top-right) → <b>Personalization → Custom Instructions</b>. Paste it in the \"how would you like ChatGPT to respond\" box.",
+            proj:"In ChatGPT: open the sidebar → <b>+ New Project</b> (or build a reusable <b>Custom GPT</b> via the sidebar → GPTs → Create). Add your context in the instructions."},
+  claude:{ci:"In Claude: tap your initials (bottom-left) → <b>Settings → Profile</b>, and add it to \"personal preferences,\" or paste it at the top of a new chat.",
+          proj:"In Claude: sidebar → <b>Projects → New Project</b>. Drop your context into \"project knowledge\" so every chat in it already knows your world."},
+  gemini:{ci:"In Gemini: <b>Settings → Saved info</b> (or \"Personal context\"). Paste it so Gemini remembers it across chats.",
+          proj:"In Gemini: start a chat and pin your context at the top, or use a <b>Gem</b> (Gemini's custom assistant) and paste your context into its instructions."},
+  copilot:{ci:"In Copilot: open <b>Settings</b> and turn on memory/personalization, then paste your profile into a fresh chat so it carries through your session.",
+           proj:"In Copilot: create a reusable prompt by saving it, or paste your context block at the top of each work session."},
+  perplexity:{ci:"In Perplexity: <b>Settings → AI Profile</b>. Paste your profile there so every answer is tailored to you.",
+              proj:"In Perplexity: use a <b>Space</b> (Settings → Spaces → Create). Add your context + any files so the whole Space knows your world."}
+};
+
+/* QUIZ */
+const QUESTIONS = [
+  {key:"focus", q:"What do you most want AI to help with?", opts:[
+    {ic:"👶",l:"Parenting & home life",ko:"meals, mental load, the kids",v:"parenting"},
+    {ic:"💼",l:"Work & career",ko:"email, meetings, getting ahead",v:"work"},
+    {ic:"🤹",l:"Honestly… both",ko:"I'm juggling all of it",v:"both"}]},
+  {key:"level", q:"Where are you with AI right now?", opts:[
+    {ic:"🌱",l:"Barely touched it",ko:"maybe asked it one thing",v:"new"},
+    {ic:"🌿",l:"I dabble",ko:"here and there, no system",v:"dabble"},
+    {ic:"🌳",l:"I use it most weeks",ko:"ready to go deeper",v:"regular"}]},
+  {key:"time", q:"How much time can you give it a day?", opts:[
+    {ic:"⏱️",l:"About 10 minutes",ko:"keep it snappy",v:"10"},
+    {ic:"⏰",l:"Around 20 minutes",ko:"a proper coffee break",v:"20"},
+    {ic:"🗓️",l:"30+ minutes",ko:"I'm all in",v:"30"}]},
+  {key:"drain", q:"What's your biggest daily drain?", opts:[
+    {ic:"🧠",l:"The mental load & planning",ko:"holding it all in my head",v:"mentalload"},
+    {ic:"📆",l:"Scheduling & logistics",ko:"calendars, who's where",v:"scheduling"},
+    {ic:"📥",l:"Inbox & admin",ko:"email, forms, follow-ups",v:"inbox"},
+    {ic:"✍️",l:"Writing & content",ko:"messages, posts, docs",v:"writing"},
+    {ic:"🔎",l:"Research & decisions",ko:"comparing, deciding",v:"research"}]},
+  {key:"eco", q:"Your life mostly runs on…", opts:[
+    {ic:"🍎",l:"Apple",ko:"iPhone, Mac, the works",v:"apple"},
+    {ic:"🔵",l:"Google",ko:"Gmail, Docs, Android",v:"google"},
+    {ic:"🪟",l:"Microsoft",ko:"Outlook, Office, Teams",v:"microsoft"},
+    {ic:"🌀",l:"A mix of everything",ko:"a little of each",v:"mix"}]},
+  {key:"privacy", q:"How much are you comfortable sharing with AI?", opts:[
+    {ic:"🔒",l:"Keep it private",ko:"no account connections, I'll use nicknames",v:"vault"},
+    {ic:"⚖️",l:"A healthy middle",ko:"share context, but I review everything",v:"balanced"},
+    {ic:"🤝",l:"Bring it on",ko:"connect my apps, I'll check the big stuff",v:"connected"}]},
+  {key:"dream", q:"By Day 30, the dream is…", opts:[
+    {ic:"⚙️",l:"A system that runs itself",ko:"set it and forget it",v:"system"},
+    {ic:"🫧",l:"A calmer brain",ko:"less spinning, more breathing",v:"calm"},
+    {ic:"🚀",l:"More done in less time",ko:"give me my hours back",v:"speed"},
+    {ic:"🪄",l:"Looking like a wizard",ko:"at work or in the group chat",v:"wizard"}]}
+];
+let qi = 0;
+const answers = {};
+let currentTrack = "parenting";
+let matchedTool = "chatgpt";
+
+function renderQ(){
+  const Q = QUESTIONS[qi];
+  document.getElementById("qfill").style.width = ((qi)/QUESTIONS.length*100)+"%";
+  document.getElementById("qlbl").textContent = "Question "+(qi+1)+" of "+QUESTIONS.length;
+  document.getElementById("qback").style.visibility = qi===0 ? "hidden":"visible";
+  let h = '<div class="qcard"><div class="qn">'+(["First up","Next","Quick one","Real talk","One more","Almost there","Last one"][qi])+'</div><h3>'+Q.q+'</h3><div class="opts">';
+  Q.opts.forEach(o=>{ h += '<button class="opt" onclick="answer(\''+Q.key+'\',\''+o.v+'\')"><span class="ic">'+o.ic+'</span><span>'+o.l+'<span class="ko">'+o.ko+'</span></span></button>'; });
+  h += '</div></div>';
+  document.getElementById("qcard").innerHTML = h;
+}
+function answer(key,val){ answers[key]=val; if(qi<QUESTIONS.length-1){qi++;renderQ();window.scrollTo({top:0,behavior:'smooth'});} else {finish();} }
+function prevQ(){ if(qi>0){qi--;renderQ();} }
+
+function finish(){
+  document.getElementById("qfill").style.width="100%";
+  currentTrack = answers.focus==="work" ? "work" : "parenting";
+  const s={chatgpt:0,claude:0,gemini:0,copilot:0,perplexity:0};
+  const d=answers.drain;
+  if(d==="mentalload"){s.claude++;s.chatgpt++;}
+  if(d==="scheduling"){s.gemini+=2;}
+  if(d==="inbox"){s.copilot++;s.gemini++;}
+  if(d==="writing"){s.claude+=2;s.chatgpt++;}
+  if(d==="research"){s.perplexity+=2;}
+  const e=answers.eco;
+  if(e==="google")s.gemini+=2; if(e==="microsoft")s.copilot+=2;
+  if(e==="apple"){s.chatgpt++;s.claude++;} if(e==="mix")s.chatgpt++;
+  if(answers.level==="new")s.chatgpt++;
+  if(answers.dream==="wizard"&&answers.focus!=="parenting")s.copilot++;
+  if(answers.dream==="calm")s.chatgpt++;
+  const order=["chatgpt","claude","gemini","copilot","perplexity"];
+  matchedTool=order.reduce((b,k)=>s[k]>s[b]?k:b,"chatgpt");
+  buildResult();
+  go('result');
+}
+
+function timeLabel(){ return answers.time==="10"?"~10 min":answers.time==="30"?"25–35 min":"~15 min"; }
+function levelLabel(){ return answers.level==="new"?"Brand new":answers.level==="regular"?"Ready to level up":"Confident"; }
+
+/* THE PLAN DATA — same as the artifact (full 30 days × 2 tracks) */
+const PLANS = {
+parenting:[
+{d:1,phase:1,title:"Meet your AI (and introduce your crew)",time:"10 min",lite:"Just send the prompt.",
+ steps:"Open your matched tool and start a brand-new chat. Don't overthink it — we're just saying hello and giving it the context it needs to be useful for <strong>your</strong> family. Send the prompt below, then actually answer its questions.",
+ prompt:"I'm a busy parent and I'm going to start using you to make family life easier. Here's my family: [your kids' ages], we live in [your town], and a typical week includes [school, activities, work, etc.]. Before we start, ask me 5 quick questions about my family and routines so your future answers are actually tailored to us. Keep it warm and simple.",
+ why:"<b>Lesson:</b> AI is only as good as the context you give it. Today you learned the #1 habit — tell it about your life first."},
+{d:2,phase:1,title:"The brain-dump rescue",time:"10 min",lite:"Dump 5 things instead of everything.",
+ steps:"Got that swirling mental list? Empty it ALL out — no order, no filter. Then let AI sort it for you. This is the single most relieving thing AI can do for a parent.",
+ prompt:"Here is my unsorted brain dump for this week — everything rattling around in my head:\n[paste it all here, messy is fine]\n\nSort it into four buckets: (1) Must happen this week, (2) Can wait, (3) Quick wins under 10 minutes, (4) Things to delegate or ask for help with. Then tell me the ONE thing to do first, and why.",
+ why:"<b>Win:</b> You just moved the load out of your head and onto something that can hold it for you."},
+{d:3,phase:1,title:"Dinner, solved",time:"10 min",lite:"Ask for 3 dinners, not 5.",
+ steps:"Open the fridge and pantry. Tell AI what you've got and what your family will tolerate. Let it do the thinking you usually do at 5pm with a kid on your hip.",
+ prompt:"Give me 5 realistic weeknight dinners I can make this week. Here's what I already have: [ingredients]. Constraints: [30 min max / one picky eater who won't eat X / no nuts / etc.]. For each dinner give me: the name, one line on why my kids might actually eat it, and a short list of the few things I still need to buy.",
+ why:"<b>Notice:</b> the more specific your constraints, the better the answer. That's the whole game."},
+{d:4,phase:1,title:"\"Explain it to my kid\"",time:"8 min",lite:"Do one question.",
+ steps:"Next time your kid asks something you half-know (or fully don't), this is your move. Bonus: it models curiosity for them.",
+ prompt:"My [age]-year-old just asked me: \"[their question]\". Explain the answer in a way a [age]-year-old genuinely understands — about 4 sentences, warm and a little fun. Then give me one follow-up question I can ask them to keep the conversation going.",
+ why:"<b>Reframe:</b> You don't have to know everything. You have to know how to find out — together."},
+{d:5,phase:1,title:"Rewrite the message you're dreading",time:"10 min",lite:"One message, one version.",
+ steps:"That text to the teacher, the no-thank-you RSVP, the group-chat reply you keep re-typing. Hand it over.",
+ prompt:"Help me write this message: [what it's about, and to whom]. I want to sound [warm but firm / grateful / breezy / etc.]. Keep it short, kind, and clear — no over-apologizing. Give me 2 versions so I can pick.",
+ why:"<b>Lesson:</b> \"Give me 2 versions\" is a power move. You stay in charge; AI does the first draft."},
+{d:6,phase:1,title:"Scripts for the hard moments",time:"8 min",lite:"Ask for one scenario.",
+ steps:"Tantrums, sibling wars, the 7pm meltdown. Get calm, age-appropriate things to SAY — short enough to remember in the moment.",
+ prompt:"Give me 3 calm, age-appropriate things to say to my [age]-year-old when [the situation — e.g., they're melting down because screen time ended]. Make them short scripts I can actually remember in the heat of the moment. Then add one thing I should NOT say, and why.",
+ why:"<b>Tip:</b> Save the best ones in your Notes app. Next week we'll make AI remember them for you."},
+{d:7,phase:1,title:"Week 1 reset & reflect",time:"12 min",lite:"Answer the first question only.",
+ steps:"You did a whole week! Let's reflect and set up a lighter week ahead. This becomes your Sunday ritual.",
+ prompt:"I just finished my first week using you daily. Here's what worked and what flopped: [your notes]. Based on that, (1) help me plan a lighter week ahead, and (2) give me a simple Sunday Reset checklist tailored to a family with [kids' ages]. Keep it to one screen.",
+ why:"<b>Milestone:</b> You're officially a daily AI user. The basics are done. Now we build systems."},
+{d:8,phase:2,title:"Teach it to remember you",time:"12 min",lite:"Paste the profile, skip tweaking.",setup:true,
+ steps:"Stop re-explaining your family every time. Today you set up <strong>memory / custom instructions</strong> so your tool always knows your world.",
+ prompt:"Write a short \"about my family\" profile I can paste into my AI's memory/custom-instructions so it always knows: my kids' names and ages, our town, our weekly routines, my tone preferences (warm, no fluff), and the kinds of things I usually need help with. Keep it under 1500 characters and write it in the first person.",
+ why:"<b>Game-changer:</b> from now on, every chat starts already knowing you. This is what \"power users\" actually do."},
+{d:9,phase:2,title:"Your reusable Weekly Meal Planner",time:"15 min",lite:"Save the template, plan later.",
+ steps:"We turn Day 3's one-off into a template you'll use every week. Run it, then save the prompt somewhere you'll find it.",
+ prompt:"Act as my weekly meal planner. Each week I'll tell you what's going on and what's in the kitchen. This week: [busy nights, what's in the fridge, any cravings]. Give me a 5-dinner plan + a single combined grocery list organized by store section. Default to [your constraints] unless I say otherwise. Ask me one clarifying question if you need it.",
+ why:"<b>Lesson:</b> a great prompt is reusable. You're building a toolkit, not starting from scratch each time."},
+{d:10,phase:2,title:"The Birthday / Event Planner",time:"15 min",lite:"Just the checklist.",
+ steps:"Got something coming up? Let AI hold the whole plan so you stop waking up at 2am remembering the goody bags.",
+ prompt:"I'm planning [event — e.g., my daughter's 6th birthday, garden theme, ~12 kids, at home]. Build me: a countdown timeline (what to do when), a shopping list, a simple run-of-show for the day, 3 easy activity ideas, and a short invite I can text to parents. Keep it doable for one tired parent.",
+ why:"<b>Notice:</b> you asked for many things at once and got an organized plan. That's \"stacking\" — Week 3's superpower."},
+{d:11,phase:2,title:"The instant Packing List",time:"8 min",lite:"One trip.",
+ steps:"Trips, daycare bags, sports days — never forget the spare socks again.",
+ prompt:"Make me a packing list for [trip/situation — e.g., a 3-day weekend at the lake with a 7-year-old and a 3-year-old, weather around 75°F]. Group it by category (clothes, toiletries, kid gear, just-in-case). Flag the 3 things parents most often forget for this kind of trip.",
+ why:"<b>Habit:</b> anything you do more than twice can become a saved prompt."},
+{d:12,phase:2,title:"Turn a photo into a to-do list",time:"10 min",lite:"Snap one flyer.",
+ steps:"This is the trick that makes people gasp. Use your phone camera right inside the app. Snap the school newsletter, a permission slip, the fridge.",
+ prompt:"[Attach a photo of the school newsletter / flyer / calendar.] Pull out every date, deadline, and action item I need to know about. Give it back as a checklist with dates, newest first, and flag anything happening in the next 7 days.",
+ why:"<b>Unlock:</b> AI can see now, not just read. The paper pile on your counter just became searchable."},
+{d:13,phase:2,title:"The bedtime story machine",time:"8 min",lite:"One story.",
+ steps:"A little delight. Make a personalized story starring your kid — great for bedtime, road trips, or a quiet win.",
+ prompt:"Write a cozy 5-minute bedtime story for my [age]-year-old named [name], who loves [interest]. Make [name] the hero, work in a gentle lesson about [kindness / trying again / sharing], and end calm and sleepy. Keep the words simple enough to read aloud.",
+ why:"<b>Reminder:</b> AI isn't only for chores. Some of the best uses are just joy."},
+{d:14,phase:2,title:"The 2-option decision helper",time:"10 min",lite:"Skip the follow-up.",
+ steps:"Stuck between two things? Let AI lay it out so you can decide with a clear head.",
+ prompt:"Help me decide between two options: [Option A] vs [Option B]. The context: [why I'm deciding, what matters most to me — budget, time, the kids, sanity]. Give me a short pros/cons for each, then your honest recommendation and the one question I should answer to be sure.",
+ why:"<b>Lesson:</b> AI is a great thinking partner — it doesn't decide for you, it clears the fog."},
+{d:15,phase:2,title:"Build your \"Mom Command Center\"",time:"15 min",lite:"Save your top 3 prompts.",
+ steps:"Collect this week's best prompts into one note (phone Notes, a Google Doc, whatever). You're building a personal toolkit you'll reach for on autopilot.",
+ prompt:"Based on how I've been using you, suggest the 6 \"go-to\" prompts a busy parent like me should keep saved and reuse weekly. For each, give it a short nickname, the prompt itself, and when I'd use it. Format it so I can paste it straight into my Notes app.",
+ why:"<b>Milestone:</b> you're now a confident daily user with your own toolkit. Next week: real systems."},
+{d:16,phase:3,title:"Create your Family HQ",time:"15 min",lite:"Set it up, fill in later.",setup:true,
+ steps:"Today you build a dedicated <strong>space</strong> that always knows your family — so you never start cold again.",
+ prompt:"I'm setting up a dedicated space/assistant for my family life. Write the \"instructions\" text for it: it should always know my family (ages, town, routines), default to warm + practical answers, and be ready to help with meals, schedules, school stuff, and the mental load. Also list 5 starter prompts I should pin inside it.",
+ why:"<b>Power move:</b> a Project/Custom GPT/Space is your family HQ. Everything you do in it starts smart."},
+{d:17,phase:3,title:"Ask your documents anything",time:"12 min",lite:"Upload one doc.",
+ steps:"That 40-page school handbook or insurance doc you'll never read? Upload it and just ask.",
+ prompt:"[Upload the document — e.g., the school handbook or your insurance summary.] I don't have time to read this. Answer in plain language: [your real questions — e.g., what's the sick-day policy? what's our deductible? when are early-release days?]. Quote the exact line where you found each answer.",
+ why:"<b>Tip:</b> asking it to quote the source keeps it honest. Always verify the important stuff.",
+ trust:"Before uploading anything, glance at it for sensitive details (account numbers, full SSNs). If it's a sensitive doc and you're in Vault/Balanced mode, type your questions and a few lines instead of uploading the whole thing."},
+{d:18,phase:3,title:"Plan a whole party, end to end",time:"18 min",lite:"Do the first half.",
+ steps:"A bigger stacked project. Watch AI carry a multi-part plan and adjust as you push back.",
+ prompt:"Plan my kid's [theme] birthday party end to end for [# kids], budget about [$], at [home/park]. I want: a 2-week countdown, full shopping list with rough prices, a 2-hour run-of-show with buffer time, 3 low-mess activities, a simple menu, and a text invite. After you draft it, ask me what to adjust before finalizing.",
+ why:"<b>Lesson:</b> big requests + \"then ask me what to adjust\" = a real planning partner, not a vending machine."},
+{d:19,phase:3,title:"Meals → grocery list → budget, chained",time:"15 min",lite:"Stop after the list.",
+ steps:"Chain three steps in one conversation. Each step builds on the last — that's \"stacking.\"",
+ prompt:"Step 1: build a 5-dinner plan for this week for my family ([constraints]). Step 2: turn it into one grocery list grouped by store section. Step 3: estimate the total cost at a mid-range grocery store and suggest 3 swaps to cut about 15% without anyone noticing. Do all three in order.",
+ why:"<b>Skill:</b> you just ran a 3-step workflow. This is exactly how delegating to Cowork will feel next week."},
+{d:20,phase:3,title:"Design a printable routine chart",time:"15 min",lite:"Generate, print later.",
+ steps:"Have AI design a morning/bedtime or chore chart you can actually print and stick on the fridge.",
+ prompt:"Create a kid-friendly [morning / bedtime / chore] routine chart for my [age]-year-old. List the steps in order with a fun emoji for each, in big simple language. Format it as a clean checklist I can copy into a doc and print. Keep it to one page and make it feel encouraging, not bossy.",
+ why:"<b>Notice:</b> AI can produce things you use in the real world — not just answers on a screen."},
+{d:21,phase:3,title:"The family trip itinerary",time:"18 min",lite:"One day of the trip.",
+ steps:"Planning a getaway? Get a realistic, kid-paced itinerary that builds in snacks, naps, and breakdowns.",
+ prompt:"Build a [# day] itinerary for [destination] with kids aged [ages]. Be realistic about kid energy: build in snack stops, downtime, and an early dinner. For each day give morning / afternoon / evening, one backup rainy-day idea, and note anything I should book ahead. Keep the pace gentle.",
+ why:"<b>Lesson:</b> tell AI your real constraints (kid energy!) and it plans for reality, not a brochure."},
+{d:22,phase:3,title:"Go hands-free with voice",time:"8 min",lite:"Try it once in the car.",
+ steps:"Open voice mode and just talk while you fold laundry or drive (safely!). No typing required.",
+ prompt:"(Say out loud) \"I've got a chaotic afternoon — soccer at 4, dinner before 6, and a cranky toddler. Talk me through a calm plan for the next 3 hours, step by step, one thing at a time.\"",
+ why:"<b>Unlock:</b> the best parenting AI moments happen with your hands full. Voice is made for that."},
+{d:23,phase:3,title:"Document a routine anyone can run",time:"15 min",lite:"Do your trickiest one.",
+ steps:"Write up a recurring task (the bedtime routine, the daycare drop-off, the Sunday reset) so a sitter or your partner can run it exactly like you do.",
+ prompt:"Help me write a simple \"how we do it\" guide for [routine — e.g., bedtime for a 3 and 6 year old] so a babysitter or my partner can run it smoothly. Include the order of steps, timing, what usually goes sideways and how to handle it, and our non-negotiables. Keep it friendly and skimmable.",
+ why:"<b>Milestone:</b> you can now turn the chaos in your head into a system on paper. Last week: hand it off."},
+{d:24,phase:4,title:"Meet Cowork: chatting vs delegating",time:"12 min",lite:"Just read this + pick one task.",
+ steps:"Everything so far has been a <strong>conversation</strong>. This last week is about <strong>delegation</strong> — handing AI a whole job and walking away. <strong>Claude Cowork</strong> is built for exactly this: it lives in the free <strong>Claude Desktop app</strong> (Mac or Windows), you point it at a folder on your computer, describe what you want in plain English, and it plans the steps and does them — creating real files you come back to. You can watch it work and jump in to steer. Today you're just learning the idea and picking your first job to hand off. <strong>Honest heads-up:</strong> Cowork needs a <strong>paid Claude plan</strong>. If that's not for you, you can do the same multi-step workflow yourself inside any regular chat (the next days work either way) — it's just a little more hands-on.",
+ prompt:"Explain in simple terms the difference between using AI as a chat assistant vs. delegating a whole multi-step task to it (like Claude Cowork does). Then help me pick ONE recurring task from my family life that would be a great first thing to fully hand off, and list out the steps that task actually involves.",
+ why:"<b>Mindset shift:</b> you've been the manager doing the work. Now you become the manager <em>delegating</em> it.",
+ trust:"Cowork only touches folders you specifically allow, and shows its plan before it runs. It's great for everyday family stuff — but it isn't built for regulated or highly sensitive records, so keep medical and financial documents out of it for now."},
+{d:25,phase:4,title:"Hand off your first real project",time:"25 min",lite:"Pick a smaller project.",
+ steps:"Give an agentic assistant a multi-part job and let it produce the finished pieces. Be specific about what \"done\" looks like.",
+ prompt:"I want to fully hand off planning [event/task — e.g., my son's class Valentine's party]. Produce the finished pieces I can actually use: (1) a text invite for parents, (2) a shopping list with quantities for [# kids], (3) a simple schedule for the party, (4) a non-candy treat idea list, and (5) a thank-you note template. Give them to me as clearly separated, ready-to-send pieces.",
+ why:"<b>Win:</b> you didn't ask a question — you assigned a project and got deliverables. That's the leap.",
+ trust:"Skim every piece before you use it. AI sometimes invents a detail (a date, a quantity) with total confidence — a 20-second read catches it."},
+{d:26,phase:4,title:"Set up a weekly system that repeats",time:"15 min",lite:"Build the Sunday one only.",
+ steps:"Turn your Sunday Reset into a routine you run the same way every week — eventually with as little effort as one message. In Cowork you can even <strong>schedule a recurring task</strong> and kick it off from your phone (the \"Dispatch\" feature) and let it finish on your desktop. Or just keep your reusable prompt in your Notes app and paste it each Sunday.",
+ prompt:"Help me design a repeatable \"Sunday Reset\" I can run every week in about 10 minutes. It should: review the week ahead from my notes, build the meal plan + grocery list, surface school/activity deadlines, and end with one thing I'm allowed to let go of. Write it as a single reusable prompt I can paste in every Sunday, with blanks for me to fill.",
+ why:"<b>Lesson:</b> systems beat willpower. A repeatable prompt means you decide once, not every week."},
+{d:27,phase:4,title:"Email & calendar — your way",time:"15 min",lite:"Read your version + try one thing.",
+ privacyVariants:{
+   vault:{
+     steps:"You chose to keep things private — so we do this <strong>without connecting any accounts</strong>. You still get the win: copy a long email thread or your week's events into the chat, get help, then paste the result back yourself. You stay the only one with the keys.",
+     prompt:"I'm going to paste in a long email thread (with names changed to [Parent A], [Teacher], etc.). Summarize what's being asked of me, draft a short warm reply I can copy back myself, and flag anything time-sensitive. Only use what I paste.",
+     why:"<b>Private and still powerful:</b> manual copy-paste gives you 90% of the benefit with 0% of the account access. Valid forever."},
+   balanced:{
+     steps:"You're open to <strong>low-risk</strong> connections. The safe sweet spot: let AI <strong>read</strong> your calendar to prep your day or catch double-bookings, and <strong>draft</strong> replies you approve — but skip anything that auto-sends, and never connect banking or health apps.",
+     prompt:"I want help with my family calendar and inbox without losing control. Suggest 5 safe, high-value ways AI can assist (e.g., drafting replies I approve, spotting double-bookings, summarizing long threads). For each, tell me what I should double-check myself before trusting it, and which ones I should NOT automate.",
+     why:"<b>Smart middle:</b> read-and-draft is the 80/20 — most of the help, with you on every send."},
+   connected:{
+     steps:"You're ready to let AI plug in for real hands-off help. Connect email/calendar through your tool's official connector (look for a 'Connectors' or 'Integrations' setting). Start with one job: drafting replies and prepping a daily agenda. <strong>Set the rule up front:</strong> it drafts, you press send.",
+     prompt:"I'm connecting my email and calendar so you can help hands-off. Suggest a daily routine: a morning agenda, draft replies to routine messages (for me to approve), flag conflicts, and surface what's urgent. List which actions you'll only ever do as a draft for my approval vs. what's safe to do automatically — and be conservative.",
+     why:"<b>Hands-off, not hands-gone:</b> connect the convenient stuff, but stay on the trigger for anything that sends or shares."}
+ },
+ trust:"Whatever your setting: never connect a banking, investment, or medical-records account, and review anything before it sends. Convenience is never worth the keys to your most sensitive accounts."},
+{d:28,phase:4,title:"Automate one annoying recurring task",time:"18 min",lite:"Just design it.",
+ steps:"Pick the most repetitive thing on your plate and build a near-hands-off flow for it.",
+ prompt:"My most repetitive recurring task is [e.g., packing 5 school lunches, the weekly grocery order, sorting the activity schedule]. Design a near-hands-off flow for it: what I set up once, what I do each time (as little as possible), and the exact prompt(s) to run. Make it so future-me barely has to think.",
+ why:"<b>This is the goal:</b> the task still happens — you just stopped carrying it."},
+{d:29,phase:4,title:"Build your family \"just in case\" folder",time:"18 min",lite:"Do the outline.",
+ steps:"A meaningful one: have AI help you assemble the key info a partner, sitter, or family member would need if you were out of commission — routines, contacts, schedules, the works.",
+ prompt:"Help me build a simple \"everything someone would need to run our household\" document. Interview me section by section: daily routines, emergency contacts, doctors, school info, allergies/meds, passwords I should store safely (offline, not here), and the little things only I know. Ask me one section at a time so it's not overwhelming.",
+ why:"<b>Why it matters:</b> the mental load isn't just tasks — it's everything only you know. Now it's written down."},
+{d:30,phase:4,title:"Graduation: your personal AI operating system",time:"15 min",lite:"Answer the recap.",
+ steps:"Last day! Have AI help you see how far you've come and set your next 30 days.",
+ prompt:"I just finished a 30-day journey from barely using AI to delegating whole tasks. Here's what I now do with you: [list your wins]. (1) Summarize the \"operating system\" I've built for my family life. (2) Suggest the 3 highest-value next things to add. (3) Give me a one-line mantra to remember what AI is for in my life.",
+ why:"<b>You did it.</b> You're not an AI dabbler anymore — you're running systems. Welcome to the hands-off club. 💖"}
+],
+work:[
+{d:1,phase:1,title:"Meet your AI (and brief it on your job)",time:"10 min",lite:"Just send the prompt.",
+ steps:"Open your matched tool in a fresh chat and give it the context to be useful for <strong>your</strong> role. Answer its questions honestly — this is the foundation for everything.",
+ prompt:"I'm going to start using you daily to do my job better. My role: [title], at a [industry] company. I mostly handle [your main responsibilities], my audience is [clients / execs / team], and my tone should usually be [professional but human]. Ask me 5 quick questions so your future answers fit my actual work.",
+ why:"<b>Lesson:</b> context is everything. A briefed AI gives you usable drafts; a cold one gives you generic mush."},
+{d:2,phase:1,title:"Triage the inbox chaos",time:"10 min",lite:"Paste 5 emails.",
+ steps:"Copy a chunk of unread emails (or describe them) and let AI turn the pile into a clear action list.",
+ prompt:"Here are emails/threads I'm behind on:\n[paste subjects + key lines, or summarize each]\n\nTurn this into a prioritized action list: what needs a reply today, what can wait, what I can ignore, and what I should delegate. For the urgent ones, draft a one-line reply I can fire off.",
+ why:"<b>Win:</b> the inbox went from a source of dread to a sorted to-do list in 90 seconds."},
+{d:3,phase:1,title:"The 2-minute draft",time:"8 min",lite:"One email, one version.",
+ steps:"That message you keep putting off? Hand it over. You edit; AI does the staring-at-a-blank-screen part.",
+ prompt:"Draft [the message — e.g., a follow-up to a client who's gone quiet]. Context: [what happened, what I want]. Tone: [warm + professional, not pushy]. Keep it short. Give me 2 versions and a subject line for each.",
+ why:"<b>Lesson:</b> first drafts are where time goes. Let AI take the blank page; you bring the judgment."},
+{d:4,phase:1,title:"Walk into the meeting prepared",time:"10 min",lite:"Prep only, skip recap.",
+ steps:"Before: get an agenda and talking points. After: paste your notes and get clean action items. Try both halves today.",
+ prompt:"I have a meeting about [topic] with [who]. (1) Give me a tight agenda, 3 smart talking points, and 2 questions that make me look prepared. Later I'll paste my messy notes and you'll turn them into clear action items with owners.",
+ why:"<b>Habit:</b> bookend every meeting with AI — prep before, summarize after. You'll never lose a follow-up again."},
+{d:5,phase:1,title:"Make the one-pager faster",time:"12 min",lite:"Just the outline.",
+ steps:"Need a summary, update, or one-pager? Get a structured first draft you can polish in your own voice.",
+ prompt:"Help me write a one-pager on [topic] for [audience]. Purpose: [inform / get approval / propose]. Include a punchy headline, 3 key points, and a clear \"what I need from you.\" Keep it to about [200] words and use plain, confident language.",
+ why:"<b>Notice:</b> telling it the audience and the goal changes everything. Always say who it's for and why."},
+{d:6,phase:1,title:"Research with receipts",time:"10 min",lite:"One question.",
+ steps:"Before a meeting or decision, get a fast, sourced briefing. (Tools like Perplexity shine here, but ask any tool to cite sources.)",
+ prompt:"Give me a quick briefing on [topic / company / trend] for a meeting. Cover: what it is, why it matters right now, 3 things I should know, and any recent developments. Include sources/links for the key claims so I can verify before I repeat them.",
+ why:"<b>Tip:</b> always ask for sources and sanity-check them. AI is a brilliant intern, not an oracle."},
+{d:7,phase:1,title:"Week 1 reset & wins log",time:"12 min",lite:"First question only.",
+ steps:"Reflect on the week and set up a lighter one. Start a \"wins log\" — you'll thank yourself at review time.",
+ prompt:"I just finished my first week using AI daily at work. What worked: [notes]. What flopped: [notes]. (1) Help me plan a focused, lighter week ahead with my top 3 priorities. (2) Start a \"brag/wins log\" by capturing this week's 2-3 wins in crisp, resume-ready bullet points.",
+ why:"<b>Milestone:</b> you're a daily AI user now. Foundations done — time to build real leverage."},
+{d:8,phase:2,title:"Teach it to remember your work",time:"12 min",lite:"Paste it, skip tweaking.",setup:true,
+ steps:"Set up <strong>memory / custom instructions</strong> so you never re-explain your role, audience, or voice again.",
+ prompt:"Write a short professional profile I can paste into my AI's memory/custom-instructions. It should always know: my role and industry, who I write for, my preferred tone (clear, confident, low-jargon), my common tasks, and that I want drafts I can edit, not final answers. Keep it under 1500 characters, first person.",
+ why:"<b>Game-changer:</b> every future chat starts knowing your job. This is what separates dabblers from power users."},
+{d:9,phase:2,title:"Your tone-matched email template",time:"12 min",lite:"Save the template.",
+ steps:"Build a reusable reply engine that sounds like you, every time.",
+ prompt:"Be my email-drafting partner. When I paste an email + a one-line goal, write a reply in my voice: [describe your voice — e.g., warm, concise, gets to the point, ends with a clear next step]. Always give me 2 options and let me pick. Ready? Here's the first one: [paste].",
+ why:"<b>Lesson:</b> reusable prompts compound. Build the template once, save hours every week."},
+{d:10,phase:2,title:"The weekly status update generator",time:"12 min",lite:"Bullets in, draft out.",
+ steps:"Turn scattered notes into a clean update for your boss or team — same format every week.",
+ prompt:"Turn my rough notes into a clean weekly status update for [my manager / my team]. Format: Wins, In Progress, Blockers, Next Week. Keep it skimmable and confident — flag blockers clearly without sounding panicked. Here are my notes: [paste].",
+ why:"<b>Win:</b> the update that used to eat 30 minutes now takes 5 — and reads better."},
+{d:11,phase:2,title:"Meeting notes → action items",time:"10 min",lite:"One meeting.",
+ steps:"Paste raw notes or a transcript and get owners, deadlines, and a follow-up email — automatically.",
+ prompt:"Here are my raw notes from a meeting:\n[paste]\n\nExtract: (1) decisions made, (2) action items with an owner and due date for each, (3) open questions. Then draft a short, friendly follow-up email summarizing it for the group.",
+ why:"<b>Habit:</b> you'll never be the person who forgot what was decided again."},
+{d:12,phase:2,title:"Long doc → exec summary",time:"10 min",lite:"Upload, ask for TL;DR.",
+ steps:"That 20-page report nobody read? Get the gist and a TL;DR you can forward up.",
+ prompt:"[Paste or upload the document.] Give me: (1) a 3-sentence TL;DR I could say out loud, (2) the 5 most important points, (3) anything that's a risk or needs a decision. Then write a 2-line note I could forward to my boss with it.",
+ why:"<b>Lesson:</b> being the person who quickly 'gets it' is a superpower. Now it's free."},
+{d:13,phase:2,title:"The brainstorm + pressure-test",time:"12 min",lite:"Ideas only.",
+ steps:"Use AI as a thinking partner: generate options, then have it poke holes before your boss does.",
+ prompt:"I need ideas for [challenge — e.g., re-engaging a stalled account]. Give me 10 ideas, ranging from safe to bold. Then pick the 3 strongest, and for each, play devil's advocate: what could go wrong and how I'd counter it.",
+ why:"<b>Notice:</b> AI is most valuable when you ask it to disagree with itself. Use it to think, not just produce."},
+{d:14,phase:2,title:"The decision memo",time:"12 min",lite:"Skip the recommendation.",
+ steps:"Facing a real choice? Structure it like a sharp operator would.",
+ prompt:"Help me think through a decision: [Option A] vs [Option B] (vs [C]). Context and what I care most about: [details]. Give me a clean comparison (criteria as rows, options as columns), call out the key trade-off, then give your recommendation and the one risk to watch.",
+ why:"<b>Lesson:</b> AI clears the fog so you can decide with confidence — you still make the call."},
+{d:15,phase:2,title:"Build your \"Work Command Center\"",time:"15 min",lite:"Save top 3 prompts.",
+ steps:"Collect this week's best prompts into one doc — your personal toolkit you'll reach for daily.",
+ prompt:"Based on how I've been using you, suggest the 6 go-to prompts a [your role] should keep saved and reuse weekly. For each: a short nickname, the prompt, and when to use it. Format it so I can paste it straight into a doc or notes.",
+ why:"<b>Milestone:</b> confident daily user with your own toolkit. Next week: projects, files, and real systems."},
+{d:16,phase:3,title:"Create your Role HQ",time:"15 min",lite:"Set up, fill later.",setup:true,
+ steps:"Build a dedicated <strong>space</strong> loaded with your role context and key reference docs, so every task starts smart.",
+ prompt:"I'm setting up a dedicated workspace/assistant for my job. Write its \"instructions\": it should know my role, industry, audience, and voice, default to editable drafts, and be ready for email, meetings, docs, and analysis. Then list 6 starter prompts I should pin inside it, and tell me what reference docs are worth adding.",
+ why:"<b>Power move:</b> a Project/Custom GPT/Space is your role HQ. No more cold starts."},
+{d:17,phase:3,title:"Interrogate a big report",time:"12 min",lite:"Upload + 2 questions.",
+ steps:"Upload a long document and ask it questions like you'd ask an analyst.",
+ prompt:"[Upload the report/contract/deck.] Answer in plain language: [your real questions]. For each answer, quote the exact section it came from. Then tell me the one thing in here most people would miss.",
+ why:"<b>Tip:</b> asking for exact quotes keeps it accurate. Verify anything that drives a decision.",
+ trust:"Check your company's policy before uploading internal or client documents. When in doubt, paste only the non-confidential sections you actually need answered."},
+{d:18,phase:3,title:"Raw notes → polished deck outline",time:"18 min",lite:"Outline only.",
+ steps:"Stack steps: notes → narrative → slide-by-slide outline. (Next week, Cowork can build the actual slides.)",
+ prompt:"Turn these rough notes into a presentation for [audience]:\n[paste]\n\nFirst give me the core narrative in 3 sentences. Then a slide-by-slide outline (title + 3 bullets + a suggested visual for each). Keep it to [8] slides and make the story flow from problem to solution to ask.",
+ why:"<b>Skill:</b> you're chaining steps into a workflow. That's the exact muscle delegation needs."},
+{d:19,phase:3,title:"Make sense of a spreadsheet",time:"15 min",lite:"One question about your data.",
+ steps:"Paste or upload data and ask for analysis, a summary, or a tracker — no formulas required.",
+ prompt:"[Paste or upload the data.] In plain language: what are the 3 biggest takeaways? Show me the standout numbers, flag anything that looks off, and suggest one chart that would tell this story best. Then give me a short summary I could put in an email.",
+ why:"<b>Unlock:</b> you don't need to be 'an Excel person' to look like one."},
+{d:20,phase:3,title:"Tailor your resume to a real posting",time:"18 min",lite:"Just the gap analysis.",
+ steps:"A bonus that pays for this whole plan. Match your experience to a job you actually want.",
+ prompt:"Here's a job posting: [paste]. Here's my background: [paste resume or summary]. (1) Tell me the top 5 things this role is really screening for. (2) Show me where my experience matches and where the gaps are. (3) Rewrite my 4 strongest resume bullets to mirror their language honestly — no exaggeration.",
+ why:"<b>Lesson:</b> AI is a phenomenal career coach when you give it the real target."},
+{d:21,phase:3,title:"Turn a rough idea into a LinkedIn post",time:"12 min",lite:"One draft.",
+ steps:"Build your visible reputation. Hand AI a half-formed thought and get a post that sounds like you.",
+ prompt:"I want to post on LinkedIn about [your idea/insight]. My voice: [authentic, no buzzwords, a little personality]. Write 2 versions: one short and punchy, one with a quick story. End each with a question to spark comments. No cringe, no 'I'm humbled to announce.'",
+ why:"<b>Notice:</b> 'no cringe' is a real instruction — tell AI what NOT to do, not just what to do."},
+{d:22,phase:3,title:"Capture ideas on the go (voice)",time:"8 min",lite:"Try once.",
+ steps:"Open voice mode on your commute or walk and think out loud — get a structured draft back.",
+ prompt:"(Say out loud) \"I have a half-formed idea for [project/pitch]. Let me ramble for a minute, then organize my thoughts into a clear outline with a headline and 3 main points.\" [Then just talk.]",
+ why:"<b>Unlock:</b> your best thinking often happens away from the keyboard. Voice catches it."},
+{d:23,phase:3,title:"Document an SOP teammates can follow",time:"15 min",lite:"Your trickiest task.",
+ steps:"Write up a recurring work task so a teammate (or future you) can run it perfectly.",
+ prompt:"Help me write a clear SOP (standard operating procedure) for [recurring task — e.g., onboarding a new client]. Interview me step by step. Include: the goal, each step in order, who's responsible, common mistakes, and a checklist at the end. Make it skimmable.",
+ why:"<b>Milestone:</b> you can turn what's in your head into a repeatable system. Final week: hand it off."},
+{d:24,phase:4,title:"Meet Cowork: chatting vs delegating",time:"12 min",lite:"Just read this + pick a task.",
+ steps:"So far you've had <strong>conversations</strong>. This last week is <strong>delegation</strong> — handing over a whole job. <strong>Claude Cowork</strong> is purpose-built for it: it runs in the free <strong>Claude Desktop app</strong> (Mac or Windows), you point it at a folder, describe the outcome in plain English, and it plans the steps and executes them — turning a pile of notes into a finished report, cleaning a messy spreadsheet, drafting a deck — and hands you real files. You can watch and steer as it goes. <strong>Honest heads-up:</strong> Cowork needs a <strong>paid Claude plan</strong>. No paid plan? You can run the same multi-step workflow yourself in any chat — these last days work either way, just a touch more hands-on.",
+ prompt:"Explain in simple terms the difference between using AI as a chat assistant vs. delegating a complete multi-step task to it (like Claude Cowork). Then help me pick ONE recurring work task that would be a great first thing to fully hand off, and break down the steps it involves.",
+ why:"<b>Mindset shift:</b> you stop being the one doing every step and start being the one assigning them.",
+ trust:"Cowork works only in folders you approve and shows its plan before running. It's a research-preview tool, so it isn't set up for regulated or compliance-bound data — keep confidential client and legal files out of it for now, and double-check its output."},
+{d:25,phase:4,title:"Delegate a real deliverable",time:"25 min",lite:"Smaller deliverable.",
+ steps:"Give an agentic assistant a multi-part job and let it produce finished pieces. Define what 'done' looks like up front.",
+ prompt:"Take these raw notes and produce the finished work, not advice:\n[paste notes]\n\nDeliver: (1) a polished one-pager for [audience], (2) a short email to send it with, and (3) a 5-slide outline I could drop into a deck. Keep my voice [tone]. Give each piece clearly separated and ready to use.",
+ why:"<b>Win:</b> you assigned a project and got deliverables back. That's the leap from user to operator.",
+ trust:"Proof it before you forward it. Check names, numbers, and any quote or stat — AI can state a wrong figure with a straight face. You're the editor-in-chief."},
+{d:26,phase:4,title:"Build a repeatable weekly workflow",time:"15 min",lite:"Monday plan only.",
+ steps:"Create a Monday-plan / Friday-report routine you run the same way every week. In Cowork you can <strong>schedule recurring tasks</strong> and even kick them off from your phone (\"Dispatch\") to finish on your desktop. No paid plan? Keep both prompts in a doc and run them manually — same result, two extra minutes.",
+ prompt:"Design two repeatable prompts for me: a 'Monday Plan' (turn my priorities + calendar into a focused week with my top 3) and a 'Friday Wrap' (turn my week's notes into a status update + 2 wins for my brag log). Write both as reusable prompts with blanks I fill in.",
+ why:"<b>Lesson:</b> systems beat willpower. Decide the format once; run it on autopilot."},
+{d:27,phase:4,title:"Email & calendar — your way",time:"15 min",lite:"Read your version + try one thing.",
+ privacyVariants:{
+   vault:{
+     steps:"You chose to keep things private — so no account connections. You still get the win: paste a long thread or your week's calendar into the chat, get help, and paste the result back yourself. Nothing leaves your control. <strong>Bonus:</strong> if work has a confidentiality or data policy, this manual approach keeps you safely inside it.",
+     prompt:"I'm going to paste an email thread (with names changed to [Manager], [Client], etc.). Summarize what's being asked of me, draft a concise reply I can copy back myself, and flag anything time-sensitive. Only use what I paste — don't assume anything else.",
+     why:"<b>Private and still powerful:</b> copy-paste gives you most of the benefit with none of the access. Often the right call at work."},
+   balanced:{
+     steps:"You're open to <strong>low-risk</strong> connections. The safe sweet spot: let AI <strong>read</strong> your calendar to prep your day and catch conflicts, and <strong>draft</strong> replies you approve. Skip auto-send, and never connect anything tied to finance, HR, or confidential client systems.",
+     prompt:"Help me manage my work email and calendar without losing control. Suggest 5 safe, high-value ways AI can assist (drafting replies I approve, summarizing long threads, prepping a daily agenda, flagging conflicts). For each, tell me exactly what to verify myself, and which I should NOT automate.",
+     why:"<b>Smart middle:</b> read-and-draft is the 80/20 of work productivity, and you stay on every send."},
+   connected:{
+     steps:"You're ready to connect for hands-off help. Use your tool's official connector ('Connectors' / 'Integrations'), and <strong>check your company's AI policy first</strong> — some restrict connecting work accounts. Start with drafting replies and a daily agenda. Rule: it drafts, you send.",
+     prompt:"I'm connecting my work email and calendar so you can help hands-off. Propose a daily routine: morning agenda, drafted replies to routine messages (for my approval), conflict flags, and an urgent-items list. Tell me which actions you'll only ever do as a draft for approval vs. what's safe automatically — and lean conservative.",
+     why:"<b>Hands-off, not hands-gone:</b> connect the convenient stuff, but keep yourself on anything that sends or shares externally."}
+ },
+ trust:"At work, check your company's AI/data policy before connecting any account, never paste confidential client data or credentials, and keep a human on the send. Delegation, not abdication."},
+{d:28,phase:4,title:"Automate your most repetitive task",time:"18 min",lite:"Just design it.",
+ steps:"Pick the most repetitive thing you do and build a near-hands-off flow.",
+ prompt:"My most repetitive work task is [e.g., the weekly report, formatting client recaps, sorting inbound leads]. Design a near-hands-off flow: what I set up once, the minimum I do each time, and the exact prompt(s) to run. Optimize so future-me barely has to think about it.",
+ why:"<b>This is the goal:</b> the work still ships — you just stopped doing the grunt part."},
+{d:29,phase:4,title:"Build your brag doc / promotion packet",time:"18 min",lite:"Do the outline.",
+ steps:"Turn your wins log into a compelling case for a raise, promotion, or your next role.",
+ prompt:"Help me build a promotion/brag packet from my wins this [quarter/year]: [paste your wins log]. Interview me to fill gaps. Then organize it into: impact (with numbers where possible), skills demonstrated, and a 3-sentence narrative I could say in a review. Make it confident but honest.",
+ why:"<b>Why it matters:</b> the work isn't enough — being able to tell the story of the work is what gets rewarded."},
+{d:30,phase:4,title:"Graduation: your personal work OS",time:"15 min",lite:"Answer the recap.",
+ steps:"Last day! Have AI reflect your progress back and set your next 30 days.",
+ prompt:"I just finished a 30-day journey from barely using AI to delegating whole tasks at work. Here's what I now do: [list your wins]. (1) Summarize the 'operating system' I've built. (2) Suggest the 3 highest-leverage things to add next. (3) Give me a one-line mantra for how I want to use AI in my career.",
+ why:"<b>You did it.</b> You're not an AI dabbler — you're an operator who delegates. Welcome to the hands-off club. 💼💖"}
+]
+};
+
+const PHASES = [
+  {n:1,wk:"Week 1 · Days 1–7",title:"Foundations",level:"Basic user",cls:"lvl-1"},
+  {n:2,wk:"Week 2 · Days 8–15",title:"Your Daily Sidekick",level:"Confident",cls:"lvl-2"},
+  {n:3,wk:"Week 3 · Days 16–23",title:"Systems & Stacking",level:"Connected",cls:"lvl-3"},
+  {n:4,wk:"Week 4 · Days 24–30",title:"Hands-Off: Automate & Graduate to Cowork",level:"Strong adopter",cls:"lvl-4"}
+];
+
+const PRIV = {
+  vault:{label:"Vault",cls:"vault",bcls:"b-vault",
+    banner:"<b>Vault mode.</b> You told me you'd rather keep things private — so this whole plan works <b>without connecting a single account</b>. Use nicknames or placeholders like [my daughter] instead of real names, and you'll still get the full payoff. The one day about connecting email/calendar becomes a stay-private version just for you."},
+  balanced:{label:"Balanced",cls:"balanced",bcls:"b-balanced",
+    banner:"<b>Balanced mode.</b> Smart default: you'll share enough context to get genuinely useful results, but you stay in the driver's seat — review every draft, and skip connecting sensitive accounts (banking, health). The connect-your-accounts day will show you the low-risk wins only."},
+  connected:{label:"Connected",cls:"connected",bcls:"b-connected",
+    banner:"<b>Connected mode.</b> You're open to letting AI plug into your apps for real hands-off help — love it. I'll show you exactly how, with guardrails so a human (you) always stays on anything that sends, posts, or saves."}
+};
+function privTier(){ return answers.privacy || "balanced"; }
+
+function buildResult(){
+  document.getElementById("toolName").textContent = TOOLS[matchedTool].name;
+  document.getElementById("toolPers").textContent = TOOLS[matchedTool].pers;
+  document.getElementById("mTime").textContent = timeLabel();
+  document.getElementById("mLevel").textContent = levelLabel();
+  document.getElementById("mPriv").textContent = PRIV[privTier()].label;
+  const tn = TOOLS[matchedTool].name;
+  const sameAsClaude = matchedTool==="claude";
+  document.getElementById("journeyLine").innerHTML =
+    "<b>Two tools, one journey.</b> You'll live in <b>"+tn+"</b> day to day"+
+    (sameAsClaude ? " — and since it's already Claude, " : ", then ")+
+    "graduate to <span class='arrow'>→</span> <b>Claude Cowork</b> for the hands-off finale, where AI does whole jobs while you step away. "+
+    "(Cowork runs in the free Claude Desktop app but needs a paid Claude plan; if you'd rather not, Week 4 shows a free way to get the same result.)";
+  document.querySelectorAll("#trackswap button").forEach(b=>b.classList.toggle("on", b.dataset.t===currentTrack));
+  renderPlan();
+}
+function setTrack(t){ currentTrack=t; document.querySelectorAll("#trackswap button").forEach(b=>b.classList.toggle("on",b.dataset.t===t)); renderPlan(); window.scrollTo({top:document.getElementById('planArea').offsetTop-80,behavior:'smooth'}); }
+
+function renderPlan(){
+  document.getElementById("mTrack").textContent = currentTrack==="work"?"Work":"Parenting";
+  document.getElementById("downloadRow").style.display = (CONFIG.paywallEnabled && !unlocked) ? "none" : "flex";
+  const days = PLANS[currentTrack];
+  const tier = privTier();
+  let html = "";
+  html += '<div class="golden"><h4>🛡️ The golden rules of sharing with AI</h4>'+
+    '<p class="gsub">True whether you picked Vault, Balanced, or Connected — these keep you safe and in control.</p>'+
+    '<ul>'+
+    '<li><span class="gk">1</span><span><b>Never paste a password, full card number, Social Security number, or medical record number.</b> Not once. Tools you connect can read what you type.</span></li>'+
+    '<li><span class="gk">2</span><span><b>Use placeholders when you want to.</b> [my daughter], [my client], [our town] work just as well as real names.</span></li>'+
+    '<li><span class="gk">3</span><span><b>AI can be confidently wrong.</b> Verify anything that drives a decision, and ask it to cite sources for facts.</span></li>'+
+    '<li><span class="gk">4</span><span><b>Keep a human on the "send."</b> You approve anything that emails, posts, buys, or deletes — never let it fire on its own.</span></li>'+
+    '<li><span class="gk">5</span><span><b>Check your data settings.</b> Most tools let you turn off training on your chats and delete history — do it once, today.</span></li>'+
+    '</ul></div>';
+  html += '<div class="pbanner '+PRIV[tier].bcls+'">'+PRIV[tier].banner+'</div>';
+  PHASES.forEach(ph=>{
+    const open = !CONFIG.paywallEnabled || unlocked || ph.n===1;
+    html += '<div class="phase">';
+    html += '<div class="phase-head"><span class="wkn">'+ph.wk+'</span><h3>'+ph.title+'</h3><span class="level '+ph.cls+'">'+ph.level+'</span></div>';
+    days.filter(x=>x.phase===ph.n).forEach(day=>{
+      html += dayCard(day, open);
+    });
+    html += '</div>';
+    if(ph.n===1 && CONFIG.paywallEnabled && !unlocked){
+      html += paywallHTML();
+    }
+  });
+  document.getElementById("planArea").innerHTML = html;
+  document.getElementById("planBlurb").textContent = (CONFIG.paywallEnabled && !unlocked)
+    ? "Week 1 is on me — open any day and start today. Unlock Weeks 2–4 to get the full 30-day plan."
+    : "Tap any day to open it. Do them in order, or jump to what you need.";
+}
+
+function dayCard(day, open){
+  const locked = !open;
+  let steps=day.steps, prompt=day.prompt, why=day.why, tierBadge="";
+  if(day.privacyVariants){
+    const t=privTier(); const v=day.privacyVariants[t];
+    steps=v.steps; prompt=v.prompt; why=v.why;
+    tierBadge='<span class="tierchip tier-'+t+'">'+PRIV[t].label+' mode · tailored to you</span>';
+  }
+  const setupNote = (day.setup) ? '<div class="toolnote"><b>Set it up in '+TOOLS[matchedTool].name+':</b> '+ (day.d>=16? SETUP[matchedTool].proj : SETUP[matchedTool].ci) +'</div>' : '';
+  const trustNote = (day.trust) ? '<div class="trustnote"><b>✓ Trust check:</b> '+day.trust+'</div>' : '';
+  const funTool = (day.funtool) ? '<div class="funtool"><span class="ftlabel">✨ Fun pick</span>'+day.funtool+'</div>' : '';
+  const body = locked ? '' :
+    '<div class="body">'+ tierBadge +
+      '<span class="lbl">Do this</span><div class="steps-txt">'+steps+'</div>'+ setupNote +
+      '<span class="lbl">Copy-paste prompt</span>'+
+      '<div class="promptbox"><span class="pl">Prompt</span><button class="copybtn" onclick="copyP(this)">Copy</button><span class="ptext">'+escapeHtml(prompt)+'</span></div>'+
+      '<div class="why">'+why+'</div>'+ funTool + trustNote +
+      (day.lite? '<div class="why" style="border-color:var(--gold-soft)"><b>⏱ Short on time?</b> '+day.lite+'</div>' : '')+
+    '</div>';
+  return '<details class="day">'+
+    '<summary><div class="medal"><small>Day</small><b>'+day.d+'</b></div>'+
+    '<div class="stitle"><b>'+day.title+'</b><div class="chips"><span class="chip time">⏱ '+day.time+'</span>'+(day.privacyVariants?'<span class="chip">🛡️ Privacy-aware</span>':'')+(locked?'<span class="chip">🔒 Locked</span>':'')+'</div></div>'+
+    '<span class="caret">▾</span></summary>'+ body +'</details>';
+}
+
+function paywallHTML(){
+  return '<div class="paywall">'+
+    '<span class="eyebrow"><span class="dot"></span> Unlock the full month</span>'+
+    '<h3>You\'ve seen Week 1. <em style="color:#fff">Now get the system.</em></h3>'+
+    '<p>Weeks 2–4 are where chatting turns into systems, and systems turn into AI doing the work for you. 23 more days, 40+ more prompts, all built for your match.</p>'+
+    '<div class="price">'+CONFIG.price+' <small>one-time · yours forever</small></div>'+
+    '<a class="buy" href="'+CONFIG.checkoutUrl+'" target="_blank" rel="noopener">Get instant access →</a>'+
+    '<div class="unlockrow">'+
+      '<input id="emailInput" type="email" placeholder="Your email" autocomplete="email" />'+
+      '<input id="codeInput" placeholder="Access code" autocomplete="one-time-code" />'+
+      '<button class="unlockbtn" id="unlockBtn" onclick="tryUnlock()">Unlock</button>'+
+    '</div>'+
+    '<div class="err" id="codeErr"></div>'+
+    '<div class="gtee">Already a buyer? Your code is in the welcome email. Enter the email you bought with + your code.</div>'+
+  '</div>';
+}
+
+async function tryUnlock(){
+  const email = (document.getElementById("emailInput").value||"").trim();
+  const code  = (document.getElementById("codeInput").value||"").trim();
+  const btn   = document.getElementById("unlockBtn");
+  const err   = document.getElementById("codeErr");
+  err.textContent = "";
+  if(!email || !code){ err.textContent = "Pop in the email you bought with + your code."; return; }
+  btn.disabled = true; btn.textContent = "Checking…";
+  try {
+    const res = await fetch(CONFIG.verifyEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, code })
+    });
+    const data = await res.json().catch(()=>({}));
+    if (res.ok && data.ok) {
+      unlocked = true;
+      store.set("pm_glowup_unlocked", code);
+      store.set("pm_glowup_email", email);
+      renderPlan();
+      window.scrollTo({top: document.getElementById('planArea').offsetTop - 80, behavior:'smooth'});
+    } else {
+      err.textContent = (data && data.msg) ? data.msg : "Hmm, that didn't work. Double-check the email + code.";
+      btn.disabled = false; btn.textContent = "Unlock";
+    }
+  } catch (e) {
+    err.textContent = "Couldn't reach the server — try again in a sec.";
+    btn.disabled = false; btn.textContent = "Unlock";
+  }
+}
+
+function downloadPdf(){
+  document.querySelectorAll('.glow-page details.day').forEach(d => d.open = true);
+  setTimeout(()=>window.print(), 80);
+}
+
+function copyP(btn){
+  const txt = btn.parentElement.querySelector(".ptext").innerText;
+  const done=()=>{btn.textContent="Copied ✓";btn.classList.add("done");setTimeout(()=>{btn.textContent="Copy";btn.classList.remove("done");},1600);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt,done));}
+  else fallbackCopy(txt,done);
+}
+function fallbackCopy(t,cb){const ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");}catch(e){}document.body.removeChild(ta);cb&&cb();}
+function escapeHtml(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function go(v){
+  document.querySelectorAll(".view").forEach(s=>s.classList.remove("active"));
+  document.getElementById(v).classList.add("active");
+  if(v==="quiz"){ qi=0; renderQ(); }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+renderQ();
+</script>
+</body>
+</html>

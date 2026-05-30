@@ -1,0 +1,10 @@
+{
+  "name": "glow-up-functions",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "stripe": "^17.0.0",
+    "nanoid": "^5.0.0"
+  }
+}
