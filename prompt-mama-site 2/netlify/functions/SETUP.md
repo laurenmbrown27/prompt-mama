@@ -99,8 +99,8 @@ You already use MailerLite for the Parent Guide gate, so we reuse it.
    >
    > Your personalized 30-Day AI Glow-Up is ready.
    >
-   > **Your plan:** {$fields.plan_url}
-   > **Your access code:** `{$fields.access_code}`
+   > **Your plan:** {$plan_url}
+   > **Your access code:** `{$access_code}`
    >
    > Tap your plan link from any device — it remembers your quiz answers and your AI match, so you pick up exactly where you left off. When you get there, paste this email + your code at the bottom of Week 1 to unlock the full 30 days.
    >

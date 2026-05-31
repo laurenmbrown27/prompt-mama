@@ -33,7 +33,7 @@ In MailerLite, create a **new email** for the **Glow-Up Buyers** automation. Eit
 Build it block by block using the copy in **PLAIN CONTENT** below. Use these block types:
 1. Heading block — "You did it. 🎉"
 2. Text block — opening paragraph
-3. Button block — "Open my plan →" linking to `{$fields.plan_url}`
+3. Button block — "Open my plan →" linking to `{$plan_url}`
 4. Text block — the access-code section
 5. Divider
 6. Text block — what happens next (numbered list)
@@ -59,13 +59,13 @@ Welcome to your 30-Day AI Glow-Up. Everything below is yours forever — bookmar
 
 **BUTTON (pink, centered):**
 - **Button text:** `Open my plan →`
-- **Link URL:** `{$fields.plan_url}`
+- **Link URL:** `{$plan_url}`
 
 **TEXT BLOCK — Access code box (yellow background):**
 ```
 🔑 Your access code
 
-{$fields.access_code}
+{$access_code}
 
 Paste it (along with the email you bought with) at the bottom of Week 1 to unlock the full 30 days.
 ```
@@ -107,7 +107,7 @@ Prompt Mama
 
 ## HTML VERSION (paste into a Custom HTML block)
 
-Drop this entire chunk into a single Custom HTML block in MailerLite. The merge tags `{$fields.access_code}` and `{$fields.plan_url}` will fill in automatically when the email sends.
+Drop this entire chunk into a single Custom HTML block in MailerLite. The merge tags `{$access_code}` and `{$plan_url}` will fill in automatically when the email sends.
 
 ```html
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#FFF6F1;padding:24px 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;">
@@ -124,7 +124,7 @@ Drop this entire chunk into a single Custom HTML block in MailerLite. The merge 
 
         <!-- CTA BUTTON -->
         <tr><td align="center" style="padding:28px 0 8px;">
-          <a href="{$fields.plan_url}" style="display:inline-block;background:#EC4899;color:#FFFFFF;font-weight:800;font-size:16px;text-decoration:none;padding:16px 32px;border-radius:999px;box-shadow:0 4px 0 #1E2A4A;">Open my plan →</a>
+          <a href="{$plan_url}" style="display:inline-block;background:#EC4899;color:#FFFFFF;font-weight:800;font-size:16px;text-decoration:none;padding:16px 32px;border-radius:999px;box-shadow:0 4px 0 #1E2A4A;">Open my plan →</a>
         </td></tr>
 
         <!-- ACCESS CODE BOX -->
@@ -132,7 +132,7 @@ Drop this entire chunk into a single Custom HTML block in MailerLite. The merge 
           <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#FEF9C3;border-radius:18px;border:2px solid #FDE047;">
             <tr><td style="padding:22px 24px;text-align:center;">
               <div style="font-size:12px;font-weight:800;letter-spacing:0.12em;color:#1E2A4A;text-transform:uppercase;">🔑 Your access code</div>
-              <div style="margin:12px 0 8px;font-size:32px;font-weight:900;letter-spacing:0.15em;color:#1E2A4A;font-family:'Courier New',Courier,monospace;">{$fields.access_code}</div>
+              <div style="margin:12px 0 8px;font-size:32px;font-weight:900;letter-spacing:0.15em;color:#1E2A4A;font-family:'Courier New',Courier,monospace;">{$access_code}</div>
               <div style="font-size:13.5px;color:#475379;font-weight:500;line-height:1.5;">Paste it (with the email you bought with) at the bottom of Week 1 to unlock the full 30 days.</div>
             </td></tr>
           </table>
@@ -195,8 +195,8 @@ These are the dynamic fields the Stripe webhook fills in for each buyer:
 
 | Merge tag | What it is | Example value |
 |---|---|---|
-| `{$fields.access_code}` | The buyer's unique 10-character unlock code | `KX4MNP7QR2` |
-| `{$fields.plan_url}` | Deep link back to their personalized plan | `https://promptmama.com/glow-up#p=eyJ0Ij...` |
+| `{$access_code}` | The buyer's unique 10-character unlock code | `KX4MNP7QR2` |
+| `{$plan_url}` | Deep link back to their personalized plan | `https://promptmama.com/glow-up#p=eyJ0Ij...` |
 | `{$email}` | The buyer's email address (built into MailerLite) | `buyer@example.com` |
 
 MailerLite also has standard merge tags like `{$name}` and `{$last_name}` if you ever collect them — but Stripe Payment Links only collect email, so those'll be blank for now.
