@@ -77,43 +77,19 @@ create index access_codes_email_idx on access_codes (email);
 4. Save. Reveal the **Signing secret** (`whsec_…`) and grab it for env vars.
 5. From **Developers → API keys**, copy your **Secret key** (`sk_test_…` while testing, `sk_live_…` in production).
 
-## Part 3 — MailerLite (transactional email)
+## Part 3 — Resend (transactional email)
 
-You already use MailerLite for the Parent Guide gate, so we reuse it.
+The welcome email goes out the second Stripe fires the webhook. No editor, no automation — the polished HTML is baked right into `stripe-webhook.js` and Resend just sends it.
 
-1. **Subscribers → Groups → Create group** — name it `Glow-Up Buyers`. Copy the group ID from the URL (e.g. `/groups/12345678`).
-2. **Subscribers → Custom fields → Add field** — add **two** fields, both Text:
-   - `access_code` — the unique code the buyer pastes to unlock
-   - `plan_url` — the deep link back to their personalized plan (works on any device)
+1. Sign up free at https://resend.com (3,000 emails/month free, no credit card)
+2. **API Keys** → **Create API Key** → name it `Glow-Up Webhook` → copy the key (starts with `re_…`)
+3. **(Optional but recommended) Verify your sending domain:**
+   - **Domains → Add domain** → enter `promptmama.com`
+   - Resend gives you a few DNS records (TXT + maybe CNAME). Add them where your domain DNS lives (Netlify DNS, Cloudflare, GoDaddy, etc.). Wait a few minutes for verification.
+   - Once verified, set `RESEND_FROM` to something like `Lauren · Prompt Mama <lauren@promptmama.com>` so emails come from your domain.
+4. **Skip this step and you're still fine for testing** — Resend has a built-in sender `onboarding@resend.dev` that works immediately without domain verification. That's the default if you don't set `RESEND_FROM`. Domain-verified production emails just look more legit and avoid spam folders.
 
-   Use these exact field keys — the webhook function references them.
-3. **Automations → Create new automation**:
-   - **Trigger:** When a subscriber joins a group → **Glow-Up Buyers**
-   - **Action:** Send an email
-4. Compose the email. Suggested content:
-
-   **Subject:** `🎉 Your 30-Day AI Glow-Up access code`
-
-   **Body:**
-   > Hey, you did it!
-   >
-   > Your personalized 30-Day AI Glow-Up is ready.
-   >
-   > **Your plan:** {$fields.plan_url}
-   > **Your access code:** `{$fields.access_code}`
-   >
-   > Tap your plan link from any device — it remembers your quiz answers and your AI match, so you pick up exactly where you left off. When you get there, paste this email + your code at the bottom of Week 1 to unlock the full 30 days.
-   >
-   > Want a saved copy? On the plan page hit **Download my 30-day plan (PDF)** to save your personalized plan as a PDF you can keep forever.
-   >
-   > Questions? Just reply to this email.
-   >
-   > xo Lauren
-
-   **Bookmark this email** — your plan link in it is how you get back to your personalized plan on any device, anytime.
-
-5. Activate the automation.
-6. From **Integrations → MailerLite API**, copy your API key.
+That's it. No MailerLite work for the buyer email. (You can still use MailerLite for marketing campaigns, the Parent Guide gate, etc. — this swap is only for the post-purchase transactional email.)
 
 ## Part 4 — Netlify environment variables
 
@@ -125,9 +101,10 @@ Site settings → **Environment variables → Add a variable** (apply to all sco
 | `STRIPE_WEBHOOK_SECRET` | `whsec_…` |
 | `SUPABASE_URL` | `https://….supabase.co` |
 | `SUPABASE_SERVICE_ROLE_KEY` | service_role JWT |
-| `MAILERLITE_API_KEY` | `eyJ0…` |
-| `MAILERLITE_BUYERS_GROUP_ID` | numeric id (e.g. `12345678`) |
-| `SITE_URL` | `https://promptmama.com` (used to build the plan link in welcome emails; defaults to promptmama.com if unset) |
+| `RESEND_API_KEY` | `re_…` (from resend.com → API Keys) |
+| `RESEND_FROM` | `Lauren · Prompt Mama <lauren@promptmama.com>` once your domain is verified, or leave unset to use the default `onboarding@resend.dev` |
+| `RESEND_REPLY_TO` | `prompt.mama.community@gmail.com` (so buyer replies land in your inbox) |
+| `SITE_URL` | `https://promptmama.com` (used to build the plan link in welcome emails) |
 
 Trigger a fresh deploy after setting them so the functions pick up the values.
 
