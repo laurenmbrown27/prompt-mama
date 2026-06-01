@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/styles.css?v=21" />
+<link rel="stylesheet" href="/styles.css?v=22" />
 <style>
 /* ============================================================
    30-Day AI Glow-Up — self-contained page styles
@@ -337,23 +337,24 @@ body.glow-page .why b{font-style:normal;color:var(--pink-deep)}
 /* paywall */
 body.glow-page .lockwrap{position:relative;margin-top:20px}
 body.glow-page .lockwrap.locked .phase{filter:blur(6px);pointer-events:none;user-select:none;opacity:.55}
-body.glow-page .paywall{position:relative;margin:18px 0 0;background:linear-gradient(160deg,#1E2A4A,#2A3A5E);color:#fff;border-radius:26px;padding:40px 34px;text-align:center;box-shadow:var(--gshadow);overflow:hidden}
-body.glow-page .paywall::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 200px at 80% 0,rgba(202,138,4,.35),transparent 60%)}
+body.glow-page .paywall{position:relative;margin:18px 0 0;background:linear-gradient(160deg,#E8F4FB,#BFDFEF);color:var(--plum);border-radius:26px;padding:40px 34px;text-align:center;box-shadow:0 18px 50px -22px rgba(124,182,214,.5);overflow:hidden;border:2px solid var(--blue-deep)}
+body.glow-page .paywall::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 200px at 80% 0,rgba(253,224,71,.4),transparent 60%);pointer-events:none}
 body.glow-page .paywall>*{position:relative}
-body.glow-page .paywall .eyebrow{background:var(--gold);border-color:transparent;color:#fff}
-body.glow-page .paywall h3{color:#fff;font-size:clamp(26px,4.4vw,38px);margin:16px 0 6px}
-body.glow-page .paywall p{color:rgba(255,255,255,.82);max-width:46ch;margin:0 auto;font-size:15.5px}
-body.glow-page .paywall .price{font-family:"Poppins";font-size:54px;color:var(--gold);margin:18px 0 2px;line-height:1}
-body.glow-page .paywall .price small{font-size:16px;color:rgba(255,255,255,.7);font-family:"Poppins"}
-body.glow-page .paywall .buy{margin-top:14px;background:linear-gradient(135deg,var(--gold),#B07A2E);color:#fff;font-weight:700;padding:17px 38px;font-size:17px;border-radius:999px;border:none;cursor:pointer;box-shadow:0 16px 40px -16px rgba(202,138,4,.8);transition:.2s;text-decoration:none;display:inline-block}
-body.glow-page .paywall .buy:hover{transform:translateY(-2px) scale(1.01)}
+body.glow-page .paywall .eyebrow{background:var(--yellow-glow);border-color:transparent;color:var(--plum)}
+body.glow-page .paywall h3{color:var(--plum);font-size:clamp(26px,4.4vw,38px);margin:16px 0 6px}
+body.glow-page .paywall p{color:var(--plum-soft);max-width:46ch;margin:0 auto;font-size:15.5px;font-weight:500}
+body.glow-page .paywall .price{font-family:"Poppins";font-size:54px;color:var(--plum);margin:18px 0 2px;line-height:1;font-weight:900}
+body.glow-page .paywall .price small{font-size:16px;color:var(--plum-soft);font-family:"Poppins";font-weight:600}
+body.glow-page .paywall .buy{margin-top:14px;background:var(--yellow-glow);color:var(--plum);font-weight:800;padding:17px 38px;font-size:17px;border-radius:999px;border:none;cursor:pointer;box-shadow:0 5px 0 var(--plum);transition:.2s;text-decoration:none;display:inline-block}
+body.glow-page .paywall .buy:hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--plum)}
+body.glow-page .paywall .buy:active{transform:translateY(2px);box-shadow:0 1px 0 var(--plum)}
 body.glow-page .paywall .unlockrow{margin-top:20px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;align-items:center}
-body.glow-page .paywall input{font-family:"Poppins";padding:12px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font-size:14px;width:200px}
-body.glow-page .paywall input::placeholder{color:rgba(255,255,255,.5)}
-body.glow-page .paywall .unlockbtn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-weight:600;padding:12px 18px;border-radius:10px;cursor:pointer;font-family:"Poppins"}
+body.glow-page .paywall input{font-family:"Poppins";padding:12px 16px;border-radius:10px;border:2px solid var(--blue-deep);background:#fff;color:var(--plum);font-size:14px;width:200px}
+body.glow-page .paywall input::placeholder{color:var(--plum-soft);opacity:.6}
+body.glow-page .paywall .unlockbtn{background:var(--plum);border:2px solid var(--plum);color:#fff;font-weight:700;padding:12px 18px;border-radius:10px;cursor:pointer;font-family:"Poppins"}
 body.glow-page .paywall .unlockbtn:disabled{opacity:.5;cursor:wait}
-body.glow-page .paywall .err{color:#FFC4D8;font-size:13px;margin-top:8px;min-height:18px}
-body.glow-page .paywall .gtee{margin-top:16px;font-size:12.5px;color:rgba(255,255,255,.6)}
+body.glow-page .paywall .err{color:var(--pink-deep);font-size:13px;margin-top:8px;min-height:18px;font-weight:600}
+body.glow-page .paywall .gtee{margin-top:16px;font-size:12.5px;color:var(--plum-soft);font-weight:500}
 
 body.glow-page .grad{margin:40px 0 10px;text-align:center;background:#fff;border:1px solid var(--gline);border-radius:28px;padding:44px 34px;box-shadow:var(--gshadow-sm)}
 body.glow-page .grad .eyebrow{margin-bottom:14px}
@@ -776,27 +777,27 @@ const QUESTIONS = [
   {key:"help", act:1, multi:true, q:"What do you want AI to help you with?", sub:"Pick all that apply — your plan and tool picks adapt to every one.", opts:[
     {l:"Writing — documents, decks, PDFs, long-form", scores:{claude:3}},
     {l:"Creating images and visuals", scores:{chatgpt:3}},
-    {l:"Researching with real sources", scores:{perplexity:3}},
-    {l:"Coding or technical work", scores:{claude:2, copilot:2}},
-    {l:"Automating tasks and building systems that run themselves", scores:{claude:2, chatgpt:1, copilot:1}},
-    {l:"Quick everyday questions", scores:{chatgpt:2, gemini:2}},
-    {l:"Real-time news, trends, and social pulse", scores:{grok:3}}]},
+    {l:"Researching with real sources", scores:{perplexity:3, gemini:1}},
+    {l:"Coding or technical work", scores:{claude:2, copilot:2, chatgpt:1}},
+    {l:"Automating tasks and building systems that run themselves", scores:{claude:1, chatgpt:1, copilot:1, gemini:1}},
+    {l:"Quick everyday questions", scores:{chatgpt:3, gemini:2}},
+    {l:"Real-time news, trends, and social pulse", scores:{grok:3, perplexity:1}}]},
   {key:"world", act:1, q:"Which world do you live in?", sub:"The devices and apps you actually use every day.", opts:[
-    {l:"Apple — iPhone, Mac, iPad", scores:{claude:1, chatgpt:1}},
+    {l:"Apple — iPhone, Mac, iPad", scores:{chatgpt:2}},
     {l:"Google — Android, Pixel, Chromebook", scores:{gemini:3}},
     {l:"Microsoft — Windows, Surface, Office 365", scores:{copilot:3}},
-    {l:"A mix of everything", scores:{claude:1, chatgpt:1, perplexity:1}}]},
+    {l:"A mix of everything", scores:{chatgpt:1, gemini:1, perplexity:1}}]},
   {key:"vibe", act:1, q:"How do you want answers delivered?", sub:"The vibe of the reply.", opts:[
-    {l:"Thoughtful, nuanced, like a colleague", scores:{claude:2}},
+    {l:"Thoughtful, nuanced, like a colleague", scores:{claude:1}},
     {l:"Quick, direct, and helpful", scores:{chatgpt:2, gemini:1}},
     {l:"Backed by clickable sources", scores:{perplexity:3}},
     {l:"Witty and unfiltered", scores:{grok:2}}]},
   {key:"recency", act:1, q:"Do you need today's information?", sub:"News from this morning, prices, what people just posted.", opts:[
     {l:"Yes — I need it current", scores:{perplexity:2, grok:2, gemini:1}},
     {l:"Sometimes useful", scores:{chatgpt:1, gemini:1}},
-    {l:"Rarely — I want depth over recency", scores:{claude:2}}]},
+    {l:"Rarely — I want depth over recency", scores:{claude:1}}]},
   {key:"safety", act:1, q:"How important is safety and privacy?", sub:"Strong guardrails and how your data is handled.", opts:[
-    {l:"Critical — I want the safest option", scores:{claude:3, copilot:1}},
+    {l:"Critical — I want the safest option", scores:{claude:2, copilot:1}},
     {l:"Important, but I'm flexible", scores:{claude:1, chatgpt:1, gemini:1, copilot:1}},
     {l:"Not a major factor for me", scores:{grok:1, chatgpt:1}}]},
   {key:"green", act:1, q:"Does environmental impact factor in?", sub:"All AI uses a lot of energy. Some companies are louder about it than others.", opts:[
@@ -883,16 +884,26 @@ function prevQ(){ if(qi>0){ qi--; renderQ(); window.scrollTo({top:0,behavior:'sm
 function scoreTools(){
   const order = Object.keys(TOOLS);
   const s = Object.fromEntries(order.map(k=>[k,0]));
+  // Tiebreaker: total points each tool got from Q1 (the "what do you want AI for" multi).
+  // That's the strongest user signal — if two tools tie overall, prefer the one
+  // more aligned to what the person actually wants to do with AI.
+  const helpIdx = QUESTIONS.findIndex(q=>q.key==="help");
+  const helpScore = Object.fromEntries(order.map(k=>[k,0]));
   QUESTIONS.forEach((Q,idx)=>{
     if(Q.act!==1) return;
     const a = toolAns[idx]; if(a==null) return;
     const picks = Array.isArray(a) ? a : [a];
     picks.forEach(pi=>{
       const sc = Q.opts[pi].scores || {};
-      Object.entries(sc).forEach(([t,p])=>{ s[t]=(s[t]||0)+p; });
+      Object.entries(sc).forEach(([t,p])=>{
+        s[t]=(s[t]||0)+p;
+        if(idx===helpIdx) helpScore[t]=(helpScore[t]||0)+p;
+      });
     });
   });
-  return order.map(k=>({name:k, score:s[k]})).sort((a,b)=> b.score-a.score);
+  return order
+    .map(k=>({name:k, score:s[k], help:helpScore[k]}))
+    .sort((a,b)=> b.score-a.score || b.help-a.help);
 }
 function finish(){
   document.getElementById("qfill").style.width="100%";
