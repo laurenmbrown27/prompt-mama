@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/styles.css?v=19" />
+<link rel="stylesheet" href="/styles.css?v=20" />
 <style>
 /* ============================================================
    30-Day AI Glow-Up — self-contained page styles
@@ -370,23 +370,47 @@ body.glow-page .grad .retake{margin-top:22px}
   body.glow-page .match{padding:26px 22px}
 }
 
-/* Upgrade CTA card right under the match — surfaces buying high on the page */
-body.glow-page .upgrade-card{margin:22px 0 4px;background:linear-gradient(160deg,#1E2A4A,#2A3A5E);color:#fff;border-radius:24px;padding:24px 26px;box-shadow:0 18px 50px -22px rgba(30,42,74,.5);position:relative;overflow:hidden}
-body.glow-page .upgrade-card::before{content:"";position:absolute;inset:0;background:radial-gradient(420px 160px at 90% 0,rgba(202,138,4,.32),transparent 60%);pointer-events:none}
-body.glow-page .upgrade-card>*{position:relative}
-body.glow-page .upgrade-eyebrow{display:inline-block;background:var(--gold);color:#fff;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:12px}
-body.glow-page .upgrade-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-body.glow-page .upgrade-copy{flex:1 1 240px}
-body.glow-page .upgrade-h{font-family:"Poppins";font-weight:900;font-size:clamp(20px,3vw,24px);letter-spacing:-.01em;line-height:1.15;color:#fff;margin-bottom:6px}
-body.glow-page .upgrade-sub{font-size:14px;color:rgba(255,255,255,.82);font-weight:500;line-height:1.5;max-width:50ch}
-body.glow-page .upgrade-cta{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-body.glow-page .upgrade-price{display:flex;flex-direction:column;align-items:flex-end;line-height:1}
-body.glow-page .upgrade-price b{font-family:"Poppins";font-size:32px;font-weight:900;color:var(--gold)}
-body.glow-page .upgrade-price span{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:2px}
-body.glow-page .upgrade-btn{display:inline-block;background:linear-gradient(135deg,var(--gold),#B07A2E);color:#fff;font-family:"Poppins";font-weight:800;font-size:15px;padding:13px 24px;border-radius:999px;text-decoration:none;box-shadow:0 12px 28px -12px rgba(202,138,4,.7);transition:.2s}
-body.glow-page .upgrade-btn:hover{transform:translateY(-2px) scale(1.02)}
-body.glow-page .upgrade-foot{margin-top:14px;font-size:12.5px;color:rgba(255,255,255,.7)}
-body.glow-page .upgrade-foot button{background:none;border:none;color:var(--yellow-glow);font-family:"Poppins";font-weight:800;font-size:12.5px;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
+/* TWO-PATH DECISION CARD — the post-match "where to next?" moment.
+   Light, airy, clear choice between free Week 1 and full unlock. */
+body.glow-page .twopath{margin:32px 0 8px}
+body.glow-page .twopath-head{font-family:"Poppins";font-weight:900;font-size:clamp(22px,3.4vw,26px);color:var(--plum);text-align:center;letter-spacing:-.01em;margin-bottom:18px}
+body.glow-page .twopath-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+body.glow-page .path{display:flex;flex-direction:column;text-align:left;background:#fff;border-radius:22px;padding:24px 22px;cursor:pointer;text-decoration:none;color:var(--plum);transition:transform .2s ease, box-shadow .2s ease;border:2px solid transparent;font-family:"Poppins"}
+body.glow-page .path:hover{transform:translateY(-3px);box-shadow:0 16px 40px -18px rgba(30,42,74,.35)}
+body.glow-page .path-free{background:linear-gradient(160deg,#FEF9C3,#FEF3A8);border-color:#FDE047}
+body.glow-page .path-buy{background:linear-gradient(160deg,#FCE7F3,#FBD2E6);border-color:var(--pink)}
+body.glow-page .path-tag{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--plum);background:rgba(255,255,255,.7);padding:5px 11px;border-radius:999px;align-self:flex-start;margin-bottom:14px}
+body.glow-page .path-buy .path-tag{background:#fff;color:var(--pink-deep)}
+body.glow-page .path-h{font-family:"Poppins";font-weight:900;font-size:clamp(20px,3vw,24px);letter-spacing:-.01em;line-height:1.15;margin-bottom:8px}
+body.glow-page .path-sub{font-size:14px;color:var(--plum-soft);font-weight:500;line-height:1.55;margin-bottom:20px;flex:1 1 auto}
+body.glow-page .path-action{font-family:"Poppins";font-weight:800;font-size:15px;color:var(--plum);padding:13px 18px;border-radius:999px;background:#fff;text-align:center;border:2px solid var(--plum)}
+body.glow-page .path-buy .path-action{background:var(--pink);color:#fff;border-color:var(--pink);display:flex;align-items:center;justify-content:space-between;gap:10px}
+body.glow-page .path-price b{font-family:"Poppins";font-weight:900;font-size:20px}
+body.glow-page .path-price span{font-size:13.5px;font-weight:700}
+body.glow-page .twopath-foot{margin-top:16px;font-size:13px;color:var(--plum-soft);font-weight:500;text-align:center}
+body.glow-page .twopath-foot button{background:none;border:none;color:var(--pink-deep);font-family:"Poppins";font-weight:800;font-size:13px;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:600px){
+  body.glow-page .twopath-grid{grid-template-columns:1fr}
+}
+
+/* Tucked "What else?" footer — runner-up + ranking, low priority */
+body.glow-page .whatelse{margin:30px 0 8px;background:#fff;border:1px dashed var(--blue);border-radius:16px;overflow:hidden}
+body.glow-page .whatelse>summary{list-style:none;cursor:pointer;padding:14px 20px;font-family:"Poppins";font-weight:700;font-size:13.5px;color:var(--plum-soft);display:flex;align-items:center;gap:10px}
+body.glow-page .whatelse>summary::-webkit-details-marker{display:none}
+body.glow-page .whatelse>summary::before{content:"▾";color:var(--pink);transition:.2s}
+body.glow-page .whatelse[open]>summary::before{transform:rotate(180deg)}
+body.glow-page .whatelse>summary:hover{color:var(--plum)}
+body.glow-page .whatelse-body{padding:0 20px 20px}
+
+/* Quiet ghost-link actions at the bottom of the result page */
+body.glow-page .quiet-actions{display:flex;justify-content:center;gap:18px;margin:18px 0 4px;flex-wrap:wrap}
+body.glow-page .gbtn-quiet{background:none;border:none;color:var(--plum-soft);font-family:"Poppins";font-weight:600;font-size:13px;cursor:pointer;padding:8px 4px;text-decoration:underline;text-underline-offset:3px}
+body.glow-page .gbtn-quiet:hover{color:var(--pink)}
+
+/* Match card de-densifying — short Try-it CTA, no journey paragraph,
+   strengths chips become smaller secondary detail */
+body.glow-page .match .strengths{margin-top:14px;justify-content:flex-start}
+body.glow-page .match .strengths span{background:rgba(255,255,255,.5);border:1px solid var(--blue);font-size:12px;padding:5px 11px}
 
 /* Locked-state Week 1 preview header + locked-week teasers */
 body.glow-page .preview-head{margin:18px 0 6px}
@@ -599,6 +623,8 @@ body.glow-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14p
 
 <!-- ===================== RESULT / PLAN ===================== -->
 <section id="result" class="view"><div class="gwrap">
+
+  <!-- ACT 1: MATCH HERO — single focal moment -->
   <div class="result-hero">
     <div class="match">
       <div class="kicker">★ Your match ★</div>
@@ -608,13 +634,6 @@ body.glow-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14p
       <p class="pers" id="toolPers"></p>
       <div class="strengths" id="toolStrengths"></div>
       <a class="trylink" id="tryLink" href="#" target="_blank" rel="noopener">Try it ↗</a>
-      <p class="journey" id="journeyLine"></p>
-      <div class="metarow">
-        <div class="meta"><span>Your focus</span><b id="mTrack">Parenting</b></div>
-        <div class="meta"><span>Daily time</span><b id="mTime">~15 min</b></div>
-        <div class="meta"><span>Privacy mode</span><b id="mPriv">Balanced</b></div>
-        <div class="meta"><span>Graduate to</span><b>Cowork</b></div>
-      </div>
       <div class="trackswap" id="trackswap">
         <button data-t="parenting" onclick="setTrack('parenting')">Parenting plan</button>
         <button data-t="work" onclick="setTrack('work')">Work plan</button>
@@ -622,11 +641,8 @@ body.glow-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14p
     </div>
   </div>
 
-  <div class="dl-row">
-    <button type="button" class="gbtn gbtn-ghost" onclick="copyPlanLink(this)">📋 Copy my plan link</button>
-  </div>
-
-  <div id="upgradeCta" style="display:none"></div>
+  <!-- ACT 2: TWO-PATH DECISION CARD — the clear next step -->
+  <div id="twoPath"></div>
 
   <div id="downloadRow" class="dl-row" style="display:none">
     <button type="button" class="gbtn gbtn-gold" onclick="downloadPdf()">📥 Download my 30-day plan (PDF)</button>
@@ -634,39 +650,40 @@ body.glow-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14p
 
   <div id="codingPair"></div>
 
-  <div class="runnerbox" id="runnerBox"></div>
-
   <div id="wiifyWrap" style="display:none">
     <div class="section-head"><h3>Why take the <em>30-day plan</em></h3></div>
     <div class="wiify" id="wiify"></div>
   </div>
 
-  <details class="scoredrop">
-    <summary>See your full ranking &amp; how this was scored</summary>
-    <div class="ranking">
-      <div class="rk">★ YOUR FULL RANKING ★</div>
-      <ol id="rankList"></ol>
-    </div>
-    <div class="honesty">
-      <div class="rk">★ FULL TRANSPARENCY ★</div>
-      <p><b>How this works.</b> Each answer adds points to one or more tools based on their publicly documented strengths.</p>
-      <p><b>Built with Claude.</b> The scoring is weighted by what each AI is genuinely good at — not by who built the quiz. Claude only wins if your answers point there.</p>
-      <p class="hs">AI changes fast — try your top two and see which one feels right.</p>
-    </div>
-  </details>
-
-  <div id="planHeader" class="section-head"><h3>Your tailored <em>30 days</em></h3></div>
+  <!-- ACT 3: THE PLAN -->
+  <div id="planHeader" class="section-head" style="scroll-margin-top:80px"><h3>Your tailored <em>30 days</em></h3></div>
   <div class="plan-intro">
     <p id="planBlurb">Built from your answers above. Tap any day to open it. Week 1 is free — start today.</p>
   </div>
 
   <div id="planArea"></div>
 
-  <div class="grad">
-    <span class="eyebrow">Day 30</span>
-    <h3>You did the thing. 🎉</h3>
-    <p>You went from AI-curious to running real systems and handing off whole jobs. That's not a party trick — that's a different relationship with your time.</p>
-    <div class="retake"><button class="gbtn gbtn-ghost" onclick="go('quiz')">↺ Retake the quiz</button></div>
+  <!-- ACT 4: Optional "What else?" footer — runner-up + ranking, quietly tucked -->
+  <details class="whatelse">
+    <summary>What else? Runner-up, full ranking & how it was scored</summary>
+    <div class="whatelse-body">
+      <div class="runnerbox" id="runnerBox"></div>
+      <div class="ranking" style="margin-top:14px">
+        <div class="rk">★ YOUR FULL RANKING ★</div>
+        <ol id="rankList"></ol>
+      </div>
+      <div class="honesty" style="margin-top:14px">
+        <div class="rk">★ FULL TRANSPARENCY ★</div>
+        <p><b>How this works.</b> Each answer adds points to one or more tools based on their publicly documented strengths.</p>
+        <p><b>Built with Claude.</b> Scoring is weighted by what each AI is genuinely good at — not by who built the quiz.</p>
+        <p class="hs">AI changes fast — try your top two and see which one feels right.</p>
+      </div>
+    </div>
+  </details>
+
+  <div class="quiet-actions">
+    <button type="button" class="gbtn-quiet" onclick="copyPlanLink(this)">📋 Copy my plan link</button>
+    <button type="button" class="gbtn-quiet" onclick="go('quiz')">↺ Retake the quiz</button>
   </div>
 
   <div class="gfooter">© 2026 Prompt Mama · Made with ♥ for parents · <a href="https://promptmama.com" target="_blank">promptmama.com</a> · <a href="https://instagram.com/prompt_mama" target="_blank">@prompt_mama</a></div>
@@ -1331,15 +1348,6 @@ function buildResult(){
   document.getElementById("toolStrengths").innerHTML = T.strengths.map(s=>"<span>"+s+"</span>").join("");
   const tl = document.getElementById("tryLink");
   tl.href = T.url; tl.innerHTML = "Try "+T.name+" ↗";
-  document.getElementById("mTime").textContent = timeLabel();
-  document.getElementById("mPriv").textContent = PRIV[privTier()].label;
-  const tn = T.name;
-  const sameAsClaude = matchedTool==="claude";
-  document.getElementById("journeyLine").innerHTML =
-    "<b>Two tools, one journey.</b> You'll live in <b>"+tn+"</b> day to day"+
-    (sameAsClaude ? " — and since it's already Claude, " : ", then ")+
-    "graduate to <span class='arrow'>→</span> <b>Claude Cowork</b> for the hands-off finale, where AI does whole jobs while you step away. "+
-    "(Cowork runs in the free Claude Desktop app but needs a paid Claude plan; if you'd rather not, Week 4 shows a free way to get the same result.)";
   const R = TOOLS[runnerTool];
   document.getElementById("runnerBox").innerHTML =
     '<div class="rk">★ ALSO WORTH A LOOK ★</div>'+
@@ -1391,24 +1399,30 @@ function renderWiify(){
 }
 
 function renderUpgradeCta(){
-  const box = document.getElementById("upgradeCta");
+  // Two-path decision card replaces the old single upgrade CTA.
+  // Left path: free Week 1 preview (scrolls to plan). Right path: buy now.
+  const box = document.getElementById("twoPath");
   if (!box) return;
   if (!CONFIG.paywallEnabled || unlocked) { box.style.display = "none"; box.innerHTML = ""; return; }
   box.style.display = "block";
   box.innerHTML =
-    '<div class="upgrade-card">'+
-      '<div class="upgrade-eyebrow">★ Unlock the full 30 days ★</div>'+
-      '<div class="upgrade-row">'+
-        '<div class="upgrade-copy">'+
-          '<div class="upgrade-h">Ready for Weeks 2–4?</div>'+
-          '<div class="upgrade-sub">Week 1 is free. Unlock the full plan — yours forever, downloadable as a PDF, with the setup helper.</div>'+
-        '</div>'+
-        '<div class="upgrade-cta">'+
-          '<div class="upgrade-price"><b>'+CONFIG.price+'</b><span>one-time</span></div>'+
-          '<a class="upgrade-btn" href="'+buildBuyUrl()+'" target="_blank" rel="noopener">Get instant access →</a>'+
-        '</div>'+
+    '<div class="twopath">'+
+      '<div class="twopath-head">Where to next?</div>'+
+      '<div class="twopath-grid">'+
+        '<button type="button" class="path path-free" onclick="scrollToWeekOne()">'+
+          '<div class="path-tag">🎁  Free preview</div>'+
+          '<div class="path-h">See Week 1</div>'+
+          '<div class="path-sub">7 days of copy-paste prompts, expand any to start. No card needed.</div>'+
+          '<div class="path-action">See Week 1 ↓</div>'+
+        '</button>'+
+        '<a class="path path-buy" href="'+buildBuyUrl()+'" target="_blank" rel="noopener">'+
+          '<div class="path-tag">⭐  Full plan</div>'+
+          '<div class="path-h">Unlock all 30 days</div>'+
+          '<div class="path-sub">60+ prompts. Yours forever. PDF + setup helper included.</div>'+
+          '<div class="path-action path-price"><b>'+CONFIG.price+'</b><span>Get instant access →</span></div>'+
+        '</a>'+
       '</div>'+
-      '<div class="upgrade-foot">Already a buyer? <button type="button" onclick="scrollToUnlock()">Unlock with your code ↓</button></div>'+
+      '<div class="twopath-foot">Already bought? <button type="button" onclick="scrollToUnlock()">Unlock with your code ↓</button></div>'+
     '</div>';
 }
 function buildBuyUrl(){
@@ -1419,6 +1433,10 @@ function buildBuyUrl(){
 function scrollToUnlock(){
   const el = document.querySelector(".paywall");
   if (el) el.scrollIntoView({ behavior:'smooth', block:'center' });
+}
+function scrollToWeekOne(){
+  const el = document.getElementById("planHeader") || document.querySelector(".preview-head");
+  if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
 function setTrack(t){ currentTrack=t; document.querySelectorAll("#trackswap button").forEach(b=>b.classList.toggle("on",b.dataset.t===t)); renderWiify(); renderPlan(); window.scrollTo({top:document.getElementById('planArea').offsetTop-80,behavior:'smooth'}); }
@@ -1586,7 +1604,6 @@ function confettiBurst(){
 }
 
 function renderPlan(){
-  document.getElementById("mTrack").textContent = currentTrack==="work"?"Work":"Parenting";
   document.getElementById("downloadRow").style.display = (CONFIG.paywallEnabled && !unlocked) ? "none" : "flex";
   const days = PLANS[currentTrack];
   const tier = privTier();
