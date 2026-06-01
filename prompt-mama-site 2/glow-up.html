@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/styles.css?v=17" />
+<link rel="stylesheet" href="/styles.css?v=19" />
 <style>
 /* ============================================================
    30-Day AI Glow-Up — self-contained page styles
@@ -370,6 +370,51 @@ body.glow-page .grad .retake{margin-top:22px}
   body.glow-page .match{padding:26px 22px}
 }
 
+/* Upgrade CTA card right under the match — surfaces buying high on the page */
+body.glow-page .upgrade-card{margin:22px 0 4px;background:linear-gradient(160deg,#1E2A4A,#2A3A5E);color:#fff;border-radius:24px;padding:24px 26px;box-shadow:0 18px 50px -22px rgba(30,42,74,.5);position:relative;overflow:hidden}
+body.glow-page .upgrade-card::before{content:"";position:absolute;inset:0;background:radial-gradient(420px 160px at 90% 0,rgba(202,138,4,.32),transparent 60%);pointer-events:none}
+body.glow-page .upgrade-card>*{position:relative}
+body.glow-page .upgrade-eyebrow{display:inline-block;background:var(--gold);color:#fff;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:12px}
+body.glow-page .upgrade-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+body.glow-page .upgrade-copy{flex:1 1 240px}
+body.glow-page .upgrade-h{font-family:"Poppins";font-weight:900;font-size:clamp(20px,3vw,24px);letter-spacing:-.01em;line-height:1.15;color:#fff;margin-bottom:6px}
+body.glow-page .upgrade-sub{font-size:14px;color:rgba(255,255,255,.82);font-weight:500;line-height:1.5;max-width:50ch}
+body.glow-page .upgrade-cta{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+body.glow-page .upgrade-price{display:flex;flex-direction:column;align-items:flex-end;line-height:1}
+body.glow-page .upgrade-price b{font-family:"Poppins";font-size:32px;font-weight:900;color:var(--gold)}
+body.glow-page .upgrade-price span{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:2px}
+body.glow-page .upgrade-btn{display:inline-block;background:linear-gradient(135deg,var(--gold),#B07A2E);color:#fff;font-family:"Poppins";font-weight:800;font-size:15px;padding:13px 24px;border-radius:999px;text-decoration:none;box-shadow:0 12px 28px -12px rgba(202,138,4,.7);transition:.2s}
+body.glow-page .upgrade-btn:hover{transform:translateY(-2px) scale(1.02)}
+body.glow-page .upgrade-foot{margin-top:14px;font-size:12.5px;color:rgba(255,255,255,.7)}
+body.glow-page .upgrade-foot button{background:none;border:none;color:var(--yellow-glow);font-family:"Poppins";font-weight:800;font-size:12.5px;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
+
+/* Locked-state Week 1 preview header + locked-week teasers */
+body.glow-page .preview-head{margin:18px 0 6px}
+body.glow-page .preview-head h4{font-family:"Poppins";font-size:18px;font-weight:900;color:var(--plum);margin:0 0 4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+body.glow-page .preview-head .freebadge{background:var(--yellow-glow);color:var(--plum);font-size:11px;font-weight:800;padding:3px 10px;border-radius:999px;letter-spacing:.08em}
+body.glow-page .preview-head p{font-size:14px;color:var(--plum-soft);font-weight:500;margin:0}
+body.glow-page .locked-week{background:#fff;border:2px dashed var(--blue);border-radius:18px;margin-top:14px;padding:16px 20px;opacity:.7}
+body.glow-page .locked-week .lw-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+body.glow-page .locked-week .lw-wkn{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--pink)}
+body.glow-page .locked-week h4{flex:1 1 auto;font-family:"Poppins";font-size:17px;font-weight:900;color:var(--plum);margin:0}
+body.glow-page .locked-week .lw-lock{background:var(--cream-2);color:var(--plum-soft);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.04em}
+
+/* Post-unlock "About your plan" collapsible — groups all educational extras */
+body.glow-page .planabout{margin:14px 0 0;background:#fff;border:2px dashed var(--blue-deep);border-radius:18px;overflow:hidden}
+body.glow-page .planabout>summary{list-style:none;cursor:pointer;padding:16px 22px;display:flex;align-items:center;gap:10px;color:var(--plum)}
+body.glow-page .planabout>summary::-webkit-details-marker{display:none}
+body.glow-page .planabout>summary::after{content:"▾";margin-left:auto;color:var(--plum-soft);transition:.2s;font-size:15px}
+body.glow-page .planabout[open]>summary::after{transform:rotate(180deg)}
+body.glow-page .planabout>.planabout-body{padding:0 22px 22px}
+
+/* Collapsible "golden rules" so the result page isn't cluttered */
+body.glow-page .golden.collapsible{padding:0}
+body.glow-page .golden.collapsible>summary{list-style:none;cursor:pointer;padding:18px 24px;display:flex;align-items:center;gap:10px;font-weight:800;color:var(--plum)}
+body.glow-page .golden.collapsible>summary::-webkit-details-marker{display:none}
+body.glow-page .golden.collapsible>summary::after{content:"▾";margin-left:auto;color:var(--plum-soft);transition:.2s;font-size:15px}
+body.glow-page .golden.collapsible[open]>summary::after{transform:rotate(180deg)}
+body.glow-page .golden.collapsible>.golden-body{padding:4px 24px 22px}
+
 /* PRINT — strip chrome, expand details, flatten dark prompt boxes for buyer's PDF */
 @media print {
   html, body { background:#fff }
@@ -578,8 +623,10 @@ body.glow-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14p
   </div>
 
   <div class="dl-row">
-    <button type="button" class="gbtn gbtn-ghost" onclick="emailMyPlan()">📧 Email me my plan</button>
+    <button type="button" class="gbtn gbtn-ghost" onclick="copyPlanLink(this)">📋 Copy my plan link</button>
   </div>
+
+  <div id="upgradeCta" style="display:none"></div>
 
   <div id="downloadRow" class="dl-row" style="display:none">
     <button type="button" class="gbtn gbtn-gold" onclick="downloadPdf()">📥 Download my 30-day plan (PDF)</button>
@@ -589,8 +636,10 @@ body.glow-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14p
 
   <div class="runnerbox" id="runnerBox"></div>
 
-  <div class="section-head"><h3>Why take the <em>30-day plan</em></h3></div>
-  <div class="wiify" id="wiify"></div>
+  <div id="wiifyWrap" style="display:none">
+    <div class="section-head"><h3>Why take the <em>30-day plan</em></h3></div>
+    <div class="wiify" id="wiify"></div>
+  </div>
 
   <details class="scoredrop">
     <summary>See your full ranking &amp; how this was scored</summary>
@@ -606,7 +655,7 @@ body.glow-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14p
     </div>
   </details>
 
-  <div class="section-head"><h3>Your tailored <em>30 days</em></h3></div>
+  <div id="planHeader" class="section-head"><h3>Your tailored <em>30 days</em></h3></div>
   <div class="plan-intro">
     <p id="planBlurb">Built from your answers above. Tap any day to open it. Week 1 is free — start today.</p>
   </div>
@@ -862,16 +911,20 @@ function planUrl(){
   const enc = encodeAnswers();
   return enc ? (base + "#p=" + enc) : base;
 }
-function emailMyPlan(){
-  const subj = encodeURIComponent("My personalized 30-Day AI Glow-Up plan");
-  const tool = TOOLS[matchedTool] ? TOOLS[matchedTool].name : "your AI";
-  const body = encodeURIComponent(
-    "Here's the link to my personalized 30-Day AI Glow-Up plan — open it on any device to pick up where I left off.\n\n" +
-    "My AI match: " + tool + "\n" +
-    "My plan: " + planUrl() + "\n\n" +
-    "(I can print this to PDF from that page too.)\n\nxo"
-  );
-  window.location.href = "mailto:?subject=" + subj + "&body=" + body;
+function copyPlanLink(btn){
+  const url = planUrl();
+  const done = () => {
+    if (!btn) return;
+    const original = btn.innerHTML;
+    btn.innerHTML = "✓ Link copied!";
+    btn.disabled = true;
+    setTimeout(() => { btn.innerHTML = original; btn.disabled = false; }, 1800);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(done).catch(() => fallbackCopy(url, done));
+  } else {
+    fallbackCopy(url, done);
+  }
 }
 
 function timeLabel(){ return answers.time==="10"?"~10 min":answers.time==="30"?"25–35 min":"~15 min"; }
@@ -1298,6 +1351,7 @@ function buildResult(){
     '<span class="rpts">'+r.score+' pt'+(r.score===1?'':'s')+'</span></li>').join("");
   renderCodingPair();
   renderWiify();
+  renderUpgradeCta();
   document.querySelectorAll("#trackswap button").forEach(b=>b.classList.toggle("on", b.dataset.t===currentTrack));
   renderPlan();
 }
@@ -1316,6 +1370,14 @@ function renderCodingPair(){
 }
 
 function renderWiify(){
+  const wrap = document.getElementById("wiifyWrap");
+  // Only show this benefits section when unlocked — pre-purchase, the
+  // upgrade card already makes the pitch and the page stays lean.
+  if (CONFIG.paywallEnabled && !unlocked) {
+    if (wrap) wrap.style.display = "none";
+    return;
+  }
+  if (wrap) wrap.style.display = "block";
   const tn = TOOLS[matchedTool].name;
   const items = [
     ["📅","30 days, ~"+timeLabel().replace('~','')+" a day","A clear task each day with copy-paste prompts — no guessing what to do next."],
@@ -1326,6 +1388,37 @@ function renderWiify(){
   document.getElementById("wiify").innerHTML =
     items.map(x=>'<div class="wf"><span class="wfi">'+x[0]+'</span><div><b>'+x[1]+'</b><span>'+x[2]+'</span></div></div>').join("")+
     '<div class="wfcta"><b>Week 1 is free.</b> Scroll down, start Day 1 today, and unlock the rest when you\'re ready.</div>';
+}
+
+function renderUpgradeCta(){
+  const box = document.getElementById("upgradeCta");
+  if (!box) return;
+  if (!CONFIG.paywallEnabled || unlocked) { box.style.display = "none"; box.innerHTML = ""; return; }
+  box.style.display = "block";
+  box.innerHTML =
+    '<div class="upgrade-card">'+
+      '<div class="upgrade-eyebrow">★ Unlock the full 30 days ★</div>'+
+      '<div class="upgrade-row">'+
+        '<div class="upgrade-copy">'+
+          '<div class="upgrade-h">Ready for Weeks 2–4?</div>'+
+          '<div class="upgrade-sub">Week 1 is free. Unlock the full plan — yours forever, downloadable as a PDF, with the setup helper.</div>'+
+        '</div>'+
+        '<div class="upgrade-cta">'+
+          '<div class="upgrade-price"><b>'+CONFIG.price+'</b><span>one-time</span></div>'+
+          '<a class="upgrade-btn" href="'+buildBuyUrl()+'" target="_blank" rel="noopener">Get instant access →</a>'+
+        '</div>'+
+      '</div>'+
+      '<div class="upgrade-foot">Already a buyer? <button type="button" onclick="scrollToUnlock()">Unlock with your code ↓</button></div>'+
+    '</div>';
+}
+function buildBuyUrl(){
+  const ref = encodeAnswers();
+  const sep = CONFIG.checkoutUrl.indexOf("?") >= 0 ? "&" : "?";
+  return CONFIG.checkoutUrl + (ref ? (sep + "client_reference_id=" + ref) : "");
+}
+function scrollToUnlock(){
+  const el = document.querySelector(".paywall");
+  if (el) el.scrollIntoView({ behavior:'smooth', block:'center' });
 }
 
 function setTrack(t){ currentTrack=t; document.querySelectorAll("#trackswap button").forEach(b=>b.classList.toggle("on",b.dataset.t===t)); renderWiify(); renderPlan(); window.scrollTo({top:document.getElementById('planArea').offsetTop-80,behavior:'smooth'}); }
@@ -1497,49 +1590,78 @@ function renderPlan(){
   document.getElementById("downloadRow").style.display = (CONFIG.paywallEnabled && !unlocked) ? "none" : "flex";
   const days = PLANS[currentTrack];
   const tier = privTier();
-  let html = "";
-  html += '<div class="golden"><h4>🛡️ The golden rules of sharing with AI</h4>'+
-    '<p class="gsub">True whether you picked Vault, Balanced, or Connected — these keep you safe and in control.</p>'+
-    '<ul>'+
-    '<li><span class="gk">1</span><span><b>Never paste a password, full card number, Social Security number, or medical record number.</b> Not once. Tools you connect can read what you type.</span></li>'+
-    '<li><span class="gk">2</span><span><b>Use placeholders when you want to.</b> [my daughter], [my client], [our town] work just as well as real names.</span></li>'+
-    '<li><span class="gk">3</span><span><b>AI can be confidently wrong.</b> Verify anything that drives a decision, and ask it to cite sources for facts.</span></li>'+
-    '<li><span class="gk">4</span><span><b>Keep a human on the "send."</b> You approve anything that emails, posts, buys, or deletes — never let it fire on its own.</span></li>'+
-    '<li><span class="gk">5</span><span><b>Check your data settings.</b> Most tools let you turn off training on your chats and delete history — do it once, today.</span></li>'+
-    '</ul></div>';
-  html += '<div class="pbanner '+PRIV[tier].bcls+'">'+PRIV[tier].banner+'</div>';
-  if (unlocked) {
-    html += '<div class="setupreopen">🔁 Switching tools or bringing context from another AI? <button type="button" onclick="launchOnboarding()">Open the setup &amp; data-move helper</button></div>';
-  }
   const lv = levelTier();
-  html += '<div class="lvbanner '+LEVELS[lv].cls+'">'+LEVELS[lv].banner+'</div>';
   const iks = interestKeys().filter(k=>INTEREST[k]);
-  if(iks.length){
-    html += '<div class="intwrap"><div class="intwrap-h">🧰 Your AI toolkit — tailored to what you picked</div>';
-    iks.forEach((k,idx)=>{
-      const P = INTEREST[k];
-      html += '<details class="intpack"'+(idx===0?' open':'')+'>'+
-        '<summary><span class="ipemoji">'+P.emoji+'</span><span class="ipt">'+P.title.replace(/^the /,'The ')+'</span><span class="ipcaret">▾</span></summary>'+
-        '<div class="ipsub">'+P.blurb+'</div>'+
-        '<ul>'+P.items.map(x=>'<li>'+x+'</li>').join("")+'</ul></details>';
+  let html = "";
+
+  if (CONFIG.paywallEnabled && !unlocked) {
+    /* ===== LOCKED VIEW — minimal sales funnel =====
+       Match + copy-link + upgrade card are already above this area.
+       Here we show only: a tight Week 1 preview, then the paywall,
+       then locked Week 2-4 teasers. No banners, no interest packs,
+       no golden rules — those all reveal AFTER unlock. */
+    html += '<div class="preview-head">'+
+      '<h4>Week 1 — Foundations · <span class="freebadge">FREE</span></h4>'+
+      '<p>Your first 7 days. Tap any to start.</p>'+
+      '</div>';
+    days.filter(x=>x.phase===1).forEach(day=>{ html += dayCard(day, true); });
+    html += paywallHTML();
+    // Compact locked teasers for weeks 2-4
+    [2,3,4].forEach(n=>{
+      const ph = PHASES.find(p=>p.n===n);
+      const count = days.filter(x=>x.phase===n).length;
+      html += '<div class="locked-week">'+
+        '<div class="lw-head"><span class="lw-wkn">'+ph.wk+'</span><h4>'+ph.title+'</h4><span class="lw-lock">🔒 '+count+' days locked</span></div>'+
+        '</div>';
     });
-    html += '<div class="ipfoot">These are picks, not homework — try one that sparks joy. All are third-party tools; the golden rules still apply.</div></div>';
-  }
-  PHASES.forEach(ph=>{
-    const open = !CONFIG.paywallEnabled || unlocked || ph.n===1;
-    html += '<div class="phase">';
-    html += '<div class="phase-head"><span class="wkn">'+ph.wk+'</span><h3>'+ph.title+'</h3><span class="level '+ph.cls+'">'+ph.level+'</span></div>';
-    days.filter(x=>x.phase===ph.n).forEach(day=>{
-      html += dayCard(day, open);
-    });
-    html += '</div>';
-    if(ph.n===1 && CONFIG.paywallEnabled && !unlocked){
-      html += paywallHTML();
+  } else {
+    /* ===== UNLOCKED VIEW — full plan with all educational extras =====
+       Banners + golden rules + interest packs are wrapped in a single
+       collapsible "About your plan" container so the days are front
+       and center. */
+    html += '<div class="setupreopen">🔁 Switching tools or bringing context from another AI? <button type="button" onclick="launchOnboarding()">Open the setup &amp; data-move helper</button></div>';
+
+    html += '<details class="planabout">'+
+      '<summary><h4 style="margin:0;font-size:17px;">📖 About your plan — privacy, level, toolkit & the golden rules</h4></summary>'+
+      '<div class="planabout-body">'+
+        '<div class="pbanner '+PRIV[tier].bcls+'">'+PRIV[tier].banner+'</div>'+
+        '<div class="lvbanner '+LEVELS[lv].cls+'">'+LEVELS[lv].banner+'</div>';
+    if(iks.length){
+      html += '<div class="intwrap"><div class="intwrap-h">🧰 Your AI toolkit — tailored to what you picked</div>';
+      iks.forEach((k)=>{
+        const P = INTEREST[k];
+        html += '<details class="intpack">'+
+          '<summary><span class="ipemoji">'+P.emoji+'</span><span class="ipt">'+P.title.replace(/^the /,'The ')+'</span><span class="ipcaret">▾</span></summary>'+
+          '<div class="ipsub">'+P.blurb+'</div>'+
+          '<ul>'+P.items.map(x=>'<li>'+x+'</li>').join("")+'</ul></details>';
+      });
+      html += '<div class="ipfoot">These are picks, not homework — try one that sparks joy. All are third-party tools; the golden rules still apply.</div></div>';
     }
-  });
+    html += '<details class="golden collapsible">'+
+        '<summary><h4 style="margin:0;font-size:17px;">🛡️ The golden rules of sharing with AI</h4></summary>'+
+        '<div class="golden-body">'+
+          '<p class="gsub">True whether you picked Vault, Balanced, or Connected — these keep you safe and in control.</p>'+
+          '<ul>'+
+          '<li><span class="gk">1</span><span><b>Never paste a password, full card number, Social Security number, or medical record number.</b> Tools you connect can read what you type.</span></li>'+
+          '<li><span class="gk">2</span><span><b>Use placeholders when you want to.</b> [my daughter], [my client], [our town] work just as well as real names.</span></li>'+
+          '<li><span class="gk">3</span><span><b>AI can be confidently wrong.</b> Verify anything that drives a decision, and ask it to cite sources for facts.</span></li>'+
+          '<li><span class="gk">4</span><span><b>Keep a human on the "send."</b> You approve anything that emails, posts, buys, or deletes.</span></li>'+
+          '<li><span class="gk">5</span><span><b>Check your data settings.</b> Most tools let you turn off training on your chats and delete history — do it once, today.</span></li>'+
+          '</ul>'+
+        '</div></details>'+
+      '</div></details>';
+
+    PHASES.forEach(ph=>{
+      html += '<div class="phase">';
+      html += '<div class="phase-head"><span class="wkn">'+ph.wk+'</span><h3>'+ph.title+'</h3><span class="level '+ph.cls+'">'+ph.level+'</span></div>';
+      days.filter(x=>x.phase===ph.n).forEach(day=>{ html += dayCard(day, true); });
+      html += '</div>';
+    });
+  }
+
   document.getElementById("planArea").innerHTML = html;
   document.getElementById("planBlurb").textContent = (CONFIG.paywallEnabled && !unlocked)
-    ? "Week 1 is on me — open any day and start today. Unlock Weeks 2–4 to get the full 30-day plan."
+    ? "Here's your free Week 1. Unlock Weeks 2–4 below."
     : "Tap any day to open it. Do them in order, or jump to what you need.";
 }
 
