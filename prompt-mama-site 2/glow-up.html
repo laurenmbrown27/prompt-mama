@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/styles.css?v=20" />
+<link rel="stylesheet" href="/styles.css?v=21" />
 <style>
 /* ============================================================
    30-Day AI Glow-Up — self-contained page styles
@@ -393,6 +393,14 @@ body.glow-page .twopath-foot button{background:none;border:none;color:var(--pink
   body.glow-page .twopath-grid{grid-template-columns:1fr}
 }
 
+/* Unlocked-state version of the two-path card — one prominent button */
+body.glow-page .unlocked-cta .path-open{display:block;width:100%;text-align:left;background:linear-gradient(160deg,#FCE7F3,#FBD2E6);border:2px solid var(--pink);border-radius:22px;padding:24px 22px;cursor:pointer;font-family:"Poppins";color:var(--plum);transition:transform .2s ease, box-shadow .2s ease}
+body.glow-page .unlocked-cta .path-open:hover{transform:translateY(-3px);box-shadow:0 16px 40px -18px rgba(236,72,153,.45)}
+
+/* "← Back to my match" link at the top of the plan view */
+body.glow-page .back-to-match{display:inline-flex;align-items:center;gap:8px;margin:14px 0 4px;color:var(--plum-soft);text-decoration:none;font-family:"Poppins";font-weight:700;font-size:13px;letter-spacing:.04em;padding:8px 4px;transition:.16s}
+body.glow-page .back-to-match:hover{color:var(--pink)}
+
 /* Tucked "What else?" footer — runner-up + ranking, low priority */
 body.glow-page .whatelse{margin:30px 0 8px;background:#fff;border:1px dashed var(--blue);border-radius:16px;overflow:hidden}
 body.glow-page .whatelse>summary{list-style:none;cursor:pointer;padding:14px 20px;font-family:"Poppins";font-weight:700;font-size:13.5px;color:var(--plum-soft);display:flex;align-items:center;gap:10px}
@@ -621,7 +629,7 @@ body.glow-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14p
   <div class="qnav"><button class="qback" id="qback" onclick="prevQ()">← Back</button><span></span></div>
 </div></section>
 
-<!-- ===================== RESULT / PLAN ===================== -->
+<!-- ===================== RESULT (match + decision) ===================== -->
 <section id="result" class="view"><div class="gwrap">
 
   <!-- ACT 1: MATCH HERO — single focal moment -->
@@ -644,26 +652,9 @@ body.glow-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14p
   <!-- ACT 2: TWO-PATH DECISION CARD — the clear next step -->
   <div id="twoPath"></div>
 
-  <div id="downloadRow" class="dl-row" style="display:none">
-    <button type="button" class="gbtn gbtn-gold" onclick="downloadPdf()">📥 Download my 30-day plan (PDF)</button>
-  </div>
-
   <div id="codingPair"></div>
 
-  <div id="wiifyWrap" style="display:none">
-    <div class="section-head"><h3>Why take the <em>30-day plan</em></h3></div>
-    <div class="wiify" id="wiify"></div>
-  </div>
-
-  <!-- ACT 3: THE PLAN -->
-  <div id="planHeader" class="section-head" style="scroll-margin-top:80px"><h3>Your tailored <em>30 days</em></h3></div>
-  <div class="plan-intro">
-    <p id="planBlurb">Built from your answers above. Tap any day to open it. Week 1 is free — start today.</p>
-  </div>
-
-  <div id="planArea"></div>
-
-  <!-- ACT 4: Optional "What else?" footer — runner-up + ranking, quietly tucked -->
+  <!-- ACT 3: Optional "What else?" footer — runner-up + ranking, quietly tucked -->
   <details class="whatelse">
     <summary>What else? Runner-up, full ranking & how it was scored</summary>
     <div class="whatelse-body">
@@ -684,6 +675,34 @@ body.glow-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14p
   <div class="quiet-actions">
     <button type="button" class="gbtn-quiet" onclick="copyPlanLink(this)">📋 Copy my plan link</button>
     <button type="button" class="gbtn-quiet" onclick="go('quiz')">↺ Retake the quiz</button>
+  </div>
+
+  <div class="gfooter">© 2026 Prompt Mama · Made with ♥ for parents · <a href="https://promptmama.com" target="_blank">promptmama.com</a> · <a href="https://instagram.com/prompt_mama" target="_blank">@prompt_mama</a></div>
+</div></section>
+
+<!-- ===================== PLAN VIEW (preview + paywall, or full plan when unlocked) ===================== -->
+<section id="plan" class="view"><div class="gwrap">
+  <a class="back-to-match" href="#" onclick="event.preventDefault();go('result');">← Back to my match</a>
+
+  <div id="downloadRow" class="dl-row" style="display:none">
+    <button type="button" class="gbtn gbtn-gold" onclick="downloadPdf()">📥 Download my 30-day plan (PDF)</button>
+  </div>
+
+  <div id="wiifyWrap" style="display:none">
+    <div class="section-head"><h3>Why take the <em>30-day plan</em></h3></div>
+    <div class="wiify" id="wiify"></div>
+  </div>
+
+  <div id="planHeader" class="section-head"><h3>Your tailored <em>30 days</em></h3></div>
+  <div class="plan-intro">
+    <p id="planBlurb">Week 1 is free — start today. Unlock the full month below.</p>
+  </div>
+
+  <div id="planArea"></div>
+
+  <div class="quiet-actions">
+    <button type="button" class="gbtn-quiet" onclick="go('result')">← Back to my match</button>
+    <button type="button" class="gbtn-quiet" onclick="copyPlanLink(this)">📋 Copy my plan link</button>
   </div>
 
   <div class="gfooter">© 2026 Prompt Mama · Made with ♥ for parents · <a href="https://promptmama.com" target="_blank">promptmama.com</a> · <a href="https://instagram.com/prompt_mama" target="_blank">@prompt_mama</a></div>
@@ -1399,12 +1418,25 @@ function renderWiify(){
 }
 
 function renderUpgradeCta(){
-  // Two-path decision card replaces the old single upgrade CTA.
-  // Left path: free Week 1 preview (scrolls to plan). Right path: buy now.
+  // LOCKED state: two-path card — free Week 1 preview OR buy
+  // UNLOCKED state: single big "Open my plan" CTA into the plan view
   const box = document.getElementById("twoPath");
   if (!box) return;
-  if (!CONFIG.paywallEnabled || unlocked) { box.style.display = "none"; box.innerHTML = ""; return; }
   box.style.display = "block";
+
+  if (unlocked || !CONFIG.paywallEnabled) {
+    box.innerHTML =
+      '<div class="twopath unlocked-cta">'+
+        '<div class="twopath-head">You\'re all in. Time to glow up.</div>'+
+        '<button type="button" class="path path-open" onclick="go(\'plan\')">'+
+          '<div class="path-tag">📖  Your full 30-day plan</div>'+
+          '<div class="path-h">Open my plan →</div>'+
+          '<div class="path-sub">Day-by-day prompts, your AI toolkit, and the setup helper. Yours forever.</div>'+
+        '</button>'+
+      '</div>';
+    return;
+  }
+
   box.innerHTML =
     '<div class="twopath">'+
       '<div class="twopath-head">Where to next?</div>'+
@@ -1413,7 +1445,7 @@ function renderUpgradeCta(){
           '<div class="path-tag">🎁  Free preview</div>'+
           '<div class="path-h">See Week 1</div>'+
           '<div class="path-sub">7 days of copy-paste prompts, expand any to start. No card needed.</div>'+
-          '<div class="path-action">See Week 1 ↓</div>'+
+          '<div class="path-action">Open Week 1 →</div>'+
         '</button>'+
         '<a class="path path-buy" href="'+buildBuyUrl()+'" target="_blank" rel="noopener">'+
           '<div class="path-tag">⭐  Full plan</div>'+
@@ -1422,7 +1454,7 @@ function renderUpgradeCta(){
           '<div class="path-action path-price"><b>'+CONFIG.price+'</b><span>Get instant access →</span></div>'+
         '</a>'+
       '</div>'+
-      '<div class="twopath-foot">Already bought? <button type="button" onclick="scrollToUnlock()">Unlock with your code ↓</button></div>'+
+      '<div class="twopath-foot">Already bought? <button type="button" onclick="scrollToUnlock()">Unlock with your code →</button></div>'+
     '</div>';
 }
 function buildBuyUrl(){
@@ -1431,12 +1463,16 @@ function buildBuyUrl(){
   return CONFIG.checkoutUrl + (ref ? (sep + "client_reference_id=" + ref) : "");
 }
 function scrollToUnlock(){
-  const el = document.querySelector(".paywall");
-  if (el) el.scrollIntoView({ behavior:'smooth', block:'center' });
+  go('plan');
+  setTimeout(() => {
+    const el = document.querySelector(".paywall");
+    if (el) el.scrollIntoView({ behavior:'smooth', block:'center' });
+  }, 80);
 }
 function scrollToWeekOne(){
-  const el = document.getElementById("planHeader") || document.querySelector(".preview-head");
-  if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+  // "See Week 1 (free)" navigates to the dedicated plan view instead of
+  // scrolling — the result page stays clean (just match + decision card).
+  go('plan');
 }
 
 function setTrack(t){ currentTrack=t; document.querySelectorAll("#trackswap button").forEach(b=>b.classList.toggle("on",b.dataset.t===t)); renderWiify(); renderPlan(); window.scrollTo({top:document.getElementById('planArea').offsetTop-80,behavior:'smooth'}); }
@@ -1757,7 +1793,8 @@ async function tryUnlock(){
       unlocked = true;
       store.set("pm_glowup_unlocked", code);
       store.set("pm_glowup_email", email);
-      renderPlan();
+      buildResult();
+      go('plan');
       launchOnboarding();
     } else {
       err.textContent = (data && data.msg) ? data.msg : "Hmm, that didn't work. Double-check the email + code.";
