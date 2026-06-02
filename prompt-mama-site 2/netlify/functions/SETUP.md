@@ -58,7 +58,7 @@ create index access_codes_email_idx on access_codes (email);
    - **Description:** "Take the 2-minute quiz, get matched to your AI, and follow a personalized 30-day plan."
 2. **Payment Links → New payment link** → select that product.
 3. Under **After payment**:
-   - **Redirect customers to**: `https://promptmama.com/welcome` (or your Netlify URL during testing)
+   - **Redirect customers to**: `https://promptmama.ai/welcome` (or your Netlify URL during testing)
 4. Under **Options**:
    - ✅ Enable **Collect customer email** (this is critical — the webhook needs the email)
 5. Save the link, copy the URL (it looks like `https://buy.stripe.com/abc123…`).
@@ -72,7 +72,7 @@ create index access_codes_email_idx on access_codes (email);
 
 1. Stripe Dashboard → **Developers → Webhooks → Add endpoint**.
 2. **Endpoint URL:** `https://promptmama.netlify.app/.netlify/functions/stripe-webhook`
-   (replace with your Netlify production domain — `https://promptmama.com/.netlify/functions/stripe-webhook` if the custom domain is your primary).
+   (replace with your Netlify production domain — `https://promptmama.ai/.netlify/functions/stripe-webhook` if the custom domain is your primary).
 3. **Events to listen to:** select **only** `checkout.session.completed`.
 4. Save. Reveal the **Signing secret** (`whsec_…`) and grab it for env vars.
 5. From **Developers → API keys**, copy your **Secret key** (`sk_test_…` while testing, `sk_live_…` in production).
@@ -84,9 +84,9 @@ The welcome email goes out the second Stripe fires the webhook. No editor, no au
 1. Sign up free at https://resend.com (3,000 emails/month free, no credit card)
 2. **API Keys** → **Create API Key** → name it `Glow-Up Webhook` → copy the key (starts with `re_…`)
 3. **(Optional but recommended) Verify your sending domain:**
-   - **Domains → Add domain** → enter `promptmama.com`
+   - **Domains → Add domain** → enter `promptmama.ai`
    - Resend gives you a few DNS records (TXT + maybe CNAME). Add them where your domain DNS lives (Netlify DNS, Cloudflare, GoDaddy, etc.). Wait a few minutes for verification.
-   - Once verified, set `RESEND_FROM` to something like `Lauren · Prompt Mama <lauren@promptmama.com>` so emails come from your domain.
+   - Once verified, set `RESEND_FROM` to something like `Lauren · Prompt Mama <lauren@promptmama.ai>` so emails come from your domain.
 4. **Skip this step and you're still fine for testing** — Resend has a built-in sender `onboarding@resend.dev` that works immediately without domain verification. That's the default if you don't set `RESEND_FROM`. Domain-verified production emails just look more legit and avoid spam folders.
 
 That's it. No MailerLite work for the buyer email. (You can still use MailerLite for marketing campaigns, the Parent Guide gate, etc. — this swap is only for the post-purchase transactional email.)
@@ -102,9 +102,9 @@ Site settings → **Environment variables → Add a variable** (apply to all sco
 | `SUPABASE_URL` | `https://….supabase.co` |
 | `SUPABASE_SERVICE_ROLE_KEY` | service_role JWT |
 | `RESEND_API_KEY` | `re_…` (from resend.com → API Keys) |
-| `RESEND_FROM` | `Lauren · Prompt Mama <lauren@promptmama.com>` once your domain is verified, or leave unset to use the default `onboarding@resend.dev` |
+| `RESEND_FROM` | `Lauren · Prompt Mama <lauren@promptmama.ai>` once your domain is verified, or leave unset to use the default `onboarding@resend.dev` |
 | `RESEND_REPLY_TO` | `prompt.mama.community@gmail.com` (so buyer replies land in your inbox) |
-| `SITE_URL` | `https://promptmama.com` (used to build the plan link in welcome emails) |
+| `SITE_URL` | `https://promptmama.ai` (used to build the plan link in welcome emails) |
 
 Trigger a fresh deploy after setting them so the functions pick up the values.
 

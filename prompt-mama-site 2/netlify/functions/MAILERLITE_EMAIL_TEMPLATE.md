@@ -176,8 +176,8 @@ Drop this entire chunk into a single Custom HTML block in MailerLite. The merge 
       <!-- FOOTER -->
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="580" style="max-width:580px;width:100%;margin-top:18px;">
         <tr><td align="center" style="padding:8px 16px;font-size:11.5px;color:#475379;font-weight:500;line-height:1.5;">
-          You're getting this because you bought the 30-Day AI Glow-Up at promptmama.com.<br>
-          <a href="https://promptmama.com" style="color:#DB2777;text-decoration:none;font-weight:700;">promptmama.com</a> &nbsp;·&nbsp;
+          You're getting this because you bought the 30-Day AI Glow-Up at promptmama.ai.<br>
+          <a href="https://promptmama.ai" style="color:#DB2777;text-decoration:none;font-weight:700;">promptmama.ai</a> &nbsp;·&nbsp;
           <a href="https://instagram.com/prompt_mama" style="color:#DB2777;text-decoration:none;font-weight:700;">@prompt_mama</a>
         </td></tr>
       </table>
@@ -196,7 +196,7 @@ These are the dynamic fields the Stripe webhook fills in for each buyer:
 | Merge tag | What it is | Example value |
 |---|---|---|
 | `{$access_code}` | The buyer's unique 10-character unlock code | `KX4MNP7QR2` |
-| `{$plan_url}` | Deep link back to their personalized plan | `https://promptmama.com/glow-up#p=eyJ0Ij...` |
+| `{$plan_url}` | Deep link back to their personalized plan | `https://promptmama.ai/glow-up#p=eyJ0Ij...` |
 | `{$email}` | The buyer's email address (built into MailerLite) | `buyer@example.com` |
 
 MailerLite also has standard merge tags like `{$name}` and `{$last_name}` if you ever collect them — but Stripe Payment Links only collect email, so those'll be blank for now.
@@ -208,7 +208,7 @@ MailerLite also has standard merge tags like `{$name}` and `{$last_name}` if you
 1. In the MailerLite automation editor, hit **Preview** to see the template render.
 2. Add yourself manually to the **Glow-Up Buyers** group with test values:
    - `access_code`: `TEST1234XY`
-   - `plan_url`: `https://promptmama.com/glow-up`
+   - `plan_url`: `https://promptmama.ai/glow-up`
 3. The automation will fire and send you the email — check that both the button link and the code render correctly.
 4. Open the email on your phone too — confirm it doesn't look broken.
 
