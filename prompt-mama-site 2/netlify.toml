@@ -5,6 +5,12 @@
   publish = "."
   functions = "netlify/functions"
 
+# Use esbuild so npm deps (stripe, supabase, nanoid) get inlined into
+# the function bundle at build time. Without this, Netlify zips the
+# raw source and the runtime fails with "Cannot find package 'stripe'".
+[functions]
+  node_bundler = "esbuild"
+
 # Clean URL: /glow-up -> /glow-up.html
 [[redirects]]
   from = "/glow-up"
