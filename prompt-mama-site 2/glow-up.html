@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/styles.css?v=23" />
+<link rel="stylesheet" href="/styles.css?v=24" />
 <style>
 /* ============================================================
    30-Day AI Glow-Up — self-contained page styles
@@ -448,6 +448,29 @@ body.glow-page .golden.collapsible>summary::after{content:"▾";margin-left:auto
 body.glow-page .golden.collapsible[open]>summary::after{transform:rotate(180deg)}
 body.glow-page .golden.collapsible>.golden-body{padding:4px 24px 22px}
 
+/* Express checkout — skip the match quiz for buyers who know their AI */
+body.glow-page .skip-ahead{display:inline-block;margin:22px auto 0;color:var(--plum-soft);font-size:13.5px;font-weight:600;text-decoration:none;border-bottom:1px dashed var(--plum-soft);padding-bottom:2px;cursor:pointer;transition:.15s}
+body.glow-page .skip-ahead:hover{color:var(--pink);border-color:var(--pink)}
+body.glow-page .ex-back{display:inline-block;color:var(--plum-soft);font-size:13.5px;font-weight:600;text-decoration:none;margin:0 0 14px;cursor:pointer}
+body.glow-page .ex-back:hover{color:var(--pink)}
+body.glow-page .ex-card{max-width:600px;margin:24px auto 0;background:#fff;border:2px solid var(--blue);border-radius:26px;padding:34px 30px 30px;box-shadow:var(--gshadow)}
+body.glow-page .ex-card .eyebrow{display:inline-block;background:var(--yellow-glow);color:var(--plum);padding:5px 12px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+body.glow-page .ex-card h2{font-size:clamp(26px,4vw,34px);margin:0 0 10px;font-weight:900;letter-spacing:-.02em;line-height:1.08}
+body.glow-page .ex-card h2 em{color:var(--pink);font-style:normal}
+body.glow-page .ex-lede{font-size:15px;color:var(--plum-soft);margin:0 0 26px;font-weight:500;line-height:1.55}
+body.glow-page .ex-q{margin-bottom:22px}
+body.glow-page .ex-q-label{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--plum);margin-bottom:10px;display:block}
+body.glow-page .ex-pills{display:flex;flex-wrap:wrap;gap:8px}
+body.glow-page .ex-pill{background:#fff;border:2px solid var(--blue);border-radius:14px;padding:11px 16px;font-size:14px;font-weight:700;color:var(--plum);cursor:pointer;font-family:"Poppins";transition:.15s}
+body.glow-page .ex-pill:hover{border-color:var(--pink);transform:translateY(-1px)}
+body.glow-page .ex-pill.on{background:var(--pink);border-color:var(--pink);color:#fff}
+body.glow-page .ex-go{width:100%;background:var(--pink);color:#fff;border:none;font-family:"Poppins";font-size:17px;font-weight:800;padding:18px;border-radius:16px;cursor:pointer;margin-top:8px;box-shadow:0 5px 0 var(--plum);transition:.2s}
+body.glow-page .ex-go:disabled{background:#cbd5e1;color:#fff;box-shadow:0 5px 0 #94a3b8;cursor:not-allowed}
+body.glow-page .ex-go:not(:disabled):hover{transform:translateY(-2px)}
+body.glow-page .ex-go:not(:disabled):active{transform:translateY(2px);box-shadow:0 1px 0 var(--plum)}
+body.glow-page .ex-fine{font-size:12.5px;color:var(--plum-soft);font-weight:500;margin:16px 0 0;text-align:center;line-height:1.55}
+body.glow-page .ex-fine a{color:var(--pink-deep);font-weight:700;text-decoration:none}
+
 /* PRINT — strip chrome, expand details, flatten dark prompt boxes for buyer's PDF */
 @media print {
   html, body { background:#fff }
@@ -457,7 +480,7 @@ body.glow-page .golden.collapsible>.golden-body{padding:4px 24px 22px}
   body.glow-page .gfooter, body.glow-page .hero-cta, body.glow-page .paywall, body.glow-page .grad,
   body.glow-page .trackswap, body.glow-page .gbtn, body.glow-page .copybtn, body.glow-page .dl-row,
   body.glow-page .qnav, body.glow-page .progress { display:none !important }
-  body.glow-page #landing, body.glow-page #quiz { display:none !important }
+  body.glow-page #landing, body.glow-page #quiz, body.glow-page #express { display:none !important }
   body.glow-page #result { display:block !important }
   body.glow-page .day, body.glow-page .golden, body.glow-page .pbanner, body.glow-page .promptbox,
   body.glow-page .toolnote, body.glow-page .trustnote, body.glow-page .funtool, body.glow-page .match,
@@ -567,6 +590,7 @@ body.glow-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14p
       <div class="pricepill"><b id="priceTop">$9.99</b><span>one-time · yours forever</span></div>
     </div>
     <p class="reassure">Your match + Week 1 are <b>free</b>. No tech background needed. <b>10–20 minutes a day.</b> No gatekeeping, no perfection pressure. Pinky promise.</p>
+    <a class="skip-ahead" href="#" onclick="event.preventDefault();go('express')">Already know your AI? Skip to checkout →</a>
     <div class="honesty-note">
       <b>A note on honesty:</b> this quiz was built with Claude (Anthropic). Scoring is weighted by what each AI is genuinely good at — not by who built it. If Claude doesn't win for you, <span class="hl">it really doesn't.</span>
     </div>
@@ -613,6 +637,34 @@ body.glow-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:14p
   </div>
 
   <div class="gfooter">© 2026 Prompt Mama · Made with ♥ for parents · <a href="https://promptmama.ai" target="_blank">promptmama.ai</a> · <a href="https://instagram.com/prompt_mama" target="_blank">@prompt_mama</a></div>
+</div></section>
+
+<!-- ===================== EXPRESS CHECKOUT ===================== -->
+<section id="express" class="view"><div class="gwrap">
+  <a class="ex-back" href="#" onclick="event.preventDefault();go('landing')">← Back</a>
+  <div class="ex-card">
+    <span class="eyebrow">Express checkout</span>
+    <h2>You know your AI. <em>Let's go.</em></h2>
+    <p class="ex-lede">3 quick taps to shape your plan, then straight to checkout. Same 30-day plan, same access code, same PDF — just no match quiz upfront.</p>
+
+    <div class="ex-q">
+      <span class="ex-q-label">1. Which AI are you using?</span>
+      <div class="ex-pills" id="exTools"></div>
+    </div>
+
+    <div class="ex-q">
+      <span class="ex-q-label">2. What's your focus?</span>
+      <div class="ex-pills" id="exFocus"></div>
+    </div>
+
+    <div class="ex-q">
+      <span class="ex-q-label">3. How much time per day?</span>
+      <div class="ex-pills" id="exTime"></div>
+    </div>
+
+    <button class="ex-go" id="exGo" onclick="expressCheckout()" disabled>$9.99 — Get instant access →</button>
+    <p class="ex-fine">Not sure which AI? <a href="#" onclick="event.preventDefault();go('quiz')">Take the 2-minute match quiz instead →</a></p>
+  </div>
 </div></section>
 
 <!-- ===================== QUIZ ===================== -->
@@ -928,7 +980,10 @@ function finish(){
    ============================================================ */
 function encodeAnswers(){
   try {
-    const payload = { t: toolAns, a: answers };
+    // `m` carries the matched tool for express-checkout buyers who skip
+    // the quiz — without it, hydrating their plan would re-run scoreTools
+    // against an empty toolAns array and pick the wrong AI.
+    const payload = { t: toolAns, a: answers, m: matchedTool };
     const json = JSON.stringify(payload);
     return btoa(unescape(encodeURIComponent(json)))
       .replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
@@ -951,6 +1006,12 @@ function hydrateFromHash(){
     if(typeof data.t[i] !== "undefined") toolAns[i] = data.t[i];
   }
   Object.assign(answers, data.a);
+  // If the encoded payload includes a matched tool (express-checkout
+  // buyers, whose toolAns is empty), honor it directly.
+  if (data.m && TOOLS[data.m]) {
+    matchedTool = data.m;
+    ranked = [{name: data.m, score: 99}];
+  }
   return true;
 }
 function planUrl(){
@@ -1837,7 +1898,45 @@ function go(v){
   document.querySelectorAll(".view").forEach(s=>s.classList.remove("active"));
   document.getElementById(v).classList.add("active");
   if(v==="quiz"){ qi=0; renderQ(); }
+  if(v==="express"){ renderExpress(); }
   window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ============================================================
+   Express checkout — 3 questions, straight to Stripe.
+   Buyer picks their AI, focus track, and daily time. Defaults
+   level=dabble and privacy=balanced (middle-of-road). The plan
+   personalises on those + tool choice, same as a full-quiz buyer.
+   ============================================================ */
+const EX_STATE = { tool: null, focus: null, time: null };
+const EX_TOOLS = [["claude","Claude"],["chatgpt","ChatGPT"],["gemini","Gemini"],["copilot","Copilot"],["perplexity","Perplexity"],["grok","Grok"]];
+const EX_FOCUS = [["parenting","Parenting & home"],["work","Work & career"],["both","Both"]];
+const EX_TIME  = [["10","~10 min"],["20","~20 min"],["30","30+ min"]];
+function renderExpress(){
+  const paint = (id, list, field) => {
+    document.getElementById(id).innerHTML = list.map(([k,name])=>
+      '<button type="button" class="ex-pill'+(EX_STATE[field]===k?' on':'')+'" onclick="exPick(\''+field+'\',\''+k+'\')">'+name+'</button>'
+    ).join('');
+  };
+  paint("exTools", EX_TOOLS, "tool");
+  paint("exFocus", EX_FOCUS, "focus");
+  paint("exTime",  EX_TIME,  "time");
+  document.getElementById("exGo").disabled = !(EX_STATE.tool && EX_STATE.focus && EX_STATE.time);
+}
+function exPick(field, value){ EX_STATE[field] = value; renderExpress(); }
+function expressCheckout(){
+  if(!(EX_STATE.tool && EX_STATE.focus && EX_STATE.time)) return;
+  matchedTool = EX_STATE.tool;
+  runnerTool  = EX_STATE.tool === "claude" ? "chatgpt" : "claude";
+  currentTrack = EX_STATE.focus === "work" ? "work" : "parenting";
+  answers.focus   = EX_STATE.focus;
+  answers.time    = EX_STATE.time;
+  answers.level   = "dabble";
+  answers.privacy = "balanced";
+  ranked = [{name: EX_STATE.tool, score: 99}];
+  const ref = encodeAnswers();
+  const sep = CONFIG.checkoutUrl.indexOf("?") >= 0 ? "&" : "?";
+  window.location = CONFIG.checkoutUrl + (ref ? (sep + "client_reference_id=" + ref) : "");
 }
 renderQ();
 
@@ -1846,10 +1945,16 @@ renderQ();
 (function(){
   if (hydrateFromHash()) {
     currentTrack = answers.focus === "work" ? "work" : "parenting";
-    ranked = scoreTools();
-    if (ranked[0] && ranked[0].score > 0) {
-      matchedTool = ranked[0].name;
-      runnerTool  = (ranked[1] && ranked[1].name) || runnerTool;
+    // Only re-score if the buyer actually took the quiz. Express
+    // buyers have an empty toolAns; hydrateFromHash already set their
+    // matchedTool from the encoded `m` field.
+    const tookQuiz = toolAns.some(a => a != null);
+    if (tookQuiz) {
+      ranked = scoreTools();
+      if (ranked[0] && ranked[0].score > 0) {
+        matchedTool = ranked[0].name;
+        runnerTool  = (ranked[1] && ranked[1].name) || runnerTool;
+      }
     }
     buildResult();
     go('result');
