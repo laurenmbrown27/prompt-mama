@@ -77,7 +77,7 @@ Zip the folder, drag onto [app.netlify.com/drop](https://app.netlify.com/drop). 
 
 In Netlify: **Site settings → Domain management → Add custom domain**.
 
-If using `promptmama.com` (or similar), update these references in `index.html`:
+If using `promptmama.ai` (or similar), update these references in `index.html`:
 
 - `<link rel="canonical">`
 - All `og:url` and `twitter:url` meta tags
@@ -85,7 +85,7 @@ If using `promptmama.com` (or similar), update these references in `index.html`:
 - `sitemap.xml`
 - `robots.txt`
 
-A find-and-replace on `https://promptmama.com` does it.
+A find-and-replace on `https://promptmama.ai` does it.
 
 ## Updating content
 
@@ -141,5 +141,5 @@ Personal site — all content, branding, and copy © Lauren Howard. Code is prov
 
 - Instagram: [@prompt_mama](https://instagram.com/prompt_mama)
 - TikTok: [@prompt_mama](https://www.tiktok.com/@prompt_mama)
-- Email: hello@promptmama.com
+- Email: hello@promptmama.ai
 - CAEVO: [caevo.ai](https://caevo.ai)

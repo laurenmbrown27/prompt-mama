@@ -12,7 +12,7 @@ const supabase = createClient(
 const generateCode = customAlphabet('ABCDEFGHJKMNPQRSTUVWXYZ23456789', 10);
 
 // Public URL of the site, used to build the buyer's personalized plan link.
-const SITE_URL = (process.env.SITE_URL || 'https://promptmama.com').replace(/\/+$/, '');
+const SITE_URL = (process.env.SITE_URL || 'https://promptmama.ai').replace(/\/+$/, '');
 
 // Sending identity for Resend. Default lets the function work right away
 // using Resend's testing sender; swap to a verified address on your own
@@ -78,8 +78,8 @@ function welcomeEmailHtml({ code, planUrl }) {
     </table>
     <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="580" style="max-width:580px;width:100%;margin-top:18px;">
       <tr><td align="center" style="padding:8px 16px;font-size:11.5px;color:#475379;font-weight:500;line-height:1.5;">
-        You're getting this because you bought the 30-Day AI Glow-Up at promptmama.com.<br>
-        <a href="${SITE_URL}" style="color:#DB2777;text-decoration:none;font-weight:700;">promptmama.com</a> &nbsp;·&nbsp;
+        You're getting this because you bought the 30-Day AI Glow-Up at promptmama.ai.<br>
+        <a href="${SITE_URL}" style="color:#DB2777;text-decoration:none;font-weight:700;">promptmama.ai</a> &nbsp;·&nbsp;
         <a href="https://instagram.com/prompt_mama" style="color:#DB2777;text-decoration:none;font-weight:700;">@prompt_mama</a>
       </td></tr>
     </table>
@@ -112,7 +112,7 @@ Questions? Just reply.
 
 xo Lauren
 Prompt Mama
-promptmama.com · @prompt_mama`;
+promptmama.ai · @prompt_mama`;
 }
 
 async function sendCodeEmail({ to, code, planUrl }) {
