@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>You're in! · The 30-Day AI Glow-Up · Prompt Mama</title>
-<meta name="description" content="Thanks for joining the 30-Day AI Glow-Up. Your access code is on the way to your inbox." />
+<title>Setting up your plan… · Prompt Mama</title>
+<meta name="description" content="Your 30-Day AI Glow-Up is being prepared." />
 <link rel="canonical" href="https://promptmama.ai/welcome.html" />
 <meta name="theme-color" content="#EC4899" />
 <meta name="robots" content="noindex" />
@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/styles.css?v=21" />
+<link rel="stylesheet" href="/styles.css?v=24" />
 <style>
 body.welcome-page{
   --pink:#EC4899;
@@ -21,9 +21,9 @@ body.welcome-page{
   --plum:#1E2A4A;
   --plum-soft:#475379;
   --blue:#BFDFEF;
+  --blue-deep:#7CB6D6;
   --yellow:#FDE047;
   --yellow-soft:#FEF9C3;
-  --gold:#CA8A04;
   font-family:"Poppins",system-ui,sans-serif;
   color:var(--plum);
   background:#FFFFFF;
@@ -38,27 +38,38 @@ body.welcome-page .wc-bg{position:fixed;inset:0;z-index:-1;background:
   radial-gradient(800px 500px at 6% 10%, #FCE7F3, transparent 55%),
   radial-gradient(700px 500px at 50% 110%, #FEF9C3, transparent 62%),
   #fff;}
-body.welcome-page .wc-wrap{max-width:680px;margin:0 auto;padding:80px 22px 40px;text-align:center}
-body.welcome-page h1{font-family:"Poppins";font-weight:900;line-height:1.04;letter-spacing:-.02em;color:var(--plum);font-size:clamp(38px,7vw,58px);margin:18px auto 12px;max-width:14ch}
+body.welcome-page .wc-wrap{max-width:640px;margin:0 auto;padding:80px 22px 40px;text-align:center}
+body.welcome-page h1{font-family:"Poppins";font-weight:900;line-height:1.04;letter-spacing:-.02em;color:var(--plum);font-size:clamp(34px,6vw,52px);margin:14px auto 12px;max-width:14ch}
 body.welcome-page em{font-style:normal;color:var(--pink)}
 body.welcome-page .wc-eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--plum);background:var(--yellow);padding:7px 16px;border-radius:999px}
 body.welcome-page .wc-eyebrow::before,
 body.welcome-page .wc-eyebrow::after{content:"★";font-size:10px;color:var(--plum)}
 body.welcome-page .wc-celebrate{font-size:64px;line-height:1;margin-bottom:6px}
-body.welcome-page .wc-lede{font-size:18px;color:var(--plum-soft);max-width:48ch;margin:14px auto 0;font-weight:500}
-body.welcome-page .wc-card{background:#fff;border:2px solid var(--blue);border-radius:24px;padding:28px 26px;margin:36px auto 0;text-align:left;max-width:560px;box-shadow:0 12px 36px -18px rgba(30,42,74,.35)}
-body.welcome-page .wc-card h2{font-family:"Poppins";font-weight:900;font-size:20px;color:var(--plum);margin:0 0 10px;letter-spacing:-.01em}
+body.welcome-page .wc-lede{font-size:17px;color:var(--plum-soft);max-width:42ch;margin:14px auto 0;font-weight:500}
+
+/* progress dots */
+body.welcome-page .wc-progress{display:flex;gap:8px;justify-content:center;margin:30px auto 12px}
+body.welcome-page .wc-progress i{width:10px;height:10px;border-radius:50%;background:var(--blue-deep);opacity:.35;animation:wcdot 1.4s ease-in-out infinite}
+body.welcome-page .wc-progress i:nth-child(2){animation-delay:.18s}
+body.welcome-page .wc-progress i:nth-child(3){animation-delay:.36s}
+@keyframes wcdot{0%,80%,100%{opacity:.25;transform:scale(.9)}40%{opacity:1;transform:scale(1.15);background:var(--pink)}}
+body.welcome-page .wc-status{font-size:13.5px;color:var(--plum-soft);font-weight:600;margin-top:4px}
+
+/* fallback card (shown if polling takes too long) */
+body.welcome-page .wc-card{background:#fff;border:2px solid var(--blue);border-radius:24px;padding:28px 26px;margin:30px auto 0;text-align:left;max-width:540px;box-shadow:0 12px 36px -18px rgba(30,42,74,.35)}
+body.welcome-page .wc-card h2{font-family:"Poppins";font-weight:900;font-size:19px;color:var(--plum);margin:0 0 10px;letter-spacing:-.01em}
+body.welcome-page .wc-card p{font-size:14.5px;color:var(--plum-soft);margin:0 0 14px;font-weight:500;line-height:1.55}
 body.welcome-page .wc-card ol{margin:0;padding:0 0 0 22px;display:grid;gap:10px}
-body.welcome-page .wc-card li{font-size:14.5px;font-weight:500;color:var(--plum);line-height:1.55}
+body.welcome-page .wc-card li{font-size:14px;font-weight:500;color:var(--plum);line-height:1.55}
 body.welcome-page .wc-card li b{font-weight:800}
-body.welcome-page .wc-card li code{background:var(--yellow-soft);padding:1px 6px;border-radius:4px;font-family:"Poppins";font-weight:700;font-size:13px;color:var(--plum)}
-body.welcome-page .wc-cta{display:inline-flex;align-items:center;gap:9px;background:var(--pink);color:#fff;font-family:"Poppins";font-weight:800;font-size:16px;text-decoration:none;padding:16px 32px;border-radius:999px;margin-top:32px;box-shadow:0 4px 0 var(--plum);transition:.2s}
+body.welcome-page .wc-cta{display:inline-flex;align-items:center;gap:9px;background:var(--pink);color:#fff;font-family:"Poppins";font-weight:800;font-size:16px;text-decoration:none;padding:15px 30px;border-radius:999px;margin-top:20px;box-shadow:0 4px 0 var(--plum);transition:.2s;border:none;cursor:pointer}
 body.welcome-page .wc-cta:hover{transform:translateY(-2px) scale(1.02)}
 body.welcome-page .wc-cta:active{transform:translateY(2px) scale(.99);box-shadow:0 1px 0 var(--plum)}
 body.welcome-page .wc-ghost{display:inline-block;margin-top:14px;color:var(--plum-soft);font-size:13.5px;font-weight:600;text-decoration:none;padding:8px}
 body.welcome-page .wc-ghost:hover{color:var(--pink)}
-body.welcome-page .wc-help{margin-top:36px;font-size:13.5px;color:var(--plum-soft);font-weight:500}
+body.welcome-page .wc-help{margin-top:24px;font-size:13.5px;color:var(--plum-soft);font-weight:500}
 body.welcome-page .wc-help a{color:var(--pink-deep);text-decoration:none;font-weight:700}
+body.welcome-page .hidden{display:none !important}
 
 /* confetti */
 body.welcome-page .confetti-wrap{position:fixed;inset:0;z-index:5;pointer-events:none;overflow:hidden}
@@ -101,36 +112,52 @@ body.welcome-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:
 <div class="site-nav-backdrop" id="navBackdrop" hidden></div>
 
 <main class="wc-wrap">
-  <div class="wc-celebrate">🎉</div>
-  <span class="wc-eyebrow">You're in!</span>
-  <h1>Welcome to <em>your</em> 30-day Glow-Up.</h1>
-  <p class="wc-lede">Your payment went through and your personalized access code is on its way to your inbox right now.</p>
-
-  <div class="wc-card">
-    <h2>Here's what happens next:</h2>
-    <ol>
-      <li><b>Check your email</b> for a message from Prompt Mama with your one-of-a-kind <code>access code</code>. (Peek in spam if it doesn't show in 2&nbsp;minutes.)</li>
-      <li><b>Open your plan</b> — take the 2-minute quiz if you haven't yet, or jump straight to Day&nbsp;1.</li>
-      <li><b>Hit "Unlock"</b> at the bottom of Week&nbsp;1 and paste in the email you bought with + your access code.</li>
-      <li>The full 30 days unlock instantly, and a quick <b>setup helper</b> walks you through getting started on your matched AI.</li>
-    </ol>
+  <!-- Default: polling state -->
+  <div id="wcPolling">
+    <div class="wc-celebrate">🎉</div>
+    <span class="wc-eyebrow">Payment received</span>
+    <h1>Spinning up <em>your</em> plan…</h1>
+    <p class="wc-lede" id="wcLede">Personalizing your 30-day Glow-Up. This usually takes a few seconds — keep this tab open.</p>
+    <div class="wc-progress" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p class="wc-status" id="wcStatus">Generating your access code…</p>
   </div>
 
-  <a href="/glow-up?welcome=1" class="wc-cta">Open my plan <span aria-hidden="true">→</span></a>
-  <div><a href="/" class="wc-ghost">← Back to Prompt Mama</a></div>
+  <!-- Success: brief flash before redirect -->
+  <div id="wcReady" class="hidden">
+    <div class="wc-celebrate">✨</div>
+    <span class="wc-eyebrow">All set</span>
+    <h1>Your plan is <em>ready</em>.</h1>
+    <p class="wc-lede">Taking you to your unlocked Glow-Up now…</p>
+  </div>
 
-  <p class="wc-help">Didn't get your email? Wait a couple minutes, then check spam. Still nothing? <a href="mailto:prompt.mama.community@gmail.com?subject=Glow-Up%20access%20code">Email us</a> with the address you bought with and we'll resend.</p>
+  <!-- Fallback: polling timed out OR session_id missing OR they came here from email -->
+  <div id="wcFallback" class="hidden">
+    <div class="wc-celebrate">🎉</div>
+    <span class="wc-eyebrow">You're in</span>
+    <h1>Welcome to <em>your</em> Glow-Up.</h1>
+    <p class="wc-lede">Your access code is on its way to your inbox. From the email you can open your plan on any device.</p>
+    <div class="wc-card">
+      <h2>What to do next</h2>
+      <ol>
+        <li><b>Check your inbox</b> for a message from Prompt Mama with your access code. (Peek in spam if it isn't there in 2&nbsp;minutes.)</li>
+        <li><b>Tap "Open my plan"</b> in that email — it remembers your quiz answers, so you land right where you left off.</li>
+        <li><b>Hit "Unlock"</b> at the bottom of Week&nbsp;1 and paste in the email you bought with + your access code.</li>
+        <li>Weeks 2–4 unlock instantly. <b>Setup helper</b> walks you through your matched AI.</li>
+      </ol>
+    </div>
+    <a href="/glow-up" class="wc-cta">Open my plan <span aria-hidden="true">→</span></a>
+    <p class="wc-help">Didn't get the email? <a href="mailto:prompt.mama.community@gmail.com?subject=Glow-Up%20access%20code">Email us</a> with the address you bought with and we'll resend.</p>
+  </div>
 </main>
 
-<script src="/script.js?v=2" defer></script>
 <script>
-/* lightweight confetti */
 (function(){
+  /* Lightweight confetti — fires on every state */
   const c = document.createElement("div");
   c.className = "confetti-wrap";
   document.body.appendChild(c);
   const colors = ["#EC4899","#FDE047","#BFDFEF","#7AAB92","#7CB6D6"];
-  for (let i = 0; i < 110; i++) {
+  for (let i = 0; i < 90; i++) {
     const p = document.createElement("i");
     p.style.left = Math.random() * 100 + "vw";
     p.style.background = colors[i % colors.length];
@@ -141,6 +168,91 @@ body.welcome-page .confetti-wrap i{position:absolute;top:-12px;width:9px;height:
   }
   setTimeout(() => c.remove(), 4800);
 })();
+
+(function(){
+  /* Auto-unlock flow:
+     1. Read Stripe session_id from the URL (Stripe substitutes
+        {CHECKOUT_SESSION_ID} into the redirect).
+     2. Poll /api/lookup-code until the webhook has issued a code.
+     3. Stash the code (and email) in localStorage and redirect into
+        the unlocked plan with the buyer's personalized hash.
+     4. If polling stalls past ~22s, drop to a manual instructions
+        card so the buyer can still finish via the email + code.
+  */
+  const params = new URLSearchParams(location.search);
+  const sid = params.get("session_id");
+  const pollingEl  = document.getElementById("wcPolling");
+  const readyEl    = document.getElementById("wcReady");
+  const fallbackEl = document.getElementById("wcFallback");
+  const statusEl   = document.getElementById("wcStatus");
+
+  function showFallback(){
+    pollingEl.classList.add("hidden");
+    readyEl.classList.add("hidden");
+    fallbackEl.classList.remove("hidden");
+  }
+  function showReady(){
+    pollingEl.classList.add("hidden");
+    fallbackEl.classList.add("hidden");
+    readyEl.classList.remove("hidden");
+  }
+
+  if (!sid) {
+    // No session_id — they probably navigated here directly or from
+    // the email. Skip polling and show the manual instructions.
+    showFallback();
+    return;
+  }
+
+  const PROGRESS_MESSAGES = [
+    "Generating your access code…",
+    "Saving your match…",
+    "Almost there…",
+    "Just a sec — the webhook's catching up…"
+  ];
+  let polls = 0;
+  const MAX_POLLS = 15;          // ~22s at 1.5s interval
+  const POLL_INTERVAL_MS = 1500;
+
+  async function tick(){
+    polls++;
+    if (polls > MAX_POLLS) { showFallback(); return; }
+    if (polls === 4) statusEl.textContent = PROGRESS_MESSAGES[1];
+    if (polls === 8) statusEl.textContent = PROGRESS_MESSAGES[2];
+    if (polls === 12) statusEl.textContent = PROGRESS_MESSAGES[3];
+
+    try {
+      const r = await fetch("/api/lookup-code?session_id=" + encodeURIComponent(sid), {
+        headers: { "Accept": "application/json" },
+        cache: "no-store"
+      });
+      if (r.ok) {
+        const data = await r.json();
+        if (data && data.code) {
+          // Bake the unlock into localStorage so /glow-up bypasses
+          // the paywall the second it loads.
+          try { localStorage.setItem("pm_glowup_unlocked", data.code); } catch(e){}
+          if (data.email) {
+            try { localStorage.setItem("pm_glowup_email", data.email); } catch(e){}
+          }
+          showReady();
+          // Tiny pause so the buyer registers "your plan is ready"
+          // before the redirect — feels intentional rather than jarring.
+          setTimeout(() => {
+            location.href = data.planUrl || "/glow-up?welcome=1";
+          }, 900);
+          return;
+        }
+      }
+    } catch(e) { /* network blip — keep polling */ }
+    setTimeout(tick, POLL_INTERVAL_MS);
+  }
+
+  // Kick off the first poll after a brief beat so the celebration
+  // can be felt rather than blink-and-miss.
+  setTimeout(tick, 600);
+})();
 </script>
+<script src="/script.js?v=2" defer></script>
 </body>
 </html>

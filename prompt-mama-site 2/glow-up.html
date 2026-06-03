@@ -1975,7 +1975,8 @@ renderQ();
         launchOnboarding();
       }
       // Clean the URL so refresh doesn't re-fire confetti.
-      history.replaceState({}, "", window.location.pathname);
+      // Keep the #p= hash so the buyer's plan still hydrates on reload.
+      history.replaceState({}, "", window.location.pathname + window.location.hash);
     }
   } catch (e) {}
 })();
