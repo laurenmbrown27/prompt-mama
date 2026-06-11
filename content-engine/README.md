@@ -26,6 +26,7 @@ That's the whole system. No dashboards, no subscriptions. Your calendar **is** t
 | `trends.md` | Current Reels formats + trending audio, dated and refreshed weekly by Claude |
 | `templates.md` | Post archetypes, hook bank, and caption skeletons in the Prompt Mama voice |
 | `calendar/` | One markdown file per week — the drafted posts of record |
+| `dashboard.html` | **Your private mission-control page** — double-click to open. Shows every drafted post with one-tap copy buttons, hashtag sets, and the trend radar. Lives outside the deployed site folder, so it never appears on promptmama.ai. Claude refreshes it weekly. |
 
 ## The one prompt you need
 

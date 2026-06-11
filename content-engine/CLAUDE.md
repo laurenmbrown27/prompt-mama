@@ -53,8 +53,22 @@ lightest weekday, listing every shot for the week.
 
 Keep the recurring Sunday 8 PM "Content Engine" planning event — that's the trigger.
 
-## Step 4 — Commit
+## Step 4 — Update the dashboard
+Update the `DATA` object in `dashboard.html` (Lauren's private internal page): add the
+new week with every post's slot, title, pillar, trend, audio, shot notes, and caption;
+refresh the trends list; drop weeks older than 2 weeks. Keep it a single self-contained
+file that works offline.
+
+## Step 5 — Commit
 Commit the new/updated files with a message like `Content week of Jun 15` and push.
+
+## Privacy rules (this folder is Lauren's internal tool)
+- **Never** move or copy anything from `content-engine/` into `prompt-mama-site 2/` —
+  that folder is the deployed public website. This folder must stay out of the deploy.
+- Never link `dashboard.html` from the site, the sitemap, or anywhere public; keep its
+  `noindex` meta tag.
+- If the GitHub repo is ever public, remind Lauren to set it to Private
+  (repo Settings → General → Danger Zone → Change visibility).
 
 ## Standing rules
 - Captions are written to be posted **as-is** — no `[insert here]` blanks except kid
