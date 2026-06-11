@@ -22,9 +22,23 @@ Rewrite `trends.md` with: 3–5 usable formats, 3–5 audio picks, and **a Promp
 adaptation for each** (a trend is only listed if we can map it to AI-for-parents).
 Date the file. Discard anything older than 2 weeks.
 
+Also refresh the **audience panel** (in `trends.md` and the dashboard's
+"Trending with women 30–55" section): search "Instagram trends women 30-55 /
+millennial moms / Gen X" for format performance shifts, save/share behavior, and
+topic trends in that demographic. Keep the format scoreboard numbers current.
+
 ## Step 2 — Draft the week
 Create `calendar/YYYY-MM-DD.md` (the Monday of the target week) with **4 feed posts
-+ 1–2 story beats**, using the cadence in `brand-profile.md`. Every post must include:
++ 1–2 story beats**, using the cadence in `brand-profile.md`.
+
+**Format mix — never all reels.** Each week: 1–2 reels + 1–2 carousels + 1 static
+photo. Reels = discovery (new followers); carousels = engagement + saves from the
+30–55 female audience (saves and DM shares outweigh likes in the algorithm); photo
+dumps / screenshot-style statics = authenticity + zero-film weeks. Match format to
+job: trend rides → reel; multi-prompt value → carousel; storytime/recap → photo dump
+or static.
+
+Every post must include:
 
 - **Slot**: day + time (per the scheduling rules)
 - **Format**: Reel / carousel / photo / story

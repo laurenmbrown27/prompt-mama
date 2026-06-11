@@ -51,6 +51,12 @@ Secondary: parents navigating career changes who want AI for the job hunt.
   - Evening fallback: **7:30 PM** any day
 - **Cadence**: 4 feed posts/week (Mon · Wed · Fri-or-Thu · Sun) + 1–2 story beats.
   On a slammed week: 3 posts, never zero — consistency beats volume
+- **Format mix (every week)**: 1–2 reels + 1–2 carousels + 1 static photo. Never all
+  reels. Why: for our 30–55 female audience, reels are the discovery engine (more
+  reach, new followers) but carousels earn more engagement and ~22% more saves from
+  existing followers — and saves/DM-shares are what the algorithm rewards now. Photo
+  dumps and screenshot-style statics read as authentic to this demo and are zero-film
+  formats for heavy weeks
 - **Planning ritual**: Sunday 8:00 PM — recurring calendar block runs the content engine
   with Claude for the following week
 - **Batching tendency**: prefers to film several clips in one sitting when energy is high;

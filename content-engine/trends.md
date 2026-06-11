@@ -39,6 +39,34 @@
 *Always confirm in-app that the audio is still trending (arrow icon) before posting;
 fallback is original audio + voiceover, which performs fine for prompt tutorials.*
 
+## Audience panel: what works for women 30–55 (June 2026)
+**Format scoreboard for our demo:**
+- **Reels** = discovery engine: ~36% more reach than carousels, best for new followers.
+  But not the engagement king anymore.
+- **Carousels** = conversion engine: ~12% more engagement than reels with existing
+  followers and ~22% more saves than single photos; Instagram re-serves carousels to
+  people who didn't swipe the first time.
+- **Photo dumps** = one of the most-engaged formats right now — authentic > polished;
+  this demo rewards "real life" over studio production.
+- **Algorithm note:** saves and DM shares now outweigh likes (DM shares weighted
+  ~3–5× higher) — make content worth *sending to a friend* ("send this to the mom
+  who…").
+- **Long captions win:** 100–300 word value-packed captions increase time-on-post;
+  short-and-witty is out for this audience.
+- **Nostalgia hooks** (90s/Y2K/2016-era internet) drive shares with 35–55; mental-load
+  and wellness framing drives saves. Millennial moms specifically seek community +
+  mental-wellness content (~46% look for community support).
+- **Practical mix:** 1–2 reels + 1–2 carousels + 1 static per week (we run lighter on
+  reels than the generic "60–70% reels" advice because our growth goal is a saved-and-
+  shared utility brand for an older female demo, not teen reach).
+
+**Sources:** [Sprout Social — 2026 IG trends](https://sproutsocial.com/insights/instagram-trends/) ·
+[TrueFuture — reach 2026](https://www.truefuturemedia.com/articles/instagram-reach-2026-algorithm-reels-carousels-caption-seo) ·
+[Krumzi — carousel engagement](https://www.krumzi.com/blog/15-instagram-carousel-ideas-that-actually-drive-engagement-in-2026) ·
+[SocialRails — photo trends](https://socialrails.com/blog/instagram-photo-trends) ·
+[Sprout — Gen X social](https://sproutsocial.com/insights/gen-x-social-media/) ·
+[Accio — millennial mom trends](https://www.accio.com/business/millennial_mom_trends)
+
 ## What's hot in the AI-parenting conversation right now
 - **"ChatGPT as co-parent" virals** — a mom's TikTok on AI as emotional/logistical
   support hit 710K+ views (meal plans, aisle-sorted lists, gift finding, packing
