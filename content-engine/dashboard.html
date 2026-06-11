@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <!--
   PROMPT MAMA · CONTENT ENGINE DASHBOARD — INTERNAL TOOL
-  This file is intentionally OUTSIDE "prompt-mama-site 2/", so Netlify never
-  deploys it. It is not linked anywhere, not in the sitemap, and noindex'd as
-  a belt-and-braces measure. Open it by double-clicking — no server needed.
-  Claude updates the DATA object each week when the content engine runs.
+  Lives OUTSIDE "prompt-mama-site 2/" so Netlify never deploys it. Not linked,
+  not in the sitemap, noindex'd. Open by double-clicking — works offline.
+  All content is static HTML (renders even where JavaScript is blocked, e.g.
+  phone file previews). JS only powers copy buttons, checkboxes, and share links.
+  Claude updates this page every week when the content engine runs.
 -->
 <html lang="en">
 <head>
@@ -12,177 +13,465 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
 <title>Content Engine · Prompt Mama (internal)</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Caveat:wght@600&display=swap" rel="stylesheet" />
 <style>
   :root { --pink:#FF3D8A; --navy:#1B2A4A; --yellow:#FFD23F; --blue:#7AC7E8; --bg:#FFF7FA; --ink:#2A2A35; }
   * { box-sizing:border-box; margin:0; }
-  body { font-family:'Poppins',system-ui,sans-serif; background:var(--bg); color:var(--ink); padding:24px 16px 80px; }
-  .wrap { max-width:880px; margin:0 auto; }
-  .badge { display:inline-block; background:var(--navy); color:#fff; font-size:11px; letter-spacing:.12em; padding:4px 12px; border-radius:999px; text-transform:uppercase; }
-  h1 { font-size:clamp(26px,5vw,40px); font-weight:800; margin:10px 0 2px; }
-  h1 em { font-family:'Caveat',cursive; color:var(--pink); font-style:normal; }
-  .sub { color:#6b6b78; font-size:14px; margin-bottom:22px; }
-  .tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
-  .tabs button { font:inherit; font-weight:600; font-size:13px; border:2px solid var(--navy); background:#fff; color:var(--navy); border-radius:999px; padding:8px 16px; cursor:pointer; }
-  .tabs button.on { background:var(--pink); border-color:var(--pink); color:#fff; }
-  .card { background:#fff; border-radius:18px; padding:20px 22px; margin-bottom:16px; box-shadow:0 3px 14px rgba(27,42,74,.08); border-top:5px solid var(--pink); }
-  .card.alt1{border-top-color:var(--yellow);} .card.alt2{border-top-color:var(--blue);} .card.alt3{border-top-color:var(--navy);}
-  .slot { font-size:12px; font-weight:700; color:var(--pink); letter-spacing:.06em; text-transform:uppercase; }
-  .card h3 { font-size:18px; margin:4px 0 8px; }
-  .meta { font-size:13px; color:#555; margin-bottom:10px; line-height:1.55; }
+  body { font-family:'Poppins',system-ui,sans-serif; background:var(--bg); color:var(--ink); padding-bottom:80px; }
+  .hero { background:linear-gradient(135deg,var(--navy) 0%, #2e4370 60%, #71337a 100%); color:#fff; padding:34px 20px 30px; }
+  .hero-inner, .wrap { max-width:920px; margin:0 auto; }
+  .badge { display:inline-block; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.35); font-size:11px; letter-spacing:.12em; padding:4px 12px; border-radius:999px; text-transform:uppercase; }
+  .hero h1 { font-size:clamp(28px,5vw,44px); font-weight:900; margin:12px 0 4px; }
+  .hero h1 em { font-family:'Caveat',cursive; color:var(--yellow); font-style:normal; }
+  .hero p { color:#e8d9ef; font-size:14px; max-width:560px; }
+  .stats { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+  .stat { background:rgba(255,255,255,.12); border-radius:14px; padding:10px 16px; }
+  .stat b { display:block; font-size:20px; color:var(--yellow); }
+  .stat span { font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; color:#dcd1e6; }
+  .quicklinks { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+  .quicklinks a { color:#fff; background:var(--pink); text-decoration:none; font-weight:700; font-size:12.5px; padding:9px 16px; border-radius:999px; }
+  .quicklinks a.ghost { background:transparent; border:2px solid rgba(255,255,255,.5); }
+  .wrap { padding:26px 16px 0; }
+  .toc { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:26px; }
+  .toc a { font-weight:600; font-size:13px; border:2px solid var(--navy); color:var(--navy); background:#fff; border-radius:999px; padding:7px 15px; text-decoration:none; }
+  h2.sec { font-size:22px; font-weight:800; margin:34px 0 4px; }
+  h2.sec em { font-family:'Caveat',cursive; color:var(--pink); font-style:normal; font-size:26px; }
+  .secnote { background:#fff8e1; border-left:4px solid var(--yellow); border-radius:0 12px 12px 0; padding:11px 16px; font-size:13px; margin:10px 0 18px; line-height:1.6; }
+  .card { background:#fff; border-radius:20px; padding:20px 22px; margin-bottom:18px; box-shadow:0 4px 18px rgba(27,42,74,.09); border-top:6px solid var(--pink); }
+  .card.c1{border-top-color:var(--yellow);} .card.c2{border-top-color:var(--blue);} .card.c3{border-top-color:var(--navy);}
+  .cardtop { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; flex-wrap:wrap; }
+  .slot { font-size:12px; font-weight:700; color:var(--pink); letter-spacing:.07em; text-transform:uppercase; }
+  .done-wrap { font-size:12px; font-weight:600; color:#555; display:flex; align-items:center; gap:6px; cursor:pointer; user-select:none; }
+  .done-wrap input { width:17px; height:17px; accent-color:#1e9e6a; }
+  .card h3 { font-size:18.5px; margin:4px 0 10px; line-height:1.35; }
+  .pills { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+  .pill { font-size:11px; font-weight:700; padding:4px 11px; border-radius:999px; letter-spacing:.04em; }
+  .pill.ig { background:#fde7f1; color:#c2185b; } .pill.fb { background:#e7effd; color:#1a56b8; }
+  .pill.li { background:#e3f3fb; color:#0a66a3; } .pill.tr { background:#fff3cd; color:#8a6d00; }
+  .meta { font-size:13px; color:#555; line-height:1.6; margin-bottom:6px; }
   .meta b { color:var(--navy); }
-  details { margin-top:8px; }
+  details { margin:8px 0; }
   summary { cursor:pointer; font-weight:600; font-size:13.5px; color:var(--navy); }
-  .cap { white-space:pre-wrap; background:var(--bg); border-radius:12px; padding:14px; font-size:13.5px; line-height:1.6; margin-top:10px; border:1px dashed #f3b8d0; }
-  .copy { font:inherit; font-weight:700; font-size:12.5px; margin-top:10px; background:var(--navy); color:#fff; border:0; border-radius:999px; padding:8px 18px; cursor:pointer; }
+  .plat { margin-top:14px; border:1px solid #f1dce8; border-radius:14px; padding:13px 14px; background:#fffbfd; }
+  .plat-head { font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .plat-head .when { font-weight:600; color:#777; text-transform:none; letter-spacing:0; }
+  .cap { white-space:pre-wrap; font-family:inherit; font-size:13.5px; line-height:1.65; background:var(--bg); border:1px dashed #f3b8d0; border-radius:12px; padding:13px; overflow-x:auto; }
+  .btnrow { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .copy, .share { font:inherit; font-weight:700; font-size:12.5px; border:0; border-radius:999px; padding:8px 17px; cursor:pointer; color:#fff; background:var(--navy); }
+  .share { background:#0a66a3; text-decoration:none; display:inline-block; }
+  .share.meta-btn { background:#1a56b8; }
   .copy.ok { background:#1e9e6a; }
-  .grid { display:grid; gap:10px; }
-  .tag-set { background:#fff; border-radius:14px; padding:14px 16px; box-shadow:0 2px 10px rgba(27,42,74,.07); font-size:13.5px; }
-  .tag-set b { display:block; margin-bottom:4px; color:var(--navy); }
-  .note { background:#fff8e1; border-left:4px solid var(--yellow); border-radius:0 12px 12px 0; padding:12px 16px; font-size:13px; margin:18px 0; line-height:1.6; }
-  .prose { background:#fff; border-radius:18px; padding:22px; font-size:14px; line-height:1.75; box-shadow:0 3px 14px rgba(27,42,74,.08); }
-  .prose h3 { margin:14px 0 6px; font-size:15px; }
+  .prose { background:#fff; border-radius:20px; padding:24px; font-size:14px; line-height:1.8; box-shadow:0 4px 18px rgba(27,42,74,.09); margin-bottom:18px; }
+  .prose h3 { margin:16px 0 6px; font-size:15.5px; } .prose h3:first-child{margin-top:0;}
   .prose code { background:var(--bg); padding:2px 7px; border-radius:6px; font-size:12.5px; }
-  footer { text-align:center; color:#9a9aa8; font-size:12px; margin-top:36px; }
+  .prose ol, .prose ul { padding-left:20px; }
+  table.sched { width:100%; border-collapse:collapse; font-size:13px; margin-top:8px; }
+  table.sched th, table.sched td { text-align:left; padding:8px 10px; border-bottom:1px solid #f3e3ec; }
+  table.sched th { color:var(--navy); font-size:12px; text-transform:uppercase; letter-spacing:.05em; }
+  .tag-set { background:#fff; border-radius:14px; padding:14px 16px; box-shadow:0 2px 10px rgba(27,42,74,.07); font-size:13.5px; margin-bottom:10px; }
+  .tag-set b { display:block; margin-bottom:4px; color:var(--navy); }
+  footer { text-align:center; color:#9a9aa8; font-size:12px; margin-top:40px; padding:0 16px; }
 </style>
 </head>
 <body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="badge">🔒 Internal · never deployed · just for Lauren</span>
+    <h1>Content Engine <em>mission control</em></h1>
+    <p>Every post drafted for Instagram, Facebook, and LinkedIn — tap a card, copy the right version, post. Claude refreshes this page every Sunday.</p>
+    <div class="stats">
+      <div class="stat"><b>9</b><span>posts drafted</span></div>
+      <div class="stat"><b>2</b><span>weeks planned</span></div>
+      <div class="stat"><b>3</b><span>platforms</span></div>
+      <div class="stat"><b>Sun 8 PM</b><span>next engine run</span></div>
+    </div>
+    <div class="quicklinks">
+      <a href="https://business.facebook.com/latest/composer" target="_blank" rel="noopener">📆 Schedule IG + FB → Meta Business Suite</a>
+      <a class="ghost" href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" rel="noopener">in · New LinkedIn post</a>
+      <a class="ghost" href="https://www.instagram.com/prompt_mama/" target="_blank" rel="noopener">@prompt_mama</a>
+    </div>
+  </div>
+</header>
+
 <div class="wrap">
-  <span class="badge">🔒 Internal · never deployed · just for Lauren</span>
-  <h1>Content Engine <em>mission control</em></h1>
-  <p class="sub">Open an event-day card → copy the caption → post. Claude refreshes this page every Sunday when you run the engine.</p>
 
-  <div class="tabs" id="tabs"></div>
-  <div id="view"></div>
+  <nav class="toc">
+    <a href="#w1">Week of Jun 15</a>
+    <a href="#w2">Week of Jun 22</a>
+    <a href="#hashtags">Hashtags</a>
+    <a href="#trends">Trends</a>
+    <a href="#scheduling">How to schedule (IG·FB·LI)</a>
+    <a href="#engine">The engine</a>
+  </nav>
 
-  <footer>Prompt Mama · internal tool · lives at <code>content-engine/dashboard.html</code> — double-click to open, works offline.</footer>
+  <!-- ============ HOW TO SCHEDULE ============ -->
+  <h2 class="sec" id="scheduling">Cross-posting, <em>the honest way</em></h2>
+  <div class="prose">
+    <p><b>Instagram doesn't allow outside tools to quietly auto-post for personal accounts</b> — so the pro move (what social managers actually do) is one 20-minute scheduling sitting per week, right after the Sunday engine run:</p>
+    <table class="sched">
+      <tr><th>Platform</th><th>Where to schedule</th><th>What to paste</th></tr>
+      <tr><td>📸 Instagram</td><td><a href="https://business.facebook.com/latest/composer" target="_blank" rel="noopener">Meta Business Suite</a> (free, official — schedules &amp; auto-publishes Reels, carousels, stories)</td><td>The <b>IG caption</b> from each card</td></tr>
+      <tr><td>👥 Facebook</td><td>Same composer — tick the Facebook Page box in the same step</td><td>The <b>FB version</b> (warmer, no hashtag wall)</td></tr>
+      <tr><td>💼 LinkedIn</td><td>LinkedIn's built-in scheduler (clock icon on a new post) — or the <b>"Open in LinkedIn"</b> button on each card pre-fills the post for you</td><td>The <b>LinkedIn version</b> (professional voice, 2–3 posts/week max)</td></tr>
+    </table>
+    <p style="margin-top:12px"><b>One-time setup (5 min):</b> in the Instagram app → Settings → switch to a <i>Professional (Creator)</i> account if you haven't → then at <a href="https://business.facebook.com" target="_blank" rel="noopener">business.facebook.com</a> connect @prompt_mama + your Facebook Page. After that, Sunday = schedule everything; the rest of the week your phone just buzzes when a post goes live.</p>
+    <p style="margin-top:8px;color:#777;font-size:13px">Want true hands-off auto-publishing later? Buffer's free plan (3 channels) covers IG + FB + LinkedIn from one queue — tell Claude "set me up on Buffer" during a Sunday run and it'll walk you through it.</p>
+  </div>
+
+  <!-- ============ WEEK 1 ============ -->
+  <h2 class="sec" id="w1">Week of <em>June 15</em></h2>
+  <div class="secnote">🗓️ Salesforce interview Mon 4–5 PM (noon slot clear) · Father's Day Sun 6/21 · 🎥 batch-film block Fri 6/12 at 2 PM.</div>
+
+  <div class="card" data-post="w1p1">
+    <div class="cardtop">
+      <span class="slot">Mon 6/15 · 12:00 PM</span>
+      <label class="done-wrap"><input type="checkbox" class="done" /> posted</label>
+    </div>
+    <h3>🎬 Reel — "Sorry, I can't — I have therapy"</h3>
+    <div class="pills"><span class="pill tr">Trend: "I have therapy" POV</span><span class="pill ig">Instagram</span><span class="pill fb">Facebook</span><span class="pill li">LinkedIn</span></div>
+    <div class="meta"><b>Pillar:</b> Prompt of the Day · <b>Audio:</b> trending "therapy" POV sound (check arrow icon in-app) · fallback original + voiceover</div>
+    <details><summary>🎥 Shot notes</summary><div class="meta">Clip 1: deadpan to camera "Sorry, I can't — I have therapy." · Clip 2: coffee at the counter while ChatGPT writes the meal plan (screen-record it).</div></details>
+    <div class="plat"><div class="plat-head">📸 Instagram <span class="when">post at 12:00 PM</span></div><pre class="cap">"Therapy" = watching AI write my grocery list sorted by aisle while my coffee is still hot. ☕
+
+This is the exact AI prompt for moms I use every Monday:
+
+"Plan a week of simple dinners my kids will actually eat (ages __, picky about __). Then write my grocery list sorted by aisle, and flag anything I probably already have in the pantry."
+
+Copy it. Paste it. Go sit down for ten minutes — you've earned it.
+
+Follow @prompt_mama for one prompt a day that gives you your time back. 💗
+
+#PromptMama #AIforMoms #ChatGPTforParents #MomHacks #SummerBreakSurvival</pre><div class="btnrow"><button class="copy">📋 Copy IG caption</button></div></div>
+    <div class="plat"><div class="plat-head">👥 Facebook <span class="when">same time, same video</span></div><pre class="cap">Confession: my Monday "therapy" is watching ChatGPT write my grocery list — sorted by aisle — while my coffee is still hot. ☕
+
+Here's the exact prompt if you want to steal it:
+
+"Plan a week of simple dinners my kids will actually eat (ages __, picky about __). Then write my grocery list sorted by aisle, and flag anything I probably already have in the pantry."
+
+What's the first chore you'd hand over to AI? I'll find you a prompt for it. 👇</pre><div class="btnrow"><button class="copy">📋 Copy FB version</button></div></div>
+    <div class="plat"><div class="plat-head">💼 LinkedIn <span class="when">post Mon morning</span></div><pre class="cap">After 15+ years in tech enablement, here's the most underrated AI use case I've found — and it's not at work.
+
+It's the household mental load.
+
+Every Monday, one prompt plans our family's dinners and writes the grocery list sorted by aisle. Five minutes, and a whole category of invisible labor is off my plate:
+
+"Plan a week of simple dinners my kids will actually eat. Then write my grocery list sorted by aisle, and flag anything I probably already have."
+
+We talk constantly about AI productivity at work. The same skills are quietly transformative at home — especially for working parents.
+
+I share practical AI-for-real-life prompts as Prompt Mama (@prompt_mama). What's one recurring task — at work or home — you've actually handed to AI?
+
+#AILiteracy #WorkingParents #FutureOfWork</pre><div class="btnrow"><button class="copy">📋 Copy LinkedIn version</button><a class="share" href="#" target="_blank" rel="noopener">in · Open in LinkedIn (pre-filled)</a></div></div>
+  </div>
+
+  <div class="card c1" data-post="w1p2">
+    <div class="cardtop">
+      <span class="slot">Wed 6/17 · 12:00 PM</span>
+      <label class="done-wrap"><input type="checkbox" class="done" /> posted</label>
+    </div>
+    <h3>🎠 Carousel — "5 prompts that plan the analog summer day"</h3>
+    <div class="pills"><span class="pill tr">Trend: analog-summer counter-trend</span><span class="pill ig">Instagram</span><span class="pill fb">Facebook</span></div>
+    <div class="meta"><b>Pillar:</b> Family Planner · <b>Format:</b> 7 Canva slides, brand colors — slide copy in <code>calendar/2026-06-15.md</code> (Boredom Jar · Rainy Day Rescue · Fridge Lunch · Sibling Peace Treaty · Backyard Olympics · CTA)</div>
+    <div class="plat"><div class="plat-head">📸 Instagram</div><pre class="cap">The slow-summer moms and the AI moms are not enemies — AI plans the screen-free day, the kids get to be bored on purpose, and nobody asks me "what are we doing today" at 7:02 AM. 🌞
+
+Save this for the next "I'm boooored" — and comment SUMMER for the free AI Parent Pack (3 guides + my favorite mom-tested prompts).
+
+#PromptMama #AIforParents #MomLifeHacks #SummerWithKids #SummerBreakSurvival</pre><div class="btnrow"><button class="copy">📋 Copy IG caption</button></div></div>
+    <div class="plat"><div class="plat-head">👥 Facebook <span class="when">same carousel images</span></div><pre class="cap">Hot take: the slow-summer moms and the AI moms are on the same team. 🌞
+
+AI plans the screen-free day → the kids get to be bored on purpose → and nobody asks me "what are we doing today" at 7:02 AM.
+
+Swipe for 5 copy-paste prompts that plan the whole summer day (boredom jar, rainy-day rescue, fridge lunches, a sibling peace treaty, and backyard Olympics).
+
+Which one are you trying first? 👇</pre><div class="btnrow"><button class="copy">📋 Copy FB version</button></div></div>
+  </div>
+
+  <div class="card c2" data-post="w1p3">
+    <div class="cardtop">
+      <span class="slot">Fri 6/19 · 12:00 PM</span>
+      <label class="done-wrap"><input type="checkbox" class="done" /> posted</label>
+    </div>
+    <h3>🎬 Reel — "Weird things I've asked AI as a mom: summer edition"</h3>
+    <div class="pills"><span class="pill tr">Trend: text-overlay list</span><span class="pill ig">Instagram</span><span class="pill fb">Facebook</span></div>
+    <div class="meta"><b>Pillar:</b> Storytime (proven series) · <b>Audio:</b> Ariana Grande "Hate That I Made You Love Me" or current overlay sound</div>
+    <details><summary>🎥 Shot notes</summary><div class="meta">One static coffee-sip clip / slow zoom. Overlays: hostage-lawyer 7-year-old · slime in car seat (day 3) · bedtime story where the hero brushes teeth WITHOUT BEING ASKED · 12-kid party on $100 · "not free Saturday. or ever."</div></details>
+    <div class="plat"><div class="plat-head">📸 Instagram</div><pre class="cap">No gatekeeping, that's a real list from my actual chat history. 😅
+
+The best part of AI for moms? It never judges the question. It just answers — at 11 PM, mid-meltdown, whenever.
+
+Drop the weirdest thing you've ever asked AI 👇 (I KNOW you have one.)
+
+#PromptMama #AIMom #MomsOfInstagram #MentalLoad #AIParenting</pre><div class="btnrow"><button class="copy">📋 Copy IG caption</button></div></div>
+    <div class="plat"><div class="plat-head">👥 Facebook</div><pre class="cap">Real things from my actual AI chat history this summer 😅 (swipe/watch):
+
+• "Is it normal for a 7-year-old to negotiate like a hostage lawyer?"
+• "How do I get slime out of a car seat. It's been 3 days."
+• "Write a bedtime story where the hero brushes his teeth WITHOUT being asked."
+• "Plan a birthday party for 12 kids on a $100 budget."
+
+The best part of AI? It never judges the question. It just answers — at 11 PM, mid-meltdown, whenever.
+
+Okay your turn: what's the weirdest thing you've asked AI? 👇</pre><div class="btnrow"><button class="copy">📋 Copy FB version</button></div></div>
+  </div>
+
+  <div class="card c3" data-post="w1p4">
+    <div class="cardtop">
+      <span class="slot">Sun 6/21 · 9:00 AM</span>
+      <label class="done-wrap"><input type="checkbox" class="done" /> posted</label>
+    </div>
+    <h3>🎬 Reel — Father's Day, planned by AI 💗</h3>
+    <div class="pills"><span class="pill tr">Seasonal: Father's Day</span><span class="pill ig">Instagram</span><span class="pill fb">Facebook</span></div>
+    <div class="meta"><b>Pillar:</b> Family Planner + storytime · <b>Audio:</b> Justin Bieber "DAISIES" or sentimental trending pick · <b>Shots:</b> kids' card → breakfast → Jon opening a gift → screen-record of the prompt</div>
+    <div class="plat"><div class="plat-head">📸 Instagram</div><pre class="cap">Happy Father's Day to the guy who co-founded a startup with me AND still handles bedtime like a champ. 💗
+
+Real talk: AI planned today so I could actually be IN it. The prompt:
+
+"My husband loves __, __, and dad jokes. Plan a low-key Father's Day: one breakfast he'd love, one activity with kids ages __, a gift under $50 I can still get locally, and a card message in his sense of humor."
+
+The mental load of making days special shouldn't fall on one person — and now it doesn't.
+
+Tag a dad who deserves a slow morning today. ☕
+
+#PromptMama #AIforMoms #FathersDay #MentalLoad #MomsOfInstagram</pre><div class="btnrow"><button class="copy">📋 Copy IG caption</button></div></div>
+    <div class="plat"><div class="plat-head">👥 Facebook</div><pre class="cap">Happy Father's Day to the guy who co-founded a startup with me AND still handles bedtime like a champ. 💗
+
+Real talk: AI planned today so I could actually be IN it — the breakfast, the activity, the gift, even the card message in his exact sense of humor. One prompt, five minutes, zero day-of scrambling.
+
+The mental load of making days special shouldn't fall on one person. ☕
+
+Happy Father's Day to all the great dads out there — especially the ones doing the invisible work too.</pre><div class="btnrow"><button class="copy">📋 Copy FB version</button></div></div>
+  </div>
+
+  <div class="card" data-post="w1p5">
+    <div class="cardtop">
+      <span class="slot">Sun 6/21 · 7:00 PM</span>
+      <label class="done-wrap"><input type="checkbox" class="done" /> posted</label>
+    </div>
+    <h3>💬 Story — Sunday Reset (Reset Journal GPT)</h3>
+    <div class="pills"><span class="pill ig">Instagram only</span></div>
+    <div class="meta"><b>Frame 1:</b> cozy shot + "Father's Day edition: the reset is 5 minutes, the calm lasts all week 🧠✨" + Reset Journal link sticker.<br /><b>Frame 2:</b> poll sticker — "How was your week, really? 🟢🟡🔴"</div>
+  </div>
+
+  <!-- ============ WEEK 2 ============ -->
+  <h2 class="sec" id="w2">Week of <em>June 22</em></h2>
+  <div class="secnote">🗓️ JLL call Thu 11:00–11:30 AM → Thursday post at 12:30 PM · July 4th road-trip season → travel content Wednesday.</div>
+
+  <div class="card" data-post="w2p1">
+    <div class="cardtop">
+      <span class="slot">Mon 6/22 · 12:00 PM</span>
+      <label class="done-wrap"><input type="checkbox" class="done" /> posted</label>
+    </div>
+    <h3>🎬 Reel — "How I used ChatGPT this week"</h3>
+    <div class="pills"><span class="pill ig">Instagram</span><span class="pill fb">Facebook</span><span class="pill li">LinkedIn</span></div>
+    <div class="meta"><b>Pillar:</b> Weekly Recap (series) · <b>Audio:</b> Tyler, The Creator "Ring Ring Ring" · fallback voiceover</div>
+    <details><summary>🎥 Shot notes</summary><div class="meta">Talking-head or b-roll + overlays: dinners planned · group text → carpool schedule · "explain Minecraft lore" · 9 PM gift rescue · date night under $40.</div></details>
+    <div class="plat"><div class="plat-head">📸 Instagram</div><pre class="cap">How I used ChatGPT this week, the unglamorous edition. 🧠
+
+That's the thing about AI for moms — it's not one big fancy use case. It's 15 tiny rescues a week that add up to an actual exhale.
+
+Which one do you need? 👇 I'll send you the exact prompt in the comments.
+
+#PromptMama #AIMom #MomsOfInstagram #MentalLoad #AIParenting</pre><div class="btnrow"><button class="copy">📋 Copy IG caption</button></div></div>
+    <div class="plat"><div class="plat-head">👥 Facebook</div><pre class="cap">How I used ChatGPT this week — the unglamorous edition 🧠:
+
+• planned the week's dinners (again, it never gets old)
+• turned a chaotic group text into an actual carpool schedule
+• "explain Minecraft lore like I'm a busy mom who needs to bond with her kid"
+• found a birthday gift at 9 PM for the party we forgot about
+• date night ideas under $40 that aren't "dinner and a movie"
+
+It's never one big fancy use case. It's 15 tiny rescues a week that add up to an actual exhale.
+
+Which one do you need? I'll send you the exact prompt. 👇</pre><div class="btnrow"><button class="copy">📋 Copy FB version</button></div></div>
+    <div class="plat"><div class="plat-head">💼 LinkedIn <span class="when">post Mon morning</span></div><pre class="cap">How I actually used AI this week. None of it was fancy:
+
+→ Planned a week of family dinners + the grocery list
+→ Turned a chaotic group text into a carpool schedule
+→ Had it explain Minecraft lore so I could genuinely talk to my kid about it
+→ Found a birthday gift at 9 PM for a party we'd forgotten
+→ Brainstormed a date night under $40
+
+Here's why I share this: most people are waiting for the One Big AI Use Case. Meanwhile the real value — at home AND at work — is fifteen tiny rescues a week.
+
+If you lead enablement or L&D: this is also how adoption actually happens inside companies. Small wins, repeated, until it's a habit.
+
+What's the smallest, least-impressive thing AI saved you this week?
+
+#AIAdoption #Enablement #WorkingParents</pre><div class="btnrow"><button class="copy">📋 Copy LinkedIn version</button><a class="share" href="#" target="_blank" rel="noopener">in · Open in LinkedIn (pre-filled)</a></div></div>
+  </div>
+
+  <div class="card c1" data-post="w2p2">
+    <div class="cardtop">
+      <span class="slot">Wed 6/24 · 12:00 PM</span>
+      <label class="done-wrap"><input type="checkbox" class="done" /> posted</label>
+    </div>
+    <h3>🎬 Reel — "The AI packing list that saved our road trip"</h3>
+    <div class="pills"><span class="pill tr">Seasonal: July 4th travel</span><span class="pill ig">Instagram</span><span class="pill fb">Facebook</span></div>
+    <div class="meta"><b>Pillar:</b> Family Planner · <b>Audio:</b> Justin Bieber "DAISIES" (confirm still trending) · <b>Shots:</b> packing b-roll → screen-record of the prompt output</div>
+    <div class="plat"><div class="plat-head">📸 Instagram</div><pre class="cap">POV: it's the night before the road trip and you're NOT doing the 11 PM panic-pack. 🚗
+
+The exact prompt:
+
+"We're driving __ hours with kids ages __. Build me: 1) a packing list by category including the stuff everyone forgets, 2) a first-hour car activity list with zero screens, 3) a snack list that won't melt, and 4) a 'do not leave without' final check."
+
+Save this for July 4th week — future you, sweaty in the driveway, will be so grateful.
+
+#PromptMama #AIforParents #RoadTripWithKids #SummerWithKids #MomLifeHacks</pre><div class="btnrow"><button class="copy">📋 Copy IG caption</button></div></div>
+    <div class="plat"><div class="plat-head">👥 Facebook</div><pre class="cap">Night before the road trip and NOT doing the 11 PM panic-pack for once. 🚗
+
+This prompt did it all:
+
+"We're driving __ hours with kids ages __. Build me: 1) a packing list by category including the stuff everyone forgets, 2) a first-hour car activity list with zero screens, 3) a snack list that won't melt, and 4) a 'do not leave without' final check."
+
+Save this for July 4th week — future you, sweaty in the driveway, will be so grateful.
+
+Where's everyone headed for the 4th? 🎆</pre><div class="btnrow"><button class="copy">📋 Copy FB version</button></div></div>
+  </div>
+
+  <div class="card c2" data-post="w2p3">
+    <div class="cardtop">
+      <span class="slot">Thu 6/25 · 12:30 PM</span>
+      <label class="done-wrap"><input type="checkbox" class="done" /> posted</label>
+    </div>
+    <h3>🎠 Carousel — "The 4-prompt resume rewrite that lands interviews"</h3>
+    <div class="pills"><span class="pill ig">Instagram</span><span class="pill fb">Facebook</span><span class="pill li">LinkedIn ⭐ prime</span></div>
+    <div class="meta"><b>Pillar:</b> Career + AI · <b>Format:</b> 6 Canva slides — copy in <code>calendar/2026-06-22.md</code> (Mine the wins · Match the job · Rewrite the bullets · The recruiter test · CTA)</div>
+    <div class="plat"><div class="plat-head">📸 Instagram</div><pre class="cap">15+ years in tech enablement taught me this: the best candidate rarely wins — the clearest resume does. These 4 ChatGPT prompts make yours the clear one.
+
+Re-entering after kids? Pivoting? Negotiating? This works for all of it.
+
+Comment CAREER for the full toolkit. 💼
+
+#PromptMama #CareerPivot #ResumeTips #AIatWork #WorkingMoms</pre><div class="btnrow"><button class="copy">📋 Copy IG caption</button></div></div>
+    <div class="plat"><div class="plat-head">👥 Facebook</div><pre class="cap">15+ years in tech enablement taught me this: the best candidate rarely wins — the clearest resume does.
+
+These 4 ChatGPT prompts make yours the clear one (swipe through):
+1. Mine the wins — let AI interview YOU until the accomplishments surface
+2. Match the job — gap analysis against the actual job description
+3. Rewrite the bullets — verb-first, results-first
+4. The recruiter test — "you have 30 seconds, what do you remember?"
+
+Re-entering after kids? Pivoting? Share this with someone in the middle of a job hunt. 💼</pre><div class="btnrow"><button class="copy">📋 Copy FB version</button></div></div>
+    <div class="plat"><div class="plat-head">💼 LinkedIn <span class="when">⭐ this is a LinkedIn-native post — schedule Thu 9 AM</span></div><pre class="cap">The best candidate rarely wins. The clearest resume does.
+
+After 15+ years in tech enablement (and a lot of hiring panels), here are the 4 AI prompts I give anyone rewriting their resume:
+
+1. Mine the wins: "Interview me one question at a time about my last role until you have 10 accomplishments with numbers. Don't let me be modest."
+
+2. Match the job: "Here's the job description and my resume. List the gaps, the keyword misses, and what to reorder."
+
+3. Rewrite the bullets: "Verb-first, one line each, leading with the result — not the task."
+
+4. The recruiter test: "You're a recruiter with 30 seconds. Skim this and tell me what you remember. What got lost?"
+
+Prompt #1 matters most for women and parents re-entering the workforce — we under-claim our own wins, and an AI interviewer doesn't let us.
+
+Which one would help someone in your network this week? Tag them. 💼
+
+#ResumeTips #CareerDevelopment #JobSearch</pre><div class="btnrow"><button class="copy">📋 Copy LinkedIn version</button><a class="share" href="#" target="_blank" rel="noopener">in · Open in LinkedIn (pre-filled)</a></div></div>
+  </div>
+
+  <div class="card c3" data-post="w2p4">
+    <div class="cardtop">
+      <span class="slot">Sun 6/28 · 7:00 PM</span>
+      <label class="done-wrap"><input type="checkbox" class="done" /> posted</label>
+    </div>
+    <h3>📷 Sunday Reset — "5 quiet minutes"</h3>
+    <div class="pills"><span class="pill ig">Instagram</span><span class="pill fb">Facebook</span></div>
+    <div class="meta"><b>Pillar:</b> Sunday Reset · <b>Format:</b> single cozy photo (journal/tea/couch corner, golden hour) or soft reel</div>
+    <div class="plat"><div class="plat-head">📸 Instagram</div><pre class="cap">Sunday truth: you don't need a better morning routine. You need 5 quiet minutes and one honest question. 🧠
+
+Mine is the Reset Journal — the free GPT I built for exactly this. It asks, you answer, and Monday feels 20% less like an ambush.
+
+"What actually drained me this week — and what's ONE thing I'm doing less of next week?"
+
+Start there. Or let the journal walk you through it — link in bio. ✨
+
+#PromptMama #SundayReset #MomsSupportingMoms #AIforMoms #MentalLoad</pre><div class="btnrow"><button class="copy">📋 Copy IG caption</button></div></div>
+    <div class="plat"><div class="plat-head">👥 Facebook</div><pre class="cap">Sunday truth: you don't need a better morning routine. You need 5 quiet minutes and one honest question. 🧠
+
+"What actually drained me this week — and what's ONE thing I'm doing less of next week?"
+
+Start there tonight. (I built a free little AI journal that walks you through it — comment RESET and I'll send it to you.) ✨</pre><div class="btnrow"><button class="copy">📋 Copy FB version</button></div></div>
+  </div>
+
+  <!-- ============ HASHTAGS ============ -->
+  <h2 class="sec" id="hashtags">Hashtag <em>sets</em></h2>
+  <div class="secnote">3–5 tags max per post (IG). Facebook: skip the hashtag wall. LinkedIn: exactly 3, professional. Say the keywords ("AI prompts for moms") in the caption itself — that's what Instagram search reads now.</div>
+  <div class="tag-set"><b>Set A — prompt drop</b>#PromptMama #AIforMoms #ChatGPTforParents #MomHacks #SummerBreakSurvival<div class="btnrow"><button class="copy">📋 Copy set</button></div></div>
+  <div class="tag-set"><b>Set B — storytime</b>#PromptMama #AIMom #MomsOfInstagram #MentalLoad #AIParenting<div class="btnrow"><button class="copy">📋 Copy set</button></div></div>
+  <div class="tag-set"><b>Set C — planner</b>#PromptMama #AIforParents #MomLifeHacks #MealPlanningMadeEasy #SummerWithKids<div class="btnrow"><button class="copy">📋 Copy set</button></div></div>
+  <div class="tag-set"><b>Set D — reset</b>#PromptMama #SundayReset #MomsSupportingMoms #AIforMoms #MentalLoad<div class="btnrow"><button class="copy">📋 Copy set</button></div></div>
+  <div class="tag-set"><b>Set E — career</b>#PromptMama #CareerPivot #ResumeTips #AIatWork #WorkingMoms<div class="btnrow"><button class="copy">📋 Copy set</button></div></div>
+
+  <!-- ============ TRENDS ============ -->
+  <h2 class="sec" id="trends">Trend <em>radar</em></h2>
+  <div class="prose">
+    <ul style="line-height:2">
+      <li>"Sorry, I can't — I have <b>therapy</b>" POV → cut to ChatGPT doing the meal plan <i>(used 6/15)</i></li>
+      <li>"<b>I Am Home</b>" walk-in (Beat It) → quiet kitchen at 9 PM, laptop open</li>
+      <li>"<b>Seeing if the algorithm prefers…</b>" → fancy edit vs. deadpan sticky-note prompt (great for slammed weeks)</li>
+      <li>"<b>Bleeding Love</b>" confessional lip-sync → loving the Family Planner prompts too much</li>
+      <li><b>ChatGPT-as-co-parent virals</b> (710K+ views) → our lane: AI carries the list, you carry the kid</li>
+      <li><b>Analog-summer</b> counter-trend → AI plans the screen-free day <i>(used 6/17)</i></li>
+      <li><b>Audio:</b> DAISIES (chill/travel) · EVERYTHING HALLELUJAH (lists) · Ring Ring Ring (recaps) · Hate That I Made You Love Me (overlays)</li>
+    </ul>
+    <p style="margin-top:10px;font-size:13px;color:#777">Full report with sources: <code>content-engine/trends.md</code> — refreshed by Claude every Sunday.</p>
+  </div>
+
+  <!-- ============ ENGINE ============ -->
+  <h2 class="sec" id="engine">The <em>engine</em></h2>
+  <div class="prose">
+    <h3>The weekly loop</h3>
+    <p><b>Sunday 8 PM</b> (it's on your Google Calendar): open Claude Code and paste the prompt below. Claude refreshes trends, drafts next week for all three platforms, pushes the post reminders to Google Calendar, and updates this page. Then spend 20 minutes scheduling in Meta Business Suite + LinkedIn, and your whole week is loaded.</p>
+    <h3>The engine prompt</h3>
+    <pre class="cap" id="engine-prompt">Run my Prompt Mama content engine: read content-engine/CLAUDE.md in the prompt-mama repo, refresh trends.md with this week's Reels formats and audio, draft next week's posts (with Facebook and LinkedIn versions) into content-engine/calendar/, push them to my Google Calendar as post-reminder events, update content-engine/dashboard.html, and commit everything.</pre>
+    <div class="btnrow"><button class="copy">📋 Copy engine prompt</button></div>
+    <h3>Privacy</h3>
+    <p>This page lives outside the deployed site folder, so it never appears on promptmama.ai. It's not linked anywhere, not in the sitemap, and marked noindex. With the GitHub repo set to Private, it's yours alone.</p>
+  </div>
+
+  <footer>Prompt Mama · internal tool · <code>content-engine/dashboard.html</code> — double-click to open, works offline.</footer>
 </div>
 
 <script>
-const ENGINE_PROMPT = `Run my Prompt Mama content engine: read content-engine/CLAUDE.md in the prompt-mama repo, refresh trends.md with this week's Reels formats and audio, draft next week's posts into content-engine/calendar/, push them to my Google Calendar as post-reminder events, update content-engine/dashboard.html, and commit everything.`;
-
-const DATA = {
-  weeks: [
-    {
-      label: "Week of Jun 15",
-      notes: "Salesforce interview Mon 4–5 PM (noon slot is clear). Father's Day Sun 6/21. Batch-film block Fri 6/12, 2:00 PM.",
-      posts: [
-        { slot:"Mon 6/15 · 12:00 PM", title:"🎬 Reel — “Sorry, I can't — I have therapy”", pillar:"Prompt of the Day", trend:"“I have therapy” POV", audio:"Trending “therapy” POV sound · fallback: original audio + voiceover", shots:"Clip 1: deadpan to camera “Sorry, I can't — I have therapy.” · Clip 2: coffee at the counter while ChatGPT writes the meal plan (screen-record it).",
-          caption:`"Therapy" = watching AI write my grocery list sorted by aisle while my coffee is still hot. ☕\n\nThis is the exact AI prompt for moms I use every Monday:\n\n"Plan a week of simple dinners my kids will actually eat (ages __, picky about __). Then write my grocery list sorted by aisle, and flag anything I probably already have in the pantry."\n\nCopy it. Paste it. Go sit down for ten minutes — you've earned it.\n\nFollow @prompt_mama for one prompt a day that gives you your time back. 💗\n\n#PromptMama #AIforMoms #ChatGPTforParents #MomHacks #SummerBreakSurvival` },
-        { slot:"Wed 6/17 · 12:00 PM", title:"🎠 Carousel — “5 prompts that plan the analog summer day”", pillar:"Family Planner", trend:"“Analog summer” counter-trend", audio:"n/a (carousel) — optional EVERYTHING HALLELUJAH if posted as reel", shots:"7 Canva slides, brand colors. Slide copy in calendar/2026-06-15.md: Boredom Jar · Rainy Day Rescue · Fridge Lunch · Sibling Peace Treaty · Backyard Olympics · CTA “comment SUMMER”.",
-          caption:`The slow-summer moms and the AI moms are not enemies — AI plans the screen-free day, the kids get to be bored on purpose, and nobody asks me "what are we doing today" at 7:02 AM. 🌞\n\nSave this for the next "I'm boooored" — and comment SUMMER for the free AI Parent Pack (3 guides + my favorite mom-tested prompts).\n\n#PromptMama #AIforParents #MomLifeHacks #SummerWithKids #SummerBreakSurvival` },
-        { slot:"Fri 6/19 · 12:00 PM", title:"🎬 Reel — “Weird things I've asked AI as a mom: summer edition”", pillar:"Storytime (proven series)", trend:"Relatable text-overlay list", audio:"Ariana Grande “Hate That I Made You Love Me” or current overlay sound", shots:"One static coffee-sip clip / slow zoom. Overlays: hostage-lawyer 7-year-old · slime in car seat (day 3) · bedtime story where the hero brushes teeth WITHOUT BEING ASKED · 12-kid party on $100 · “not free Saturday. or ever.”",
-          caption:`No gatekeeping, that's a real list from my actual chat history. 😅\n\nThe best part of AI for moms? It never judges the question. It just answers — at 11 PM, mid-meltdown, whenever.\n\nDrop the weirdest thing you've ever asked AI 👇 (I KNOW you have one.)\n\n#PromptMama #AIMom #MomsOfInstagram #MentalLoad #AIParenting` },
-        { slot:"Sun 6/21 · 9:00 AM", title:"🎬 Reel — Father's Day, planned by AI 💗", pillar:"Family Planner + storytime", trend:"Seasonal — Father's Day", audio:"Justin Bieber “DAISIES” or sentimental trending pick", shots:"Kids' card on the table → breakfast → Jon opening a gift → screen-record of the prompt.",
-          caption:`Happy Father's Day to the guy who co-founded a startup with me AND still handles bedtime like a champ. 💗\n\nReal talk: AI planned today so I could actually be IN it. The prompt:\n\n"My husband loves __, __, and dad jokes. Plan a low-key Father's Day: one breakfast he'd love, one activity with kids ages __, a gift under $50 I can still get locally, and a card message in his sense of humor."\n\nThe mental load of making days special shouldn't fall on one person — and now it doesn't.\n\nTag a dad who deserves a slow morning today. ☕\n\n#PromptMama #AIforMoms #FathersDay #MentalLoad #MomsOfInstagram` },
-        { slot:"Sun 6/21 · 7:00 PM", title:"💬 Story — Sunday Reset", pillar:"Sunday Reset", trend:"—", audio:"—", shots:"Frame 1: cozy shot + “the reset is 5 minutes, the calm lasts all week 🧠✨” + Reset Journal link sticker. Frame 2: poll “How was your week, really? 🟢🟡🔴”.",
-          caption:`(Story — no caption needed. Link sticker → Reset Journal GPT.)` }
-      ]
-    },
-    {
-      label: "Week of Jun 22",
-      notes: "JLL call Thu 11:00–11:30 AM → Thursday post at 12:30 PM. July 4th road-trip season → travel content Wednesday.",
-      posts: [
-        { slot:"Mon 6/22 · 12:00 PM", title:"🎬 Reel — “How I used ChatGPT this week”", pillar:"Weekly Recap (series)", trend:"Evergreen recap", audio:"Tyler, The Creator “Ring Ring Ring” · fallback voiceover", shots:"Talking-head or b-roll + overlays: dinners planned · group text → carpool schedule · “explain Minecraft lore” · 9 PM gift rescue · date night under $40.",
-          caption:`How I used ChatGPT this week, the unglamorous edition. 🧠\n\nThat's the thing about AI for moms — it's not one big fancy use case. It's 15 tiny rescues a week that add up to an actual exhale.\n\nWhich one do you need? 👇 I'll send you the exact prompt in the comments.\n\n#PromptMama #AIMom #MomsOfInstagram #MentalLoad #AIParenting` },
-        { slot:"Wed 6/24 · 12:00 PM", title:"🎬 Reel — “The AI packing list that saved our road trip”", pillar:"Family Planner", trend:"July 4th travel", audio:"Justin Bieber “DAISIES” (confirm still trending in-app)", shots:"Packing b-roll (suitcase, snack bin, trunk) → screen-record of the prompt output.",
-          caption:`POV: it's the night before the road trip and you're NOT doing the 11 PM panic-pack. 🚗\n\nThe exact prompt:\n\n"We're driving __ hours with kids ages __. Build me: 1) a packing list by category including the stuff everyone forgets, 2) a first-hour car activity list with zero screens, 3) a snack list that won't melt, and 4) a 'do not leave without' final check."\n\nSave this for July 4th week — future you, sweaty in the driveway, will be so grateful.\n\n#PromptMama #AIforParents #RoadTripWithKids #SummerWithKids #MomLifeHacks` },
-        { slot:"Thu 6/25 · 12:30 PM", title:"🎠 Carousel — “The 4-prompt resume rewrite that lands interviews”", pillar:"Career + AI", trend:"Evergreen (proven post, refreshed)", audio:"n/a (carousel)", shots:"6 Canva slides — copy in calendar/2026-06-22.md: Mine the wins · Match the job · Rewrite the bullets · The recruiter test · CTA “comment CAREER”.",
-          caption:`15+ years in tech enablement taught me this: the best candidate rarely wins — the clearest resume does. These 4 ChatGPT prompts make yours the clear one.\n\nRe-entering after kids? Pivoting? Negotiating? This works for all of it.\n\nComment CAREER for the full toolkit. 💼\n\n#PromptMama #CareerPivot #ResumeTips #AIatWork #WorkingMoms` },
-        { slot:"Sun 6/28 · 7:00 PM", title:"📷 Sunday Reset — “5 quiet minutes”", pillar:"Sunday Reset", trend:"Evergreen, soft close", audio:"Soft acoustic if reel; none if photo", shots:"Single cozy shot — journal/tea/couch corner, golden hour if it exists.",
-          caption:`Sunday truth: you don't need a better morning routine. You need 5 quiet minutes and one honest question. 🧠\n\nMine is the Reset Journal — the free GPT I built for exactly this. It asks, you answer, and Monday feels 20% less like an ambush.\n\n"What actually drained me this week — and what's ONE thing I'm doing less of next week?"\n\nStart there. Or let the journal walk you through it — link in bio. ✨\n\n#PromptMama #SundayReset #MomsSupportingMoms #AIforMoms #MentalLoad` }
-      ]
+// Copy buttons — copy the nearest caption above the button
+document.querySelectorAll('.copy').forEach(function (b) {
+  b.addEventListener('click', async function () {
+    var scope = b.closest('.plat') || b.closest('.tag-set') || b.closest('.prose');
+    var cap = scope.querySelector('.cap');
+    var text = cap ? cap.textContent : (scope.textContent || '');
+    if (!cap && b.closest('.tag-set')) {
+      text = scope.cloneNode(true).textContent.replace(/📋 Copy set/, '').replace(/^[^#]*/, '').trim();
     }
-  ],
-  hashtagSets: [
-    ["Set A — prompt drop", "#PromptMama #AIforMoms #ChatGPTforParents #MomHacks #SummerBreakSurvival"],
-    ["Set B — storytime", "#PromptMama #AIMom #MomsOfInstagram #MentalLoad #AIParenting"],
-    ["Set C — planner", "#PromptMama #AIforParents #MomLifeHacks #MealPlanningMadeEasy #SummerWithKids"],
-    ["Set D — reset", "#PromptMama #SundayReset #MomsSupportingMoms #AIforMoms #MentalLoad"],
-    ["Set E — career", "#PromptMama #CareerPivot #ResumeTips #AIatWork #WorkingMoms"]
-  ],
-  trends: [
-    "“Sorry, I can't — I have therapy” POV → cut to ChatGPT doing the meal plan (used 6/15)",
-    "“I Am Home” walk-in (Beat It) → quiet kitchen at 9 PM, laptop open",
-    "“Seeing if the algorithm prefers…” → fancy edit vs. deadpan sticky-note prompt (great for slammed weeks)",
-    "“Bleeding Love” confessional lip-sync → loving the Family Planner prompts too much",
-    "ChatGPT-as-co-parent virals (710K+ views) → our lane: AI carries the list, you carry the kid",
-    "Analog-summer counter-trend → AI plans the screen-free day (used 6/17)",
-    "Audio: DAISIES (chill/travel) · EVERYTHING HALLELUJAH (lists) · Ring Ring Ring (recaps) · Hate That I Made You Love Me (overlays)"
-  ]
-};
-
-const tabs = [...DATA.weeks.map(w => w.label), "Hashtags", "Trends", "How it works"];
-const tabsEl = document.getElementById('tabs'), view = document.getElementById('view');
-let active = 0;
-
-function copyBtn(text, label="Copy caption") {
-  const b = document.createElement('button');
-  b.className = 'copy'; b.textContent = `📋 ${label}`;
-  b.onclick = async () => {
-    try { await navigator.clipboard.writeText(text); }
-    catch { const t=document.createElement('textarea'); t.value=text; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); }
-    b.classList.add('ok'); b.textContent = '✓ Copied — go post it!';
-    setTimeout(()=>{ b.classList.remove('ok'); b.textContent = `📋 ${label}`; }, 2200);
-  };
-  return b;
-}
-
-function render() {
-  tabsEl.innerHTML = '';
-  tabs.forEach((t,i) => {
-    const b = document.createElement('button');
-    b.textContent = t; if (i===active) b.classList.add('on');
-    b.onclick = () => { active=i; render(); };
-    tabsEl.appendChild(b);
+    try { await navigator.clipboard.writeText(text.trim()); }
+    catch (e) { var t = document.createElement('textarea'); t.value = text.trim(); document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); }
+    var old = b.textContent; b.classList.add('ok'); b.textContent = '✓ Copied — go post it!';
+    setTimeout(function () { b.classList.remove('ok'); b.textContent = old; }, 2200);
   });
-  view.innerHTML = '';
+});
 
-  if (active < DATA.weeks.length) {
-    const w = DATA.weeks[active];
-    if (w.notes) { const n=document.createElement('div'); n.className='note'; n.textContent='🗓️ ' + w.notes; view.appendChild(n); }
-    w.posts.forEach((p,i) => {
-      const c = document.createElement('div'); c.className = 'card ' + ['','alt1','alt2','alt3'][i%4];
-      c.innerHTML = `<div class="slot">${p.slot}</div><h3>${p.title}</h3>
-        <div class="meta"><b>Pillar:</b> ${p.pillar} · <b>Trend:</b> ${p.trend}<br><b>Audio:</b> ${p.audio}</div>
-        <details><summary>🎥 Shot notes</summary><div class="meta" style="margin-top:6px">${p.shots}</div></details>`;
-      const cap = document.createElement('div'); cap.className='cap'; cap.textContent = p.caption;
-      c.appendChild(cap); c.appendChild(copyBtn(p.caption));
-      view.appendChild(c);
-    });
-  } else if (tabs[active] === "Hashtags") {
-    const g = document.createElement('div'); g.className='grid';
-    DATA.hashtagSets.forEach(([name, tags]) => {
-      const d = document.createElement('div'); d.className='tag-set';
-      d.innerHTML = `<b>${name}</b>${tags}`;
-      d.appendChild(document.createElement('br'));
-      d.appendChild(copyBtn(tags, 'Copy set'));
-      g.appendChild(d);
-    });
-    const n = document.createElement('div'); n.className='note';
-    n.textContent = '3–5 tags max per post. Rotate sets. Say the keywords (“AI prompts for moms”) in the caption itself — that\'s what Instagram search reads now.';
-    view.appendChild(g); view.appendChild(n);
-  } else if (tabs[active] === "Trends") {
-    const p = document.createElement('div'); p.className='prose';
-    p.innerHTML = '<h3>This week\'s radar (refreshed by Claude every Sunday)</h3>' +
-      '<ul style="padding-left:18px;line-height:1.9">' + DATA.trends.map(t=>`<li>${t}</li>`).join('') + '</ul>' +
-      '<p style="margin-top:10px;font-size:13px;color:#777">Full report with sources: <code>content-engine/trends.md</code></p>';
-    view.appendChild(p);
-  } else {
-    const p = document.createElement('div'); p.className='prose';
-    p.innerHTML = `<h3>The weekly loop</h3>
-      <p><b>Sunday 8 PM</b> (it's on your calendar): open Claude Code and paste the engine prompt below. Claude refreshes trends, drafts next week, pushes the post reminders to Google Calendar, and updates this page.</p>
-      <h3>Post days</h3>
-      <p>The pink 📌 calendar event pops up 15 minutes before posting time with everything in it — or open this page and hit copy.</p>
-      <h3>Privacy</h3>
-      <p>This page lives outside the deployed site folder, so it never appears on promptmama.ai. It's not linked, not in the sitemap, and marked noindex. Keep the GitHub repo set to <b>Private</b> and this stays yours alone.</p>
-      <h3>The engine prompt</h3>
-      <div class="cap">${ENGINE_PROMPT}</div>`;
-    p.appendChild(copyBtn(ENGINE_PROMPT, 'Copy engine prompt'));
-    view.appendChild(p);
-  }
-}
-render();
+// LinkedIn share buttons — open LinkedIn composer pre-filled with the caption
+document.querySelectorAll('a.share:not(.meta-btn)').forEach(function (a) {
+  a.addEventListener('click', function (e) {
+    var cap = a.closest('.plat').querySelector('.cap');
+    if (cap) a.href = 'https://www.linkedin.com/feed/?shareActive=true&text=' + encodeURIComponent(cap.textContent.trim());
+  });
+});
+
+// "Posted" checkboxes — persist in this browser via localStorage
+document.querySelectorAll('.card[data-post]').forEach(function (card) {
+  var key = 'pm-done-' + card.dataset.post;
+  var box = card.querySelector('.done');
+  if (!box) return;
+  box.checked = localStorage.getItem(key) === '1';
+  card.style.opacity = box.checked ? .55 : 1;
+  box.addEventListener('change', function () {
+    localStorage.setItem(key, box.checked ? '1' : '0');
+    card.style.opacity = box.checked ? .55 : 1;
+  });
+});
 </script>
 </body>
 </html>

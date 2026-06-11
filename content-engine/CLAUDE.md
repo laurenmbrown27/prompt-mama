@@ -40,6 +40,14 @@ Create `calendar/YYYY-MM-DD.md` (the Monday of the target week) with **4 feed po
 
 Include at least one **copy-paste prompt** per post — that is the brand.
 
+**Cross-platform versions.** For every feed post also draft:
+- a **Facebook version**: warmer community tone, lists spelled out in text, a question
+  that invites comments, no hashtag wall (0–1 tags). Same media as IG.
+- a **LinkedIn version** for 2–3 posts/week where it fits (career, AI-literacy,
+  recap/thought-leadership angles — never pure mom-humor): professional voice anchored
+  in Lauren's 15+ years in tech enablement, exactly 3 professional hashtags, ends with
+  a discussion question. Career posts are LinkedIn-prime: schedule those at 9 AM.
+
 ## Step 3 — Push to Google Calendar
 For each feed post, create an event on her primary calendar:
 - **Title**: `📌 POST · <format emoji> <short title>` (🎬 reel, 🎠 carousel, 📷 photo, 💬 story)
@@ -54,10 +62,12 @@ lightest weekday, listing every shot for the week.
 Keep the recurring Sunday 8 PM "Content Engine" planning event — that's the trigger.
 
 ## Step 4 — Update the dashboard
-Update the `DATA` object in `dashboard.html` (Lauren's private internal page): add the
-new week with every post's slot, title, pillar, trend, audio, shot notes, and caption;
-refresh the trends list; drop weeks older than 2 weeks. Keep it a single self-contained
-file that works offline.
+Update `dashboard.html` (Lauren's private internal page): add the new week's cards with
+every post's slot, title, pillar, trend, audio, shot notes, and the IG/FB/LinkedIn
+captions; refresh the trend radar and hero stats; drop weeks older than 2 weeks.
+**All content must be static HTML** — phone file-previews don't run JavaScript, so the
+page must be fully readable with scripts off (JS only powers copy buttons, the
+LinkedIn pre-fill links, and the "posted" checkboxes). Keep it one self-contained file.
 
 ## Step 5 — Commit
 Commit the new/updated files with a message like `Content week of Jun 15` and push.
