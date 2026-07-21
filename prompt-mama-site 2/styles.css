@@ -1075,7 +1075,7 @@ h1.hero-title .accent {
 }
 .trio-navy .trio-tag { background: rgba(255, 228, 94, 0.18); color: var(--yellow); }
 .trio-pink .trio-tag { background: rgba(255, 255, 255, 0.22); color: var(--yellow); }
-.trio-yellow .trio-tag { background: var(--navy); color: var(--yellow); }
+.trio-yellow .trio-tag { background: rgba(26, 43, 74, 0.14); color: var(--navy); }
 .trio-tag.new-pill {
   font-family: 'Poppins', sans-serif;
   background: var(--pink);
